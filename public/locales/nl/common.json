@@ -1,0 +1,72 @@
+{
+  "title": "Box 3 Belastingcalculator",
+  "subtitle": "Bereken eenvoudig uw Box 3 belasting voor uw tweede woning en andere investeringen",
+  "assets": {
+    "title": "Uw bezittingen en schulden",
+    "possessions": "Bezittingen",
+    "bankSavings": "Bank- en spaartegoeden",
+    "investments": "Beleggingen (aandelen, obligaties, etc.)",
+    "properties": "Onroerend goed (tweede woning, verhuurde woning)",
+    "otherAssets": "Overige bezittingen",
+    "greenInvestments": "Groene beleggingen"
+  },
+  "debts": {
+    "title": "Schulden",
+    "debts": "Schulden"
+  },
+  "personal": {
+    "title": "Persoonlijke situatie",
+    "fiscalPartner": "Ik heb een fiscale partner"
+  },
+  "buttons": {
+    "calculate": "Bereken belasting",
+    "reset": "Reset"
+  },
+  "results": {
+    "title": "Box 3 Belasting",
+    "taxableReturn": "Belastbaar rendement",
+    "taxBase": "Rendementsgrondslag",
+    "savingsAndInvestmentBase": "Grondslag sparen en beleggen",
+    "benefitFromSavingsAndInvestments": "Voordeel uit sparen en beleggen",
+    "calculationSteps": "Berekening stappen",
+    "step1": "Stap 1: Bereken het belastbaar rendement",
+    "step2": "Stap 2: Bereken uw rendementsgrondslag",
+    "step3": "Stap 3: Bereken uw grondslag sparen en beleggen",
+    "step4": "Stap 4: Bereken uw aandeel in de rendementsgrondslag",
+    "step5": "Stap 5: Bereken uw voordeel uit sparen en beleggen",
+    "step6": "Stap 6: Bereken hoeveel belasting u moet betalen in box 3",
+    "disclaimer": "Deze berekening is een schatting. Uw werkelijke belasting kan afwijken afhankelijk van uw persoonlijke situatie."
+  },
+  "placeholder": {
+    "title": "Vul uw gegevens in",
+    "description": "Vul uw bezittingen en schulden in om uw Box 3 belasting te berekenen."
+  },
+  "about": {
+    "title": "Over Box 3 belasting",
+    "description": "In Nederland wordt in Box 3 belasting geheven over uw vermogen, zoals spaargeld, beleggingen en onroerend goed (behalve uw eigen woning). De Belastingdienst berekent het Box 3-inkomen volgens de Overbruggingswetgeving, waarbij wordt uitgegaan van de werkelijke verdeling van de verschillende soorten vermogen.",
+    "rates": "Voor 2024 gelden de volgende rendementspercentages:",
+    "bankSavings": "Banktegoeden",
+    "investments": "Beleggingen en andere bezittingen",
+    "debts": "Schulden",
+    "taxRate": "Het belastingtarief voor Box 3 in 2024 is 36%.",
+    "taxFreeAmount": "Het heffingsvrij vermogen is € 57.000 per persoon (€ 114.000 voor fiscale partners).",
+    "source": "Bron"
+  },
+  "company": {
+    "title": "Ontwikkeld door Elands Studio",
+    "description": "Elands Studio is gespecialiseerd in het ontwikkelen van gebruiksvriendelijke web applicaties en financiële tools. Wij helpen u graag met al uw digitale uitdagingen.",
+    "website": "Bezoek onze website",
+    "contact": "Neem contact op"
+  },
+  "ads": {
+    "title": "Gesponsorde content",
+    "description": "Advertenties helpen ons om deze tool gratis aan te bieden"
+  },
+  "footer": {
+    "taxCalculator": "Box 3 Belastingcalculator",
+    "copyright": "© 2024 Elands Studio. Alle rechten voorbehouden.",
+    "disclaimer": "Deze calculator is bedoeld als hulpmiddel. Raadpleeg altijd een belastingadviseur voor uw specifieke situatie."
+  },
+  "optional": "Optioneel",
+  "language": "Taal"
+} 

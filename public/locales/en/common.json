@@ -1,0 +1,72 @@
+{
+  "title": "Box 3 Tax Calculator",
+  "subtitle": "Easily calculate your Box 3 tax for your second home and other investments in the Netherlands",
+  "assets": {
+    "title": "Your assets and debts",
+    "possessions": "Assets",
+    "bankSavings": "Bank and savings accounts",
+    "investments": "Investments (stocks, bonds, etc.)",
+    "properties": "Real estate (second home, rental property)",
+    "otherAssets": "Other assets",
+    "greenInvestments": "Green investments"
+  },
+  "debts": {
+    "title": "Debts",
+    "debts": "Debts"
+  },
+  "personal": {
+    "title": "Personal situation",
+    "fiscalPartner": "I have a fiscal partner"
+  },
+  "buttons": {
+    "calculate": "Calculate tax",
+    "reset": "Reset"
+  },
+  "results": {
+    "title": "Box 3 Tax",
+    "taxableReturn": "Taxable return",
+    "taxBase": "Tax base",
+    "savingsAndInvestmentBase": "Savings and investment base",
+    "benefitFromSavingsAndInvestments": "Benefit from savings and investments",
+    "calculationSteps": "Calculation steps",
+    "step1": "Step 1: Calculate the taxable return",
+    "step2": "Step 2: Calculate your tax base",
+    "step3": "Step 3: Calculate your savings and investment base",
+    "step4": "Step 4: Calculate your share in the tax base",
+    "step5": "Step 5: Calculate your benefit from savings and investments",
+    "step6": "Step 6: Calculate how much tax you need to pay in box 3",
+    "disclaimer": "This calculation is an estimate. Your actual tax may differ depending on your personal situation."
+  },
+  "placeholder": {
+    "title": "Enter your details",
+    "description": "Enter your assets and debts to calculate your Box 3 tax."
+  },
+  "about": {
+    "title": "About Box 3 tax",
+    "description": "In the Netherlands, Box 3 tax is levied on your assets, such as savings, investments, and real estate (except your primary residence). The Dutch Tax Authority calculates Box 3 income according to the Bridging Legislation, which is based on the actual distribution of the different types of assets.",
+    "rates": "For 2024, the following return rates apply:",
+    "bankSavings": "Bank savings",
+    "investments": "Investments and other assets",
+    "debts": "Debts",
+    "taxRate": "The tax rate for Box 3 in 2024 is 36%.",
+    "taxFreeAmount": "The tax-free capital is € 57,000 per person (€ 114,000 for fiscal partners).",
+    "source": "Source"
+  },
+  "company": {
+    "title": "Developed by Elands Studio",
+    "description": "Elands Studio specializes in developing user-friendly web applications and financial tools. We are happy to help you with all your digital challenges.",
+    "website": "Visit our website",
+    "contact": "Contact us"
+  },
+  "ads": {
+    "title": "Sponsored content",
+    "description": "Advertisements help us provide this tool for free"
+  },
+  "footer": {
+    "taxCalculator": "Box 3 Tax Calculator",
+    "copyright": "© 2024 Elands Studio. All rights reserved.",
+    "disclaimer": "This calculator is intended as a tool. Always consult a tax advisor for your specific situation."
+  },
+  "optional": "Optional",
+  "language": "Language"
+} 
