@@ -12,7 +12,7 @@ const CompanyInfo: React.FC = () => {
           <img 
             src="/images/elands-studio-logo.png" 
             alt="Elands Studio" 
-            className="h-16 w-auto"
+            className="h-auto w-64"
           />
         </div>
         <div>
@@ -21,15 +21,15 @@ const CompanyInfo: React.FC = () => {
             {t('company.description')}
           </p>
           <div className="flex flex-wrap gap-2">
-            <Link href="https://www.elandsstudio.com" target="_blank" rel="noopener noreferrer" legacyBehavior>
+            {/* <Link href="https://elands.studio" target="_blank" rel="noopener noreferrer" legacyBehavior>
               <a className="inline-flex items-center px-3 py-1.5 bg-primary-100 text-primary-700 rounded-md hover:bg-primary-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                 </svg>
                 {t('company.website')}
               </a>
-            </Link>
-            <Link href="mailto:info@elandsstudio.com" legacyBehavior>
+            </Link> */}
+            <Link href="mailto:elandsstudio@gmail.com" legacyBehavior>
               <a className="inline-flex items-center px-3 py-1.5 bg-primary-100 text-primary-700 rounded-md hover:bg-primary-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
