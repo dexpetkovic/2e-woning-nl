@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
-// Replace with your actual Google AdSense client ID
-const GOOGLE_ADSENSE_CLIENT = 'ca-pub-XXXXXXXXXXXXXXXX';
+// Get Google AdSense client ID from environment variables
+const GOOGLE_ADSENSE_CLIENT = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || '';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -13,12 +13,17 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Google AdSense Script */}
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT}`}
-            crossOrigin="anonymous"
-          />
+          {/* Google AdSense Verification */}
+          <meta name="google-adsense-account" content={GOOGLE_ADSENSE_CLIENT} />
+          
+          {/* Google AdSense Script - Only load if client ID is available */}
+          {GOOGLE_ADSENSE_CLIENT && (
+            <script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT}`}
+              crossOrigin="anonymous"
+            />
+          )}
           
           {/* Google Fonts */}
           <link

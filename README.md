@@ -43,9 +43,19 @@ npm start
 
 Om Google AdSense te configureren:
 
-1. Vervang `GOOGLE_ADSENSE_CLIENT` in `src/pages/_document.tsx` en `src/pages/index.tsx` met je eigen Google AdSense client ID
-2. Vervang `GOOGLE_ADSENSE_SLOT_HORIZONTAL` en `GOOGLE_ADSENSE_SLOT_VERTICAL` in `src/pages/index.tsx` met je eigen ad slot IDs
-3. Pas de ad formaten aan indien nodig
+1. Maak een kopie van `.env.local.example` naar `.env.local` en vul je eigen Google AdSense gegevens in:
+   ```
+   NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT=ca-pub-JOUWCLIENTID
+   NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HORIZONTAL=JOUWSLOTID
+   NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_VERTICAL=JOUWSLOTID
+   ```
+
+2. Voor Vercel deployment, voeg deze environment variables toe in de Vercel dashboard:
+   - Ga naar je project settings
+   - Navigeer naar "Environment Variables"
+   - Voeg dezelfde variabelen toe als hierboven
+
+3. De applicatie zal automatisch de AdSense scripts laden en ads tonen wanneer de environment variables beschikbaar zijn.
 
 ## Belastingregels 2024
 

@@ -15,7 +15,15 @@ const GoogleAd: React.FC<GoogleAdProps> = ({
   responsive = true,
   className = '',
 }) => {
+  // Don't render anything if client or slot is not available
+  if (!client || !slot) {
+    return null;
+  }
+
   useEffect(() => {
+    // Only proceed if client and slot are available
+    if (!client || !slot) return;
+
     // Load Google AdSense script if it hasn't been loaded yet
     const hasAdScript = document.querySelector('script[src*="pagead2.googlesyndication.com"]');
     
@@ -34,7 +42,7 @@ const GoogleAd: React.FC<GoogleAdProps> = ({
     } catch (error) {
       console.error('Error loading Google AdSense:', error);
     }
-  }, [client]);
+  }, [client, slot]);
 
   return (
     <div className={`google-ad ${className}`}>

@@ -10,10 +10,10 @@ import AdBanner from '@/components/AdBanner';
 import CompanyInfo from '@/components/CompanyInfo';
 import { Assets, calculateBox3Tax, TaxCalculationResult } from '@/utils/taxCalculations';
 
-// Replace these with your actual Google AdSense client ID and ad slot IDs
-const GOOGLE_ADSENSE_CLIENT = 'ca-pub-XXXXXXXXXXXXXXXX';
-const GOOGLE_ADSENSE_SLOT_HORIZONTAL = 'XXXXXXXXXX';
-const GOOGLE_ADSENSE_SLOT_VERTICAL = 'XXXXXXXXXX';
+// Get Google AdSense client ID and ad slot IDs from environment variables
+const GOOGLE_ADSENSE_CLIENT = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || '';
+const GOOGLE_ADSENSE_SLOT_HORIZONTAL = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HORIZONTAL || '';
+const GOOGLE_ADSENSE_SLOT_VERTICAL = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_VERTICAL || '';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   try {

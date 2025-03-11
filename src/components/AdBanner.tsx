@@ -21,6 +21,11 @@ const AdBanner: React.FC<AdBannerProps> = ({
 }) => {
   const { t } = useTranslation('common');
   
+  // Don't render anything if client or slot is not available
+  if (!client || !slot) {
+    return null;
+  }
+  
   return (
     <div className={`bg-white rounded-xl shadow-md p-4 ${className}`}>
       {showTitle && (
