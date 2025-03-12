@@ -53,7 +53,7 @@
     "source": "Bron"
   },
   "company": {
-    "title": "Ontwikkeld door Elands Studio",
+    "title": "Ontwikkeld door Elands Studio, een bedrijf van een Nederlander in Servië",
     "description": "Elands Studio is gespecialiseerd in het ontwikkelen van gebruiksvriendelijke web applicaties en financiële tools. Wij helpen u graag met al uw digitale uitdagingen.",
     "website": "Bezoek onze website",
     "contact": "Neem contact op"
@@ -68,5 +68,149 @@
     "disclaimer": "Deze calculator is bedoeld als hulpmiddel. Raadpleeg altijd een belastingadviseur voor uw specifieke situatie."
   },
   "optional": "Optioneel",
-  "language": "Taal"
+  "language": "Taal",
+  "cookie": {
+    "message": "Wij gebruiken cookies om uw ervaring te verbeteren. Door deze site te blijven bezoeken, gaat u akkoord met ons gebruik van cookies.",
+    "accept": "Accepteren",
+    "decline": "Weigeren",
+    "privacyPolicy": "Privacybeleid",
+    "cookiePolicy": "Cookiebeleid",
+    "and": "en"
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "description": "Privacybeleid voor 2e-woning.nl - Lees hoe wij uw gegevens beschermen",
+    "sections": {
+      "introduction": {
+        "title": "Introductie",
+        "content": "Bij 2e-woning.nl nemen we uw privacy serieus. Dit beleid legt uit hoe we uw persoonlijke gegevens verzamelen, gebruiken en beschermen."
+      },
+      "dataCollection": {
+        "title": "Gegevensverzameling",
+        "content": "Wij verzamelen de volgende soorten informatie:",
+        "items": {
+          "calculations": "Belastingberekening gegevens (niet opgeslagen)",
+          "technical": "Technische informatie over uw bezoek",
+          "cookies": "Cookie voorkeuren en instellingen"
+        }
+      },
+      "dataUse": {
+        "title": "Gebruik van uw gegevens",
+        "content": "We gebruiken uw gegevens voor:",
+        "items": {
+          "service": "Het aanbieden van onze belastingcalculator",
+          "improvement": "Het verbeteren van onze website en diensten",
+          "communication": "Communicatie wanneer nodig"
+        }
+      },
+      "dataSharing": {
+        "title": "Delen van gegevens",
+        "content": "We delen uw gegevens met:",
+        "items": {
+          "thirdParty": "Externe dienstverleners (Google Analytics, Google AdSense)",
+          "legal": "Wanneer wettelijk vereist"
+        }
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content": "We gebruiken cookies om uw ervaring op onze website te verbeteren.",
+        "policyLink": "Lees ons Cookiebeleid"
+      },
+      "rights": {
+        "title": "Uw rechten",
+        "content": "Onder de AVG heeft u de volgende rechten:",
+        "items": {
+          "access": "Recht op inzage van uw gegevens",
+          "rectification": "Recht op correctie van uw gegevens",
+          "erasure": "Recht op vergetelheid",
+          "restriction": "Recht op beperking van verwerking",
+          "portability": "Recht op dataportabiliteit"
+        }
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "Voor privacy-gerelateerde vragen kunt u contact met ons opnemen via:"
+      },
+      "updates": {
+        "title": "Updates van dit beleid",
+        "content": "We kunnen dit privacybeleid van tijd tot tijd bijwerken. Eventuele wijzigingen worden op deze pagina geplaatst."
+      }
+    },
+    "lastUpdated": "Laatst bijgewerkt"
+  },
+  "cookies": {
+    "title": "Cookiebeleid",
+    "description": "Cookiebeleid voor 2e-woning.nl - Lees over hoe wij cookies gebruiken",
+    "sections": {
+      "introduction": {
+        "title": "Introductie",
+        "content": "Dit cookiebeleid legt uit hoe 2e-woning.nl cookies en vergelijkbare technologieën gebruikt om u te herkennen wanneer u onze website bezoekt."
+      },
+      "what": {
+        "title": "Wat zijn cookies",
+        "content": "Cookies zijn kleine gegevensbestanden die op uw computer of mobiele apparaat worden geplaatst wanneer u een website bezoekt."
+      },
+      "types": {
+        "title": "Soorten cookies die we gebruiken",
+        "necessary": {
+          "title": "Noodzakelijke cookies",
+          "content": "Deze cookies zijn essentieel voor het goed functioneren van de website."
+        },
+        "analytics": {
+          "title": "Analytische cookies",
+          "content": "Deze cookies helpen ons te begrijpen hoe bezoekers onze website gebruiken."
+        },
+        "advertising": {
+          "title": "Advertentie cookies",
+          "content": "Deze cookies worden gebruikt om relevante advertenties te tonen."
+        }
+      },
+      "control": {
+        "title": "Beheer van cookies",
+        "content": "U kunt cookies naar wens beheren en/of verwijderen. U kunt alle cookies die al op uw computer staan verwijderen en de meeste browsers zo instellen dat ze niet worden geplaatst."
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "Als u vragen heeft over ons gebruik van cookies, neem dan contact met ons op via:"
+      },
+      "updates": {
+        "title": "Updates van dit beleid",
+        "content": "We kunnen dit cookiebeleid van tijd tot tijd bijwerken. Eventuele wijzigingen worden op deze pagina geplaatst."
+      }
+    },
+    "lastUpdated": "Laatst bijgewerkt"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Neem contact op met 2e-woning.nl",
+    "sections": {
+      "general": {
+        "title": "Algemene informatie",
+        "content": "We helpen u graag met al uw vragen.",
+        "company": "Bedrijfsgegevens"
+      },
+      "support": {
+        "title": "Ondersteuning",
+        "content": "Hulp nodig met onze belastingcalculator?",
+        "email": {
+          "title": "E-mail ondersteuning",
+          "content": "Voor de snelste reactie, stuur ons een e-mail op:"
+        }
+      },
+      "privacy": {
+        "title": "Privacy & Cookies",
+        "content": "Voor informatie over hoe wij met uw gegevens omgaan:",
+        "privacyPolicy": "Bekijk ons Privacybeleid",
+        "cookiePolicy": "Bekijk ons Cookiebeleid"
+      },
+      "response": {
+        "title": "Reactietijd",
+        "content": "We streven ernaar om binnen 1-2 werkdagen te reageren op alle vragen."
+      }
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "contact": "Contact"
+  }
 } 

@@ -9,6 +9,9 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 import AdBanner from '@/components/AdBanner';
 import CompanyInfo from '@/components/CompanyInfo';
 import { Assets, calculateBox3Tax, TaxCalculationResult } from '@/utils/taxCalculations';
+import { NextSeo } from 'next-seo';
+import Script from 'next/script';
+import { trackEvent, AnalyticsEvent } from '@/utils/analytics';
 
 // Get Google AdSense client ID and ad slot IDs from environment variables
 const GOOGLE_ADSENSE_CLIENT = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || '';
@@ -30,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 };
 
-export default function Home() {
+const Home = () => {
   const { t } = useTranslation('common');
   
   const [assets, setAssets] = useState<Assets>({
@@ -52,6 +55,11 @@ export default function Home() {
       [field]: value,
     }));
     
+    trackEvent(AnalyticsEvent.UPDATE_ASSET, {
+      assetType: field,
+      assetValue: value,
+    });
+    
     // Hide results when inputs change
     if (showResults) {
       setShowResults(false);
@@ -62,6 +70,13 @@ export default function Home() {
     const result = calculateBox3Tax(assets, hasFiscalPartner);
     setCalculationResult(result);
     setShowResults(true);
+
+    trackEvent(AnalyticsEvent.CALCULATE_TAX, {
+      hasFiscalPartner,
+      totalAssets: Object.values(assets).reduce((sum, value) => sum + value, 0) - assets.debts,
+      totalDebts: assets.debts,
+      taxAmount: result.taxAmount,
+    });
   };
 
   const handleReset = () => {
@@ -76,10 +91,39 @@ export default function Home() {
     setHasFiscalPartner(false);
     setShowResults(false);
     setCalculationResult(null);
+
+    trackEvent(AnalyticsEvent.RESET_CALCULATOR);
+  };
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Box 3 Belastingcalculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "description": "Bereken eenvoudig uw Box 3 vermogensbelasting voor tweede woning, investeringen en spaargeld. Gratis belastingcalculator met actuele 2024 tarieven."
   };
 
   return (
     <>
+      <NextSeo
+        title={t('title')}
+        description={t('subtitle')}
+        openGraph={{
+          title: t('title'),
+          description: t('subtitle'),
+        }}
+      />
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Head>
         <title>{t('title')} | 2e-woning.nl</title>
         <meta name="description" content={t('subtitle')} />
@@ -90,9 +134,6 @@ export default function Home() {
       <main className="min-h-screen bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           <header className="mb-10 flex flex-col items-center">
-            <div className="self-end mb-4">
-              <LanguageSwitcher />
-            </div>
             <h1 className="text-4xl font-bold text-primary-800 mb-2">{t('title')}</h1>
             <p className="text-lg text-neutral-600">
               {t('subtitle')}
@@ -286,4 +327,6 @@ export default function Home() {
       </footer>
     </>
   );
-} 
+};
+
+export default Home; 

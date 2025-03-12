@@ -17,9 +17,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.11.13",
     "i18next": "^24.2.2",
     "next": "^14.1.0",
     "next-i18next": "^15.4.2",
+    "next-seo": "^6.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^15.4.1"

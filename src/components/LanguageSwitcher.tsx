@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import { trackEvent, AnalyticsEvent } from '@/utils/analytics';
 
 const LanguageSwitcher: React.FC = () => {
   const router = useRouter();
@@ -13,6 +14,10 @@ const LanguageSwitcher: React.FC = () => {
   const currentLocale = activeLocale || 'nl';
 
   const handleLanguageChange = (newLocale: string) => {
+    trackEvent(AnalyticsEvent.CHANGE_LANGUAGE, {
+      language: newLocale,
+      previousLanguage: currentLocale,
+    });
     // Use router.push instead of Link for more control
     router.push(router.asPath, router.asPath, { locale: newLocale });
   };
