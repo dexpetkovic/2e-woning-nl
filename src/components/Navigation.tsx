@@ -16,7 +16,7 @@ const Navigation: React.FC = () => {
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
     };
-  }, [router.events]);
+  }, []);
 
   // Prevent scrolling when menu is open
   useEffect(() => {

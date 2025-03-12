@@ -60,7 +60,11 @@ export const trackEvent = (
 export const setUserProperties = (properties: Record<string, any>) => {
   const hasConsented = localStorage.getItem('cookieConsent') === 'true';
   if (AMPLITUDE_API_KEY && hasConsented) {
-    amplitude.identify(new amplitude.Identify().set(properties));
+    const identify = new amplitude.Identify();
+    Object.entries(properties).forEach(([key, value]) => {
+      identify.set(key, value);
+    });
+    amplitude.identify(identify);
   }
 };
 
