@@ -2,48 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 body {
-  @apply bg-neutral-50 text-neutral-800;
+  @apply bg-appleGray-50 text-appleGray-900 font-sans text-base md:text-lg antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold;
+  @apply font-semibold tracking-tight;
 }
 
 h1 {
-  @apply text-3xl md:text-4xl;
+  @apply text-4xl md:text-5xl leading-tight;
 }
 
 h2 {
-  @apply text-2xl md:text-3xl;
+  @apply text-3xl md:text-4xl leading-snug;
 }
 
 h3 {
-  @apply text-xl md:text-2xl;
+  @apply text-2xl md:text-3xl;
 }
 
 input, select {
-  @apply rounded-md border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  @apply rounded-xl border border-appleGray-200 px-5 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-lg transition-all;
 }
 
 .btn {
-  @apply px-6 py-3 rounded-md font-medium transition-colors duration-200;
+  @apply px-7 py-3 rounded-xl font-medium transition-all duration-200 bg-accent-500 text-white hover:bg-accent-500/80;
 }
 
 .btn-primary {
-  @apply bg-primary-600 text-white hover:bg-primary-700;
+  @apply bg-accent-500 text-white hover:bg-accent-500/80;
 }
 
 .btn-secondary {
-  @apply bg-secondary-600 text-white hover:bg-secondary-700;
+  @apply bg-appleGray-200 text-appleGray-900 hover:bg-appleGray-300;
 }
 
 .btn-outline {
-  @apply border border-neutral-300 text-neutral-700 hover:bg-neutral-100;
+  @apply border border-appleGray-200 text-appleGray-700 hover:bg-appleGray-100;
 }
 
 .card {
-  @apply bg-white rounded-xl shadow-md p-6;
+  @apply bg-white rounded-xl p-8 border border-appleGray-100;
 } 

@@ -34,13 +34,13 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <div className={`mb-4 ${className}`}>
-      <label className="block text-neutral-700 mb-2">
+    <div className={`mb-6 ${className}`}>
+      <label className="block text-appleGray-700 mb-2 font-medium">
         {label}
-        {optional && <span className="text-neutral-400 text-sm ml-1">({t('optional')})</span>}
+        {optional && <span className="text-appleGray-400 text-sm ml-1">({t('optional')})</span>}
       </label>
       <div className="relative">
-        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">
+        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-appleGray-400 text-lg">
           €
         </span>
         <input
@@ -48,7 +48,7 @@ const InputField: React.FC<InputFieldProps> = ({
           value={value === 0 ? '' : value}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full pl-8 pr-4 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-lg transition-all"
         />
       </div>
     </div>

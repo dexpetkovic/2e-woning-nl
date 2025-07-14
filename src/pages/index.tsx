@@ -131,56 +131,48 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          <header className="mb-10 flex flex-col items-center">
-            <h1 className="text-4xl font-bold text-primary-800 mb-2">{t('title')}</h1>
-            <p className="text-lg text-neutral-600">
-              {t('subtitle')}
-            </p>
+      <main className="min-h-screen bg-appleGray-50">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <header className="mb-16 flex flex-col items-center text-center">
+            <h1 className="text-5xl md:text-6xl font-semibold text-appleGray-900 mb-4 tracking-tight">{t('title')}</h1>
+            <p className="text-2xl text-appleGray-500 max-w-2xl mb-6">{t('subtitle')}</p>
           </header>
 
           {/* Top horizontal ad */}
           <AdBanner
             client={GOOGLE_ADSENSE_CLIENT}
             slot={GOOGLE_ADSENSE_SLOT_HORIZONTAL}
-            className="mb-8"
+            className="mb-12"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Left column - Input form */}
             <div className="lg:col-span-2">
               <div className="card">
-                <h2 className="text-2xl font-semibold text-primary-700 mb-6">{t('assets.title')}</h2>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-medium mb-4">{t('assets.possessions')}</h3>
-                  
+                <h2 className="text-3xl font-semibold text-appleGray-900 mb-8">{t('assets.title')}</h2>
+                <div className="mb-8">
+                  <h3 className="text-xl font-medium mb-5 text-appleGray-700">{t('assets.possessions')}</h3>
                   <InputField
                     label={t('assets.bankSavings')}
                     value={assets.bankSavings}
                     onChange={(value) => handleInputChange('bankSavings', value)}
                   />
-                  
                   <InputField
                     label={t('assets.investments')}
                     value={assets.investments}
                     onChange={(value) => handleInputChange('investments', value)}
                   />
-                  
                   <InputField
                     label={t('assets.properties')}
                     value={assets.properties}
                     onChange={(value) => handleInputChange('properties', value)}
                   />
-                  
                   <InputField
                     label={t('assets.otherAssets')}
                     value={assets.otherAssets}
                     onChange={(value) => handleInputChange('otherAssets', value)}
                     optional
                   />
-                  
                   <InputField
                     label={t('assets.greenInvestments')}
                     value={assets.greenInvestments}
@@ -188,20 +180,16 @@ const Home = () => {
                     optional
                   />
                 </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-medium mb-4">{t('debts.title')}</h3>
-                  
+                <div className="mb-8">
+                  <h3 className="text-xl font-medium mb-5 text-appleGray-700">{t('debts.title')}</h3>
                   <InputField
                     label={t('debts.debts')}
                     value={assets.debts}
                     onChange={(value) => handleInputChange('debts', value)}
                   />
                 </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-medium mb-4">{t('personal.title')}</h3>
-                  
+                <div className="mb-8">
+                  <h3 className="text-xl font-medium mb-5 text-appleGray-700">{t('personal.title')}</h3>
                   <div className="mb-4">
                     <label className="flex items-center">
                       <input
@@ -213,21 +201,19 @@ const Home = () => {
                             setShowResults(false);
                           }
                         }}
-                        className="h-5 w-5 text-primary-600 rounded focus:ring-primary-500"
+                        className="h-5 w-5 text-accent-500 rounded-full focus:ring-accent-500"
                       />
-                      <span className="ml-2 text-neutral-700">{t('personal.fiscalPartner')}</span>
+                      <span className="ml-3 text-appleGray-700">{t('personal.fiscalPartner')}</span>
                     </label>
                   </div>
                 </div>
-                
-                <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row gap-4 mt-10">
                   <button
                     onClick={handleCalculate}
                     className="btn btn-primary"
                   >
                     {t('buttons.calculate')}
                   </button>
-                  
                   <button
                     onClick={handleReset}
                     className="btn btn-outline"
@@ -236,17 +222,16 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-
               {/* Company information */}
-              <CompanyInfo />
+              <div className="mt-12">
+                <CompanyInfo />
+              </div>
             </div>
-            
             {/* Right column - Results or placeholder + vertical ad */}
-            <div className="lg:col-span-1 space-y-8">
+            <div className="lg:col-span-1 space-y-12">
               {showResults && calculationResult && (
                 <ResultCard result={calculationResult} />
               )}
-              
               {!showResults && (
                 <div className="card bg-primary-50 border border-primary-100">
                   <div className="flex flex-col items-center justify-center h-full text-center p-6">

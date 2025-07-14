@@ -6,7 +6,7 @@ const CompanyInfo: React.FC = () => {
   const { t } = useTranslation('common');
   
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 mt-8">
+    <div className="bg-white rounded-xl p-6 mt-8">
       <div className="flex flex-col md:flex-row items-center">
         <div className="mb-4 md:mb-0 md:mr-6">
           <img 

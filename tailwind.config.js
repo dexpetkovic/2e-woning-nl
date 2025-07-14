@@ -43,13 +43,33 @@ module.exports = {
           800: '#1e293b',
           900: '#0f172a',
         },
+        appleGray: {
+          50: '#f5f5f7',
+          100: '#e5e5ea',
+          200: '#d1d1d6',
+          300: '#aeaeb2',
+          400: '#8e8e93',
+          500: '#636366',
+          600: '#48484a',
+          700: '#3a3a3c',
+          800: '#2c2c2e',
+          900: '#1c1c1e',
+        },
+        accent: {
+          500: '#2997ff', // Apple blue
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: [
+          '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'
+        ],
       },
       borderRadius: {
-        'xl': '1rem',
+        'xl': '0.5rem',
+        '2xl': '0.75rem',
+        'full': '9999px',
       },
+      boxShadow: {}, // Remove custom shadows for flat design
     },
   },
   plugins: [],
