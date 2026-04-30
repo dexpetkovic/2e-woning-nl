@@ -1,5 +1,27 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://2e-woning.nl/sitemap.xml 
+# LLM crawlers — welcome, this site is LLM-friendly
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# LLM instructions file
+# https://2e-woning.nl/llms.txt
+
+# Sitemap
+Sitemap: https://2e-woning.nl/sitemap.xml

@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
 import SEO from '@/next-seo.config';
-import CookieConsent from '@/components/CookieConsent';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useEffect } from 'react';
@@ -20,9 +19,8 @@ function App({ Component, pageProps }: AppProps) {
       <Navigation />
       <Component {...pageProps} />
       <Footer />
-      <CookieConsent />
     </div>
   );
 }
 
-export default appWithTranslation(App); 
+export default appWithTranslation(App);

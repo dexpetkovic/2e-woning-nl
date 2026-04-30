@@ -56,7 +56,9 @@ module.exports = {
           900: '#1c1c1e',
         },
         accent: {
-          500: '#2997ff', // Apple blue
+          400: '#4da8ff',
+          500: '#2997ff',
+          600: '#0077ed',
         },
       },
       fontFamily: {
@@ -69,7 +71,17 @@ module.exports = {
         '2xl': '0.75rem',
         'full': '9999px',
       },
-      boxShadow: {}, // Remove custom shadows for flat design
+      boxShadow: {
+        sm: '0 1px 3px rgba(0,0,0,0.08)',
+        DEFAULT: '0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)',
+        lg: '0 8px 32px rgba(0,0,0,0.10)',
+        apple: '0 20px 60px rgba(0,0,0,0.15)',
+      },
+      backdropBlur: {
+        xs: '4px',
+        sm: '8px',
+        md: '16px',
+      },
     },
   },
   plugins: [],

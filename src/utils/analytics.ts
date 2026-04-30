@@ -1,12 +1,9 @@
 import * as amplitude from '@amplitude/analytics-browser';
 
-// Initialize Amplitude with your API key
 const AMPLITUDE_API_KEY = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY || '';
 
 export const initAnalytics = () => {
-  const hasConsented = localStorage.getItem('cookieConsent') === 'true';
-  
-  if (AMPLITUDE_API_KEY && hasConsented) {
+  if (AMPLITUDE_API_KEY) {
     amplitude.init(AMPLITUDE_API_KEY, undefined, {
       defaultTracking: {
         sessions: true,
@@ -18,7 +15,6 @@ export const initAnalytics = () => {
   }
 };
 
-// Event types for type safety
 export enum AnalyticsEvent {
   CALCULATE_TAX = 'calculate_tax',
   RESET_CALCULATOR = 'reset_calculator',
@@ -32,7 +28,6 @@ export enum AnalyticsEvent {
   DECLINE_COOKIES = 'decline_cookies',
 }
 
-// Event properties interface
 export interface EventProperties {
   language?: string;
   previousLanguage?: string;
@@ -45,33 +40,27 @@ export interface EventProperties {
   path?: string;
 }
 
-// Track events with type safety
 export const trackEvent = (
   eventName: AnalyticsEvent,
   eventProperties?: EventProperties
 ) => {
-  const hasConsented = localStorage.getItem('cookieConsent') === 'true';
-  if (AMPLITUDE_API_KEY && hasConsented) {
+  if (AMPLITUDE_API_KEY) {
     amplitude.track(eventName, eventProperties);
   }
 };
 
-// Set user properties
-export const setUserProperties = (properties: Record<string, any>) => {
-  const hasConsented = localStorage.getItem('cookieConsent') === 'true';
-  if (AMPLITUDE_API_KEY && hasConsented) {
+export const setUserProperties = (properties: Record<string, unknown>) => {
+  if (AMPLITUDE_API_KEY) {
     const identify = new amplitude.Identify();
     Object.entries(properties).forEach(([key, value]) => {
-      identify.set(key, value);
+      identify.set(key, value as string | number | boolean);
     });
     amplitude.identify(identify);
   }
 };
 
-// Reset user
 export const resetUser = () => {
-  const hasConsented = localStorage.getItem('cookieConsent') === 'true';
-  if (AMPLITUDE_API_KEY && hasConsented) {
+  if (AMPLITUDE_API_KEY) {
     amplitude.reset();
   }
-}; 
+};

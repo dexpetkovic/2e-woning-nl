@@ -8,8 +8,8 @@ const Navigation: React.FC = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Close menu on route change
   useEffect(() => {
     const handleRouteChange = () => setIsOpen(false);
     router.events.on('routeChangeStart', handleRouteChange);
@@ -18,53 +18,54 @@ const Navigation: React.FC = () => {
     };
   }, []);
 
-  // Prevent scrolling when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
 
   const isActive = (path: string) => router.pathname === path;
 
   return (
     <>
-      <nav className="bg-white border-b border-appleGray-100 fixed w-full top-0 z-50 transition-all">
+      <nav
+        className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-appleGray-100/50'
+            : 'bg-white border-b border-appleGray-100'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="flex justify-between h-20 items-center">
-            {/* Logo and Home link */}
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <span className="text-2xl font-semibold text-appleGray-900 tracking-tight">2e-woning.nl</span>
-              </Link>
-            </div>
+            <Link href="/" className="flex items-center gap-2">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-accent-500" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+                <path d="M9 21V12h6v9" />
+              </svg>
+              <span className="text-2xl font-semibold text-appleGray-900 tracking-tight">2e-woning.nl</span>
+            </Link>
 
-            {/* Desktop menu */}
             <div className="hidden md:flex md:items-center md:space-x-6">
-              <Link 
+              <Link
                 href="/"
                 className={`px-4 py-2 rounded-full text-base font-medium transition-colors duration-200 ${
-                  isActive('/') 
-                    ? 'text-accent-500 bg-appleGray-50' 
+                  isActive('/')
+                    ? 'text-accent-500 bg-appleGray-50'
                     : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
                 }`}
               >
                 {t('navigation.home')}
               </Link>
-              <Link 
+              <Link
                 href="/contact"
                 className={`px-4 py-2 rounded-full text-base font-medium transition-colors duration-200 ${
-                  isActive('/contact') 
-                    ? 'text-accent-500 bg-appleGray-50' 
+                  isActive('/contact')
+                    ? 'text-accent-500 bg-appleGray-50'
                     : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
                 }`}
               >
@@ -75,116 +76,79 @@ const Navigation: React.FC = () => {
               </div>
             </div>
 
-            {/* Hamburger button */}
             <div className="md:hidden flex items-center">
               <button
-                onClick={toggleMenu}
+                onClick={() => setIsOpen(!isOpen)}
                 className="inline-flex items-center justify-center p-3 rounded-full text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500 transition-all"
                 aria-expanded={isOpen}
+                aria-label="Open main menu"
               >
-                <span className="sr-only">Open main menu</span>
-                {/* Hamburger icon */}
-                <svg
-                  className={`${isOpen ? 'hidden' : 'block'} h-7 w-7`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-                {/* Close icon */}
-                <svg
-                  className={`${isOpen ? 'block' : 'hidden'} h-7 w-7`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                {isOpen ? (
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
-      <div 
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-        onClick={toggleMenu}
+        onClick={() => setIsOpen(false)}
       />
 
-      {/* Mobile menu drawer */}
-      <div 
-        className={`fixed top-0 right-0 h-full w-72 bg-white/90 shadow-apple z-50 rounded-l-2xl border-l border-appleGray-100 transform transition-transform duration-300 ease-in-out ${
+      <div
+        className={`fixed top-0 right-0 h-full w-72 bg-white/95 backdrop-blur-md shadow-apple z-50 rounded-l-2xl border-l border-appleGray-100 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="p-6">
           <div className="flex justify-end">
             <button
-              onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-3 rounded-full text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500 transition-all"
+              onClick={() => setIsOpen(false)}
+              className="p-3 rounded-full text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100 transition-all"
+              aria-label="Close menu"
             >
-              <span className="sr-only">Close menu</span>
-              <svg
-                className="h-7 w-7"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <div className="mt-10 space-y-8">
+          <div className="mt-10 space-y-4">
             <Link
               href="/"
-              className={`block px-4 py-2 rounded-full text-lg font-medium transition-colors duration-200 ${
-                isActive('/') 
-                  ? 'text-accent-500 bg-appleGray-50' 
-                  : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
+              className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors duration-200 ${
+                isActive('/') ? 'text-accent-500 bg-appleGray-50' : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
               }`}
             >
               {t('navigation.home')}
             </Link>
             <Link
               href="/contact"
-              className={`block px-4 py-2 rounded-full text-lg font-medium transition-colors duration-200 ${
-                isActive('/contact') 
-                  ? 'text-accent-500 bg-appleGray-50' 
-                  : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
+              className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors duration-200 ${
+                isActive('/contact') ? 'text-accent-500 bg-appleGray-50' : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
               }`}
             >
               {t('navigation.contact')}
             </Link>
+            <div className="pt-4 pl-4">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Content spacer for fixed header */}
       <div className="h-20" />
     </>
   );
 };
 
-export default Navigation; 
+export default Navigation;

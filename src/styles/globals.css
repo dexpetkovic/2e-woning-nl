@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-appleGray-50 text-appleGray-900 font-sans text-base md:text-lg antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-semibold tracking-tight;
+  text-wrap: balance;
 }
 
 h1 {
@@ -27,11 +32,11 @@ input, select {
 }
 
 .btn {
-  @apply px-7 py-3 rounded-xl font-medium transition-all duration-200 bg-accent-500 text-white hover:bg-accent-500/80;
+  @apply px-7 py-3 rounded-xl font-medium transition-all duration-200 active:scale-95;
 }
 
 .btn-primary {
-  @apply bg-accent-500 text-white hover:bg-accent-500/80;
+  @apply bg-accent-500 text-white hover:bg-accent-600 shadow-sm;
 }
 
 .btn-secondary {
@@ -39,9 +44,28 @@ input, select {
 }
 
 .btn-outline {
-  @apply border border-appleGray-200 text-appleGray-700 hover:bg-appleGray-100;
+  @apply border border-appleGray-200 text-appleGray-700 hover:bg-appleGray-100 bg-white;
 }
 
 .card {
-  @apply bg-white rounded-xl p-8 border border-appleGray-100;
-} 
+  @apply bg-white rounded-xl p-8 shadow border border-appleGray-100/50;
+}
+
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/40;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}

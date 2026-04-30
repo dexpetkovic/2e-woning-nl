@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
-// Get Google AdSense client ID from environment variables
 const GOOGLE_ADSENSE_CLIENT = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || '';
 
 class MyDocument extends Document {
@@ -11,12 +10,11 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="nl">
         <Head>
-          {/* Google AdSense Verification */}
+          <meta name="theme-color" content="#2997ff" />
           <meta name="google-adsense-account" content={GOOGLE_ADSENSE_CLIENT} />
-          
-          {/* Google AdSense Script - Only load if client ID is available */}
+
           {GOOGLE_ADSENSE_CLIENT && (
             <script
               async
@@ -24,8 +22,9 @@ class MyDocument extends Document {
               crossOrigin="anonymous"
             />
           )}
-          
-          {/* Google Fonts */}
+
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
@@ -40,4 +39,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument; 
+export default MyDocument;

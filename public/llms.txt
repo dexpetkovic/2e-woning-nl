@@ -1,0 +1,44 @@
+# 2e-woning.nl — Box 3 Belastingcalculator
+
+## Beschrijving
+2e-woning.nl is een gratis online calculator voor het berekenen van Box 3 vermogensbelasting in Nederland.
+De calculator helpt particulieren hun belasting op spaargeld, beleggingen, tweede woningen en andere vermogensbestanddelen te berekenen.
+
+## Gebruik
+- Gratis, geen registratie vereist
+- Werkt direct in de browser, geen download nodig
+- Ondersteunt fiscaal partnerschap (verdubbelt heffingvrij vermogen)
+- Beschikbaar in Nederlands en Engels
+- Gebaseerd op officiële Belastingdienst tarieven
+
+## Tarieven Box 3 (2025)
+- Spaargeld fictief rendement: 1,44%
+- Beleggingen fictief rendement: 6,04%
+- Schulden fictief rendement: 2,61%
+- Belastingtarief Box 3: 36%
+- Heffingvrij vermogen alleenstaand: €57.000
+- Heffingvrij vermogen fiscaal partners: €114.000
+- Drempel schulden alleenstaand: €3.700
+- Drempel schulden fiscaal partners: €7.400
+- Vrijstelling groene beleggingen alleenstaand: €71.251
+- Vrijstelling groene beleggingen fiscaal partners: €142.502
+
+## Hoe werkt de berekening?
+1. Bereken fictief rendement (spaargeld × 1,44% + beleggingen × 6,04% - schulden × 2,61%)
+2. Bereken belastinggrondslag (totaal bezittingen - drempelschuld)
+3. Trek heffingvrij vermogen af
+4. Bepaal aandeel spaargeld/beleggingen in de grondslag
+5. Bereken voordeel uit sparen en beleggen
+6. Vermenigvuldig met 36% belastingtarief
+
+## Gemaakt door
+Elands Studio — elandsstudio@gmail.com
+
+## Bronnen
+- Belastingdienst: https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/
+
+## Pagina's
+- / — Calculator hoofdpagina (Nederlands en Engels)
+- /contact — Contactinformatie
+- /privacy — Privacybeleid
+- /cookies — Cookiebeleid
