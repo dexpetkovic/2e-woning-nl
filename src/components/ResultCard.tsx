@@ -4,6 +4,9 @@ import { TaxCalculationResult } from '@/utils/taxCalculations';
 
 interface ResultCardProps {
   result: TaxCalculationResult;
+  result2024?: TaxCalculationResult;
+  alternativeTaxAmount?: number;
+  alternativeHasFiscalPartner?: boolean;
   className?: string;
 }
 
@@ -22,45 +25,91 @@ const StepCard: React.FC<{ index: number; title: string; content: string }> = ({
   </div>
 );
 
-const ResultCard: React.FC<ResultCardProps> = ({ result, className = '' }) => {
+const ResultCard: React.FC<ResultCardProps> = ({
+  result,
+  result2024,
+  alternativeTaxAmount,
+  alternativeHasFiscalPartner,
+  className = '',
+}) => {
   const { t } = useTranslation('common');
+
+  const delta2024 = result2024 != null ? result.taxAmount - result2024.taxAmount : null;
 
   return (
     <div className={`card animate-fade-in-up ${className}`}>
       {/* Tax amount hero */}
-      <div className="mb-8 pb-6 border-b border-appleGray-100">
-        <p className="text-sm font-medium text-appleGray-500 uppercase tracking-wider mb-1">{t('results.title')}</p>
-        <div className="flex items-baseline gap-1">
+      <div className="mb-6 pb-6 border-b border-appleGray-100">
+        <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-1">{t('results.title')}</p>
+        <div className="flex items-baseline gap-1 flex-wrap">
           <span className="text-2xl font-medium text-appleGray-400">€</span>
           <span className="text-5xl font-bold text-accent-500 tabular-nums">
             {fmt(result.taxAmount)}
           </span>
+          {delta2024 != null && (
+            <span className={`ml-2 text-xs font-semibold px-2 py-1 rounded-full self-center ${delta2024 > 0 ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}`}>
+              {delta2024 > 0 ? '▲' : '▼'} €{fmt(Math.abs(delta2024))} {t('results.vs2024')}
+            </span>
+          )}
         </div>
+
+        {/* Fiscal partner comparison */}
+        {alternativeTaxAmount != null && (
+          <div className="mt-3 flex items-center gap-2 p-3 bg-appleGray-50 rounded-xl border border-appleGray-100">
+            <svg className="w-4 h-4 text-appleGray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <p className="text-xs text-appleGray-600">
+              {alternativeHasFiscalPartner
+                ? t('results.withPartner')
+                : t('results.withoutPartner')}
+              {': '}
+              <strong className="text-appleGray-900">€ {fmt(alternativeTaxAmount)}</strong>
+            </p>
+          </div>
+        )}
       </div>
 
+      {/* Year comparison row */}
+      {result2024 != null && (
+        <div className="mb-6 pb-6 border-b border-appleGray-100">
+          <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.yearComparison')}</p>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">
+              <p className="text-xs text-appleGray-400 mb-1">2024</p>
+              <p className="text-xl font-bold text-appleGray-600 tabular-nums">€ {fmt(result2024.taxAmount)}</p>
+            </div>
+            <div className="bg-accent-500/5 rounded-xl p-3 border border-accent-500/20 text-center">
+              <p className="text-xs text-accent-600 font-medium mb-1">2025</p>
+              <p className="text-xl font-bold text-accent-500 tabular-nums">€ {fmt(result.taxAmount)}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Summary grid */}
-      <div className="grid grid-cols-2 gap-3 mb-8">
+      <div className="grid grid-cols-2 gap-3 mb-6">
         <div className="bg-appleGray-50 p-4 rounded-xl border border-appleGray-100">
           <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.taxableReturn')}</p>
-          <p className="text-lg font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.taxableReturn)}</p>
+          <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.taxableReturn)}</p>
         </div>
         <div className="bg-appleGray-50 p-4 rounded-xl border border-appleGray-100">
           <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.taxBase')}</p>
-          <p className="text-lg font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.taxBase, 0)}</p>
+          <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.taxBase, 0)}</p>
         </div>
         <div className="bg-appleGray-50 p-4 rounded-xl border border-appleGray-100">
           <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.savingsAndInvestmentBase')}</p>
-          <p className="text-lg font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.savingsAndInvestmentBase, 0)}</p>
+          <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.savingsAndInvestmentBase, 0)}</p>
         </div>
         <div className="bg-appleGray-50 p-4 rounded-xl border border-appleGray-100">
           <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.benefitFromSavingsAndInvestments')}</p>
-          <p className="text-lg font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.benefitFromSavingsAndInvestments)}</p>
+          <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.benefitFromSavingsAndInvestments)}</p>
         </div>
       </div>
 
       {/* Calculation steps */}
       <div>
-        <p className="text-sm font-semibold text-appleGray-700 mb-3">{t('results.calculationSteps')}</p>
+        <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.calculationSteps')}</p>
         <div className="space-y-2">
           <StepCard index={1} title={t('results.step1')} content={result.steps.step1} />
           <StepCard index={2} title={t('results.step2')} content={result.steps.step2} />

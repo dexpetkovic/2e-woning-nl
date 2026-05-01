@@ -20,7 +20,9 @@
   },
   "buttons": {
     "calculate": "Calculate tax",
-    "reset": "Reset"
+    "reset": "Reset",
+    "copyLink": "Share calculation",
+    "copied": "Copied!"
   },
   "results": {
     "title": "Box 3 Tax",
@@ -35,7 +37,11 @@
     "step4": "Step 4: Calculate your share in the tax base",
     "step5": "Step 5: Calculate your benefit from savings and investments",
     "step6": "Step 6: Calculate how much tax you need to pay in box 3",
-    "disclaimer": "This calculation is an estimate. Your actual tax may differ depending on your personal situation."
+    "disclaimer": "This calculation is an estimate. Your actual tax may differ depending on your personal situation.",
+    "vs2024": "vs 2024",
+    "yearComparison": "Comparison 2024 vs 2025",
+    "withPartner": "With fiscal partner",
+    "withoutPartner": "Without fiscal partner"
   },
   "placeholder": {
     "title": "Enter your details",
@@ -44,11 +50,11 @@
   "about": {
     "title": "About Box 3 tax",
     "description": "In the Netherlands, Box 3 tax is levied on your assets, such as savings, investments, and real estate (except your primary residence). The Dutch Tax Authority calculates Box 3 income according to the Bridging Legislation, which is based on the actual distribution of the different types of assets.",
-    "rates": "For 2024, the following return rates apply:",
+    "rates": "For 2025, the following return rates apply:",
     "bankSavings": "Bank savings",
     "investments": "Investments and other assets",
     "debts": "Debts",
-    "taxRate": "The tax rate for Box 3 in 2024 is 36%.",
+    "taxRate": "The tax rate for Box 3 in 2025 is 36%.",
     "taxFreeAmount": "The tax-free capital is € 57,000 per person (€ 114,000 for fiscal partners).",
     "source": "Source"
   },
@@ -58,13 +64,22 @@
     "website": "Visit our website",
     "contact": "Contact us"
   },
+  "email": {
+    "title": "Get 2026 rates first",
+    "description": "We'll notify you as soon as the new Box 3 rates are published.",
+    "placeholder": "your@email.com",
+    "cta": "Notify me",
+    "successTitle": "Subscribed!",
+    "successBody": "You'll receive a notification as soon as the 2026 rates are published.",
+    "error": "Something went wrong. Please try again."
+  },
   "ads": {
     "title": "Sponsored content",
     "description": "Advertisements help us provide this tool for free"
   },
   "footer": {
     "taxCalculator": "Box 3 Tax Calculator",
-    "copyright": "© 2024 Elands Studio. All rights reserved.",
+    "copyright": "Elands Studio. All rights reserved.",
     "disclaimer": "This calculator is intended as a tool. Always consult a tax advisor for your specific situation."
   },
   "optional": "Optional",
@@ -167,7 +182,7 @@
       },
       "control": {
         "title": "How to Control Cookies",
-        "content": "You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed."
+        "content": "You can control and/or delete cookies as you wish."
       },
       "contact": {
         "title": "Contact Us",
@@ -211,6 +226,7 @@
   },
   "navigation": {
     "home": "Home",
+    "rechtbank": "Box 3 & Court",
     "contact": "Contact"
   }
-} 
+}

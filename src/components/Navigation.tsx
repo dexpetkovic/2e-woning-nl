@@ -62,6 +62,16 @@ const Navigation: React.FC = () => {
                 {t('navigation.home')}
               </Link>
               <Link
+                href="/rechtbank"
+                className={`px-4 py-2 rounded-full text-base font-medium transition-colors duration-200 ${
+                  isActive('/rechtbank')
+                    ? 'text-accent-500 bg-appleGray-50'
+                    : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
+                }`}
+              >
+                {t('navigation.rechtbank')}
+              </Link>
+              <Link
                 href="/contact"
                 className={`px-4 py-2 rounded-full text-base font-medium transition-colors duration-200 ${
                   isActive('/contact')
@@ -130,6 +140,14 @@ const Navigation: React.FC = () => {
               }`}
             >
               {t('navigation.home')}
+            </Link>
+            <Link
+              href="/rechtbank"
+              className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors duration-200 ${
+                isActive('/rechtbank') ? 'text-accent-500 bg-appleGray-50' : 'text-appleGray-700 hover:text-accent-500 hover:bg-appleGray-100'
+              }`}
+            >
+              {t('navigation.rechtbank')}
             </Link>
             <Link
               href="/contact"

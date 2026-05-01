@@ -20,7 +20,9 @@
   },
   "buttons": {
     "calculate": "Bereken belasting",
-    "reset": "Reset"
+    "reset": "Reset",
+    "copyLink": "Deel berekening",
+    "copied": "Gekopieerd!"
   },
   "results": {
     "title": "Box 3 Belasting",
@@ -35,7 +37,11 @@
     "step4": "Stap 4: Bereken uw aandeel in de rendementsgrondslag",
     "step5": "Stap 5: Bereken uw voordeel uit sparen en beleggen",
     "step6": "Stap 6: Bereken hoeveel belasting u moet betalen in box 3",
-    "disclaimer": "Deze berekening is een schatting. Uw werkelijke belasting kan afwijken afhankelijk van uw persoonlijke situatie."
+    "disclaimer": "Deze berekening is een schatting. Uw werkelijke belasting kan afwijken afhankelijk van uw persoonlijke situatie.",
+    "vs2024": "vs 2024",
+    "yearComparison": "Vergelijking 2024 vs 2025",
+    "withPartner": "Met fiscale partner",
+    "withoutPartner": "Zonder fiscale partner"
   },
   "placeholder": {
     "title": "Vul uw gegevens in",
@@ -44,11 +50,11 @@
   "about": {
     "title": "Over Box 3 belasting",
     "description": "In Nederland wordt in Box 3 belasting geheven over uw vermogen, zoals spaargeld, beleggingen en onroerend goed (behalve uw eigen woning). De Belastingdienst berekent het Box 3-inkomen volgens de Overbruggingswetgeving, waarbij wordt uitgegaan van de werkelijke verdeling van de verschillende soorten vermogen.",
-    "rates": "Voor 2024 gelden de volgende rendementspercentages:",
+    "rates": "Voor 2025 gelden de volgende rendementspercentages:",
     "bankSavings": "Banktegoeden",
     "investments": "Beleggingen en andere bezittingen",
     "debts": "Schulden",
-    "taxRate": "Het belastingtarief voor Box 3 in 2024 is 36%.",
+    "taxRate": "Het belastingtarief voor Box 3 in 2025 is 36%.",
     "taxFreeAmount": "Het heffingsvrij vermogen is € 57.000 per persoon (€ 114.000 voor fiscale partners).",
     "source": "Bron"
   },
@@ -58,13 +64,22 @@
     "website": "Bezoek onze website",
     "contact": "Neem contact op"
   },
+  "email": {
+    "title": "Ontvang 2026 tarieven als eerste",
+    "description": "Zodra de nieuwe Box 3 tarieven worden gepubliceerd, sturen wij u een melding.",
+    "placeholder": "uw@email.nl",
+    "cta": "Aanmelden",
+    "successTitle": "Aangemeld!",
+    "successBody": "U ontvangt een melding zodra de 2026 tarieven bekend zijn.",
+    "error": "Er ging iets mis. Probeer het opnieuw."
+  },
   "ads": {
     "title": "Gesponsorde content",
     "description": "Advertenties helpen ons om deze tool gratis aan te bieden"
   },
   "footer": {
     "taxCalculator": "Box 3 Belastingcalculator",
-    "copyright": "© 2024 Elands Studio. Alle rechten voorbehouden.",
+    "copyright": "Elands Studio. Alle rechten voorbehouden.",
     "disclaimer": "Deze calculator is bedoeld als hulpmiddel. Raadpleeg altijd een belastingadviseur voor uw specifieke situatie."
   },
   "optional": "Optioneel",
@@ -167,7 +182,7 @@
       },
       "control": {
         "title": "Beheer van cookies",
-        "content": "U kunt cookies naar wens beheren en/of verwijderen. U kunt alle cookies die al op uw computer staan verwijderen en de meeste browsers zo instellen dat ze niet worden geplaatst."
+        "content": "U kunt cookies naar wens beheren en/of verwijderen."
       },
       "contact": {
         "title": "Contact",
@@ -211,6 +226,7 @@
   },
   "navigation": {
     "home": "Home",
+    "rechtbank": "Box 3 & Rechter",
     "contact": "Contact"
   }
-} 
+}
