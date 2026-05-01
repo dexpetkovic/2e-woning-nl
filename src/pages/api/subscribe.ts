@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const ADMIN_EMAIL = 'elandsstudio@gmail.com';
+const ADMIN_EMAIL = 'dexpetkovic@gmail.com';
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
