@@ -36,15 +36,15 @@ const Contact: React.FC = () => {
                 <div className="mt-4">
                   <h3 className="text-lg font-medium mb-2">{t('contact.sections.general.company')}</h3>
                   <ul className="list-none p-0">
-                    <li>Elands Studio</li>
+                    <li>Elands AI</li>
                     <li>
-                      Email: <a href="mailto:elandsstudio@gmail.com" className="text-primary-600 hover:underline">
-                        elandsstudio@gmail.com
+                      Email: <a href="mailto:dexpetkovic@gmail.com" className="text-primary-600 hover:underline">
+                        dexpetkovic@gmail.com
                       </a>
                     </li>
-                    <li>Elands Studio is registered in Serbian Chamber of commerce under:</li>
-                    <li>Tax ID: 114346597</li>
-                    <li>Company ID: 67504151</li>
+                    <li>Elands AI is registered in Serbian Chamber of commerce under:</li>
+                    <li>VAT number: 115160487</li>
+                    <li>Company number: 22121910</li>
                   </ul>
                 </div>
               </section>
@@ -56,8 +56,8 @@ const Contact: React.FC = () => {
                   <div>
                     <h3 className="text-lg font-medium mb-2">{t('contact.sections.support.email.title')}</h3>
                     <p>{t('contact.sections.support.email.content')}</p>
-                    <a href="mailto:elandsstudio@gmail.com" className="text-primary-600 hover:underline">
-                      elandsstudio@gmail.com
+                    <a href="mailto:dexpetkovic@gmail.com" className="text-primary-600 hover:underline">
+                      dexpetkovic@gmail.com
                     </a>
                   </div>
                 </div>
