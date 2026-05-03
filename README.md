@@ -47,7 +47,6 @@ Om Google AdSense te configureren:
    ```
    NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT=ca-pub-JOUWCLIENTID
    NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HORIZONTAL=JOUWSLOTID
-   NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_VERTICAL=JOUWSLOTID
    ```
 
 2. Voor Vercel deployment, voeg deze environment variables toe in de Vercel dashboard:
