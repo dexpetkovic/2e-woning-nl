@@ -38,8 +38,8 @@ const Contact: React.FC = () => {
                   <ul className="list-none p-0">
                     <li>Elands AI</li>
                     <li>
-                      Email: <a href="mailto:dexpetkovic@gmail.com" className="text-primary-600 hover:underline">
-                        dexpetkovic@gmail.com
+                      Email: <a href="mailto:hello@elands.studio" className="text-primary-600 hover:underline">
+                        hello@elands.studio
                       </a>
                     </li>
                     <li>Elands AI is registered in Serbian Chamber of commerce under:</li>
@@ -56,8 +56,8 @@ const Contact: React.FC = () => {
                   <div>
                     <h3 className="text-lg font-medium mb-2">{t('contact.sections.support.email.title')}</h3>
                     <p>{t('contact.sections.support.email.content')}</p>
-                    <a href="mailto:dexpetkovic@gmail.com" className="text-primary-600 hover:underline">
-                      dexpetkovic@gmail.com
+                    <a href="mailto:hello@elands.studio" className="text-primary-600 hover:underline">
+                      hello@elands.studio
                     </a>
                   </div>
                 </div>
