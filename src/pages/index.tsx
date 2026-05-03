@@ -15,7 +15,6 @@ import { trackEvent, AnalyticsEvent } from '@/utils/analytics';
 
 const GOOGLE_ADSENSE_CLIENT = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || '';
 const GOOGLE_ADSENSE_SLOT_HORIZONTAL = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HORIZONTAL || '';
-const GOOGLE_ADSENSE_SLOT_VERTICAL = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_VERTICAL || '';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   try {
@@ -236,9 +235,10 @@ const Home = () => {
         </section>
 
         <div className="max-w-7xl mx-auto px-6 pb-16">
-          <AdBanner client={GOOGLE_ADSENSE_CLIENT} slot={GOOGLE_ADSENSE_SLOT_HORIZONTAL} className="mb-12" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* data-no-auto-ads tells AdSense Auto Ads to skip injecting inside the calculator.
+              Configure the CSS selector "[data-no-auto-ads]" as an exclusion zone in your
+              AdSense dashboard → Auto Ads → Excluded areas. */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" data-no-auto-ads>
             {/* Calculator form */}
             <div className="lg:col-span-2 space-y-6">
               <div className="card">
@@ -341,7 +341,6 @@ const Home = () => {
                 </div>
               )}
 
-              <AdBanner client={GOOGLE_ADSENSE_CLIENT} slot={GOOGLE_ADSENSE_SLOT_VERTICAL} format="vertical" />
             </div>
           </div>
 
