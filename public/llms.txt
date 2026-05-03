@@ -32,7 +32,7 @@ De calculator helpt particulieren hun belasting op spaargeld, beleggingen, tweed
 6. Vermenigvuldig met 36% belastingtarief
 
 ## Gemaakt door
-Elands Studio — hello@elands.studio
+Elands AI — hello@elands.studio
 
 ## Bronnen
 - Belastingdienst: https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/

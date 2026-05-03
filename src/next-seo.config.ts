@@ -28,7 +28,7 @@ const config: DefaultSeoProps = {
     },
     {
       name: 'author',
-      content: 'Elands Studio',
+      content: 'Elands AI',
     },
   ],
   additionalLinkTags: [

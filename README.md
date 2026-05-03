@@ -82,4 +82,4 @@ Deze calculator is bedoeld als hulpmiddel. De berekeningen zijn gebaseerd op de 
 
 ## Licentie
 
-Copyright © 2024 Elands Studio. Alle rechten voorbehouden. 
+Copyright © 2024 Elands AI. Alle rechten voorbehouden. 

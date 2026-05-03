@@ -11,7 +11,7 @@ const CompanyInfo: React.FC = () => {
         <div className="flex-shrink-0">
           <img
             src="/images/elands-studio-logo.png"
-            alt="Elands Studio"
+            alt="Elands AI"
             className="h-auto w-48"
           />
         </div>

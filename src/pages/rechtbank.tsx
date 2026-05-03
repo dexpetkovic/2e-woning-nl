@@ -61,7 +61,7 @@ const structuredData = {
   "@type": "Article",
   "headline": "Box 3 en de rechter — overzicht van rechtszaken en uitspraken",
   "description": "Overzicht van de belangrijkste rechterlijke uitspraken over Box 3 belasting in Nederland, van het Kerstarrest 2021 tot het nieuwe stelsel in 2027.",
-  "author": { "@type": "Organization", "name": "Elands Studio" },
+  "author": { "@type": "Organization", "name": "Elands AI" },
   "publisher": { "@type": "Organization", "name": "2e-woning.nl" },
 };
 
