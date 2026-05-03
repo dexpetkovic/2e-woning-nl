@@ -90,8 +90,8 @@ const PrivacyPolicy: React.FC = () => {
                 <h2>{t('privacy.sections.contact.title')}</h2>
                 <p>{t('privacy.sections.contact.content')}</p>
                 <p>
-                  Email: <a href="mailto:elandsstudio@gmail.com" className="text-primary-600 hover:underline">
-                    elandsstudio@gmail.com
+                  Email: <a href="mailto:hello@elands.studio" className="text-primary-600 hover:underline">
+                    hello@elands.studio
                   </a>
                 </p>
               </section>

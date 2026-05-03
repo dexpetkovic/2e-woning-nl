@@ -117,8 +117,8 @@ const CookiePolicy: React.FC = () => {
                 <h2>{t('cookies.sections.contact.title')}</h2>
                 <p>{t('cookies.sections.contact.content')}</p>
                 <p>
-                  Email: <a href="mailto:elandsstudio@gmail.com" className="text-primary-600 hover:underline">
-                    elandsstudio@gmail.com
+                  Email: <a href="mailto:hello@elands.studio" className="text-primary-600 hover:underline">
+                    hello@elands.studio
                   </a>
                 </p>
               </section>
