@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Box 3 & de Rechter | Rechtszaken en uitspraken",
+    "description": "Overzicht van de belangrijkste rechterlijke uitspraken over Box 3 belasting in Nederland: Kerstarrest 2021, massaal bezwaar, herstelwetgeving en het nieuwe stelsel.",
+    "keywords": "box 3 rechtbank, box 3 rechtszaak, kerstarrest box 3, massaal bezwaar box 3, box 3 hoge raad, box 3 nieuw stelsel 2027"
+  },
+  "badge": "Juridisch overzicht",
+  "hero": {
+    "title": "Box 3 & de Rechter",
+    "subtitle": "Van het Kerstarrest in 2021 tot het nieuwe stelsel in 2027. Alles wat u moet weten over de rechtszaken rondom Box 3."
+  },
+  "context": {
+    "title": "Wat speelt er precies?",
+    "p1": "Het Nederlandse Box 3-stelsel berekende vermogensbelasting jarenlang op basis van een <strong>fictief rendement</strong>, ongeacht wat u werkelijk verdiende. De Hoge Raad oordeelde dat dit in strijd is met het eigendomsrecht en het discriminatieverbod uit het Europees Verdrag voor de Rechten van de Mens (EVRM).",
+    "p2": "Sindsdien heeft de overheid tijdelijke wetgeving ingevoerd en wordt er gewerkt aan een volledig nieuw stelsel op basis van werkelijk rendement. Voor belastingplichtigen die te veel betaalden, zijn er herstelregelingen."
+  },
+  "timelineTitle": "Tijdlijn van uitspraken",
+  "timeline": [
+    {
+      "year": "2021",
+      "label": "Kerstarrest (Hoge Raad)",
+      "summary": "Op 24 december 2021 oordeelde de Hoge Raad dat het forfaitaire stelsel van Box 3 in strijd is met Europees recht. Belastingplichtigen die bezwaar hadden gemaakt, hadden recht op herstel.",
+      "impact": "hoog",
+      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963"
+    },
+    {
+      "year": "2022",
+      "label": "Massaal bezwaar & herstel",
+      "summary": "De Belastingdienst erkende het arrest en stelde een massaal-bezwaarproces in. Miljoenen aanslagen werden herzien. Belastingplichtigen die geen bezwaar hadden gemaakt, vielen aanvankelijk buiten de boot.",
+      "impact": "hoog",
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3"
+    },
+    {
+      "year": "2023",
+      "label": "Overbruggingswetgeving",
+      "summary": "Omdat een nieuw stelsel tijd kost, voerde het kabinet overbruggingswetgeving in. Box 3 wordt tijdelijk berekend op basis van werkelijke vermogenscategorieën in plaats van één fictief rendement.",
+      "impact": "middel",
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/"
+    },
+    {
+      "year": "2024",
+      "label": "Niet-bezwaarmakers: uitspraken",
+      "summary": "De Hoge Raad en lagere rechters bogen zich over de vraag of ook niet-bezwaarmakers recht hebben op herstel. In meerdere zaken werd geoordeeld dat dit niet automatisch het geval is, maar individuele procedures bleven mogelijk.",
+      "impact": "middel",
+      "href": "https://uitspraken.rechtspraak.nl/"
+    },
+    {
+      "year": "2025",
+      "label": "Nieuw Box 3 stelsel in voorbereiding",
+      "summary": "Het kabinet werkt aan een nieuw stelsel gebaseerd op werkelijk rendement, met beoogde inwerkingtreding in 2027. Tot die tijd blijft de overbruggingswetgeving van kracht.",
+      "impact": "laag",
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+    }
+  ],
+  "impactLabels": {
+    "hoog": "Groot belang",
+    "middel": "Relevant",
+    "laag": "In ontwikkeling"
+  },
+  "readMore": "Meer lezen",
+  "whatYouCanDo": {
+    "title": "Wat kunt u zelf doen?",
+    "items": [
+      {
+        "title": "Controleer uw aanslagen",
+        "body": "Kijk of u tijdig bezwaar heeft gemaakt voor de jaren 2017 tot 2022. Belastingplichtigen die deel uitmaakten van het massaal-bezwaarproces hebben recht op herstel."
+      },
+      {
+        "title": "Bereken uw werkelijke rendement",
+        "body": "Gebruik onze calculator om te zien wat u betaalt onder de huidige overbruggingswetgeving, en vergelijk dit met eerdere jaren."
+      },
+      {
+        "title": "Raadpleeg een belastingadviseur",
+        "body": "De situatie rondom Box 3 is complex en afhankelijk van uw persoonlijke situatie. Een belastingadviseur kan u helpen met bezwaarprocedures of optimalisatie."
+      }
+    ]
+  },
+  "cta": "Bereken uw Box 3 belasting",
+  "source": "Bron"
+}

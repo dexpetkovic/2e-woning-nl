@@ -1,4 +1,4 @@
-# 2e-woning.nl — Box 3 Belastingcalculator
+# 2e-woning.nl - Box 3 Belastingcalculator
 
 ## Beschrijving
 2e-woning.nl is een gratis online calculator voor het berekenen van Box 3 vermogensbelasting in Nederland.
@@ -32,13 +32,13 @@ De calculator helpt particulieren hun belasting op spaargeld, beleggingen, tweed
 6. Vermenigvuldig met 36% belastingtarief
 
 ## Gemaakt door
-Elands AI — hello@elands.studio
+Elands AI - hello@elands.studio
 
 ## Bronnen
 - Belastingdienst: https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/
 
 ## Pagina's
-- / — Calculator hoofdpagina (Nederlands en Engels)
-- /contact — Contactinformatie
-- /privacy — Privacybeleid
-- /cookies — Cookiebeleid
+- / - Calculator hoofdpagina (Nederlands en Engels)
+- /contact - Contactinformatie
+- /privacy - Privacybeleid
+- /cookies - Cookiebeleid

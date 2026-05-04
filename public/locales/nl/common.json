@@ -56,7 +56,16 @@
     "debts": "Schulden",
     "taxRate": "Het belastingtarief voor Box 3 in 2025 is 36%.",
     "taxFreeAmount": "Het heffingsvrij vermogen is € 57.000 per persoon (€ 114.000 voor fiscale partners).",
-    "source": "Bron"
+    "source": "Bron",
+    "p1": "Box 3 is het belastingvak voor vermogen buiten je eigen woning en je bedrijf. Spaargeld, beleggingen, een tweede woning, verhuurde panden: dat valt allemaal in Box 3. De meeste mensen komen er pas echt mee in aanraking als ze iets opbouwen dat boven het heffingvrij vermogen uitkomt.",
+    "p2": "Het bijzondere aan Box 3 is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong>fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat er werkelijk is gebeurd. Over dat fictieve rendement betaal je vervolgens 36% belasting.",
+    "p3": "Dat fictieve rendement is opgesplitst per vermogenscategorie. Spaargeld krijgt een laag percentage (1,44% in 2025) omdat de spaarrentes laag zijn. Beleggingen en onroerend goed krijgen een hoger percentage (6,04%), omdat je geacht wordt meer risico te nemen en daarvoor beloond te worden. Schulden zijn aftrekbaar tegen 2,61%.",
+    "p4": "Er is ook een vrijstelling: het <strong>heffingvrij vermogen van €57.000 per persoon</strong>. Zit je eronder, dan betaal je niks. Heb je een fiscale partner, dan is die grens samen €114.000. Veel mensen met alleen spaargeld zitten dus gewoon onder die grens.",
+    "p5": "Dit systeem bestaat in de huidige vorm pas sinds 2023. Het oude systeem gebruikte één vast fictief rendement voor alles, en dat leidde in december 2021 tot het Kerstarrest van de Hoge Raad, die oordeelde dat het in strijd was met Europees recht. Sindsdien is er een overbruggingsstelsel van kracht. Een nieuw systeem op basis van werkelijk rendement staat gepland voor 2027.",
+    "savingsLabel": "Spaargeld",
+    "investmentsVastgoed": "Beleggingen & vastgoed",
+    "debtsLabel": "Schulden",
+    "rateNote": "fictief rendement 2025"
   },
   "company": {
     "title": "Ontwikkeld door Elands AI, een bedrijf van een Nederlander in Servië",
@@ -228,5 +237,50 @@
     "home": "Home",
     "rechtbank": "Box 3 & Rechter",
     "contact": "Contact"
+  },
+  "faq": {
+    "title": "Veelgestelde vragen over Box 3",
+    "items": [
+      {
+        "q": "Telt mijn eigen woning mee voor Box 3?",
+        "a": "Nee. Je eigen woning en de bijbehorende hypotheekschuld vallen in Box 1, niet in Box 3. Alleen tweede woningen, vakantiehuisjes en verhuurde panden horen in Box 3 thuis."
+      },
+      {
+        "q": "Hoe werkt het heffingvrij vermogen precies?",
+        "a": "Het heffingvrij vermogen (€57.000 per persoon in 2025) is een drempel. Zit je totale Box 3-vermogen na aftrek van schulden onder dit bedrag, dan betaal je niks. Met een fiscale partner is de grens samen €114.000 en jullie mogen het vermogen onderling verdelen op de gunstigste manier."
+      },
+      {
+        "q": "Hoe zit het met schulden?",
+        "a": "Schulden mag je aftrekken van je vermogen, maar niet volledig. Er is een drempel: de eerste €3.700 aan schulden (of €7.400 met partner) telt niet mee. Alles daarboven vermindert je belastbare grondslag. Let op: hypotheekschuld op je eigen woning hoort bij Box 1 en telt hier niet mee."
+      },
+      {
+        "q": "Zijn groene beleggingen anders behandeld?",
+        "a": "Ja. Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (€142.502 met partner). Als je bewust in duurzame fondsen belegt, scheelt dat direct in je belastinggrondslag."
+      },
+      {
+        "q": "Is deze berekening hetzelfde als mijn definitieve aanslag?",
+        "a": "Nee, dit is een indicatie. De Belastingdienst berekent je definitieve aanslag op basis van je ingediende aangifte en kan daarin afwijken. Gebruik dit als richtlijn, niet als bindende uitkomst."
+      }
+    ]
+  },
+  "moreLezen": {
+    "title": "Meer lezen",
+    "items": [
+      {
+        "href": "/box3-uitleg",
+        "title": "Box 3 uitgelegd",
+        "desc": "Wat het is, hoe het werkt en waarom het zo ingewikkeld lijkt."
+      },
+      {
+        "href": "/box3-tips",
+        "title": "Zo verlaag je je Box 3 belasting",
+        "desc": "5 legale manieren om minder te betalen."
+      },
+      {
+        "href": "/rechtbank",
+        "title": "Box 3 & de Rechter",
+        "desc": "Van het Kerstarrest tot het nieuwe stelsel in 2027."
+      }
+    ]
   }
 }

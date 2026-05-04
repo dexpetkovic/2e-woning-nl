@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# LLM crawlers — welcome, this site is LLM-friendly
+# LLM crawlers - welcome, this site is LLM-friendly
 User-agent: GPTBot
 Allow: /
 

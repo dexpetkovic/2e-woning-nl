@@ -56,7 +56,16 @@
     "debts": "Debts",
     "taxRate": "The tax rate for Box 3 in 2025 is 36%.",
     "taxFreeAmount": "The tax-free capital is € 57,000 per person (€ 114,000 for fiscal partners).",
-    "source": "Source"
+    "source": "Source",
+    "p1": "Box 3 is the tax bracket for assets outside your primary home and your business. Savings, investments, a second property, rental properties: all of that falls into Box 3. Most people only really encounter it once they build up something above the tax-free threshold.",
+    "p2": "What makes Box 3 unusual is that the tax authority does not look at what you actually earned. They apply a <strong>deemed return</strong>: a percentage you are assumed to have made, regardless of what actually happened. You then pay 36% tax on that deemed return.",
+    "p3": "The deemed return is split by asset category. Savings get a low percentage (1.44% in 2025) because savings rates are low. Investments and real estate get a higher percentage (6.04%), as you are assumed to take on more risk and be rewarded for it. Debts are deductible at 2.61%.",
+    "p4": "There is also an exemption: the <strong>tax-free allowance of €57,000 per person</strong>. If you are below that, you pay nothing. With a fiscal partner the combined threshold is €114,000. Many people with only savings are simply below that limit.",
+    "p5": "This system has only been in its current form since 2023. The old system used one fixed deemed return for everything, and that led in December 2021 to the Supreme Court ruling that it was incompatible with European law. Since then a bridging scheme has been in force. A new system based on actual returns is planned for 2027.",
+    "savingsLabel": "Savings",
+    "investmentsVastgoed": "Investments & property",
+    "debtsLabel": "Debts",
+    "rateNote": "deemed return 2025"
   },
   "company": {
     "title": "Developed by Elands AI, a company of a Dutchman living in Serbia",
@@ -228,5 +237,50 @@
     "home": "Home",
     "rechtbank": "Box 3 & Court",
     "contact": "Contact"
+  },
+  "faq": {
+    "title": "Frequently asked questions about Box 3",
+    "items": [
+      {
+        "q": "Does my primary home count for Box 3?",
+        "a": "No. Your primary home and the associated mortgage debt fall under Box 1, not Box 3. Only second homes, holiday properties and rental properties belong in Box 3."
+      },
+      {
+        "q": "How does the tax-free allowance work exactly?",
+        "a": "The tax-free allowance (€57,000 per person in 2025) is a threshold. If your total Box 3 assets after deducting debts are below this amount, you pay nothing. With a fiscal partner the combined limit is €114,000 and you may divide your assets in the most advantageous way."
+      },
+      {
+        "q": "What about debts?",
+        "a": "You may deduct debts from your assets, but not in full. There is a threshold: the first €3,700 in debts (or €7,400 with a partner) does not count. Everything above that reduces your taxable base. Note: mortgage debt on your primary home belongs to Box 1 and does not count here."
+      },
+      {
+        "q": "Are green investments treated differently?",
+        "a": "Yes. Green investments are exempt from Box 3 up to €71,251 per person (€142,502 with a partner). If you invest in sustainable funds, this directly reduces your taxable base."
+      },
+      {
+        "q": "Is this calculation the same as my final tax assessment?",
+        "a": "No, this is an estimate. The tax authority calculates your final assessment based on your submitted return and may differ. Use this as a reference, not as a binding outcome."
+      }
+    ]
+  },
+  "moreLezen": {
+    "title": "Read more",
+    "items": [
+      {
+        "href": "/box3-uitleg",
+        "title": "Box 3 explained",
+        "desc": "What it is, how it works and why it seems so complicated."
+      },
+      {
+        "href": "/box3-tips",
+        "title": "How to reduce your Box 3 tax",
+        "desc": "5 legal ways to pay less."
+      },
+      {
+        "href": "/rechtbank",
+        "title": "Box 3 & the Courts",
+        "desc": "From the Christmas ruling to the new system in 2027."
+      }
+    ]
   }
 }

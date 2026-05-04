@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "title": "Box 3 uitgelegd: wat het is en hoe het werkt",
+    "description": "Duidelijke uitleg van Box 3 belasting: fictief rendement, heffingvrij vermogen, het Kerstarrest en wat er verandert in 2027. Voor iedereen met spaargeld, beleggingen of een tweede woning.",
+    "keywords": "box 3 uitleg, box 3 belasting uitgelegd, fictief rendement box 3, heffingvrij vermogen 2025, box 3 hoe werkt het"
+  },
+  "badge": "Uitleg",
+  "hero": {
+    "title": "Box 3 uitgelegd",
+    "subtitle": "Wat het is, hoe het werkt, en waarom er al jaren over wordt geprocedeerd."
+  },
+  "threeBoxes": {
+    "title": "Drie boxen, één systeem",
+    "p1": "In Nederland betaal je inkomstenbelasting verdeeld over drie boxen. Box 1 gaat over inkomen uit werk en je eigen woning, wat voor de meeste mensen het grootste deel van de aangifte is. Box 2 is voor mensen met een aanmerkelijk belang in een BV. En Box 3 is voor al het overige vermogen: spaargeld, beleggingen, een tweede woning, verhuurde panden.",
+    "p2": "De meeste mensen komen pas echt met Box 3 in aanraking als ze iets opbouwen dat boven het heffingvrij vermogen uitkomt. Tot dat punt merk je er weinig van."
+  },
+  "fictiveReturn": {
+    "title": "Fictief rendement: het kernidee",
+    "p1": "Het bijzondere aan Box 3 is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong>fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat de markten hebben gedaan of hoeveel rente je bank heeft uitgekeerd.",
+    "p2": "Over dat fictieve rendement betaal je vervolgens 36% belasting. Niet over je vermogen zelf, maar over het fictief berekende rendement daarop.",
+    "p3": "In de praktijk betekent dit: heb je €200.000 aan beleggingen, dan gaat de Belastingdienst ervan uit dat je 6,04% rendement hebt behaald, dus €12.080. Daarover betaal je 36%, wat neerkomt op €4.348,80 aan belasting. Of je dat rendement ook echt hebt behaald, maakt (voor nu) niet uit."
+  },
+  "rates": {
+    "title": "De tarieven voor 2025",
+    "intro": "Het fictieve rendement is opgesplitst per categorie:",
+    "items": [
+      { "label": "Banktegoeden", "rate": "1,44%", "note": "laag, vanwege lage spaarrente" },
+      { "label": "Beleggingen & vastgoed", "rate": "6,04%", "note": "hoger, geacht meer risico" },
+      { "label": "Schulden", "rate": "2,61%", "note": "aftrekbaar boven de drempel" }
+    ],
+    "taxNote": "Over het totale fictieve rendement betaal je <strong>36% belasting</strong>. Er is ook een heffingvrij vermogen van <strong>€57.000 per persoon</strong> (€114.000 voor fiscale partners). Zit je eronder, dan betaal je niks."
+  },
+  "courtCases": {
+    "title": "Waarom er zoveel over wordt geprocedeerd",
+    "p1": "Het oude Box 3-systeem (vóór 2023) gebruikte één vast fictief rendement voor alles, een paar jaar geleden nog zo'n 4%. Het probleem: als je spaargeld maar 0,1% rente opleverde maar toch werd belast over 4% fictief rendement, betaalde je effectief meer dan je werkelijk had verdiend.",
+    "p2": "De Hoge Raad vond dit in december 2021 in strijd met het eigendomsrecht (EVRM) en verklaarde het systeem ongrondwettelijk. Dat is inmiddels bekend als het Kerstarrest.",
+    "p3": "Belastingplichtigen die op tijd bezwaar hadden gemaakt, hadden recht op herstel. Wie geen bezwaar had gemaakt viel aanvankelijk buiten de boot, en ook daarover zijn nog steeds procedures gaande."
+  },
+  "currentSystem": {
+    "title": "Het huidige systeem en wat er komt",
+    "p1": "Sinds 2023 geldt een overbruggingsstelsel. Daarin maakt de Belastingdienst onderscheid per vermogenscategorie, vandaar de aparte percentages voor spaargeld, beleggingen en schulden. Het is nog steeds een fictief systeem, maar eerlijker dan daarvoor.",
+    "p2": "Het kabinet werkt aan een nieuw stelsel op basis van <strong>werkelijk rendement</strong>. Idee is dat je dan echt betaalt over wat je hebt verdiend, niet over een fictief percentage. De beoogde ingangsdatum is 2027, al is dat al een paar keer verschoven.",
+    "p3": "Tot die tijd blijft het huidige overbruggingsstelsel van kracht. En geldt: begrijp je systeem, bereken je belasting, en zorg dat je niet onnodig te veel betaalt."
+  },
+  "cta": {
+    "calculator": "Bereken uw Box 3 belasting",
+    "tips": "Zo verlaag je je Box 3 belasting"
+  }
+}

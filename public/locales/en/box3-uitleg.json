@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "title": "Box 3 explained: what it is and how it works",
+    "description": "A clear explanation of Box 3 tax in the Netherlands: deemed return, tax-free allowance, the Christmas ruling and what changes in 2027. For anyone with savings, investments or a second property.",
+    "keywords": "box 3 explained, box 3 tax netherlands, deemed return box 3, tax-free capital 2025, box 3 how does it work"
+  },
+  "badge": "Explainer",
+  "hero": {
+    "title": "Box 3 explained",
+    "subtitle": "What it is, how it works, and why it has been in court for years."
+  },
+  "threeBoxes": {
+    "title": "Three boxes, one system",
+    "p1": "In the Netherlands, income tax is divided into three boxes. Box 1 covers income from work and your primary home, which for most people is the largest part of their tax return. Box 2 applies to people with a substantial interest in a private company. And Box 3 covers all remaining assets: savings, investments, a second property, rental properties.",
+    "p2": "Most people only really encounter Box 3 once they build up assets above the tax-free threshold. Below that point, you won't notice it at all."
+  },
+  "fictiveReturn": {
+    "title": "Deemed return: the core concept",
+    "p1": "What makes Box 3 unusual is that the Dutch tax authority does not look at what you actually earned. Instead they apply a <strong>deemed return</strong>: a percentage you are assumed to have made, regardless of what the markets did or how much interest your bank paid.",
+    "p2": "You then pay 36% tax on that deemed return. Not on your assets themselves, but on the fictitiously calculated return on them.",
+    "p3": "In practice: if you have €200,000 in investments, the tax authority assumes you earned 6.04%, which comes to €12,080. You pay 36% on that, totalling €4,348.80 in tax. Whether you actually made that return does not matter (for now)."
+  },
+  "rates": {
+    "title": "The 2025 rates",
+    "intro": "The deemed return is split per category:",
+    "items": [
+      { "label": "Bank savings", "rate": "1.44%", "note": "low, due to low savings rates" },
+      { "label": "Investments & property", "rate": "6.04%", "note": "higher, assumed to carry more risk" },
+      { "label": "Debts", "rate": "2.61%", "note": "deductible above the threshold" }
+    ],
+    "taxNote": "You pay <strong>36% tax</strong> on the total deemed return. There is also a tax-free allowance of <strong>€57,000 per person</strong> (€114,000 for fiscal partners). If you are below that, you pay nothing."
+  },
+  "courtCases": {
+    "title": "Why there have been so many court cases",
+    "p1": "The old Box 3 system (before 2023) used one fixed deemed return for everything, around 4% a few years ago. The problem: if your savings only earned 0.1% interest but you were taxed on a 4% deemed return, you were effectively paying more than you actually earned.",
+    "p2": "The Supreme Court ruled in December 2021 that this was incompatible with property rights under the ECHR and declared the system unconstitutional. This became known as the Christmas ruling.",
+    "p3": "Taxpayers who had filed a timely objection were entitled to remediation. Those who had not filed an objection were initially left out, and legal proceedings on that point are still ongoing."
+  },
+  "currentSystem": {
+    "title": "The current system and what comes next",
+    "p1": "Since 2023 a bridging scheme has applied. The tax authority now distinguishes between asset categories, hence the separate rates for savings, investments, and debts. It is still a deemed-return system, but fairer than before.",
+    "p2": "The government is developing a new system based on <strong>actual returns</strong>. The idea is that you would pay tax on what you actually earned, not a fictitious percentage. The intended start date is 2027, though that date has already shifted several times.",
+    "p3": "Until then the bridging scheme remains in force. The takeaway: understand the system, calculate your tax, and make sure you are not paying more than necessary."
+  },
+  "cta": {
+    "calculator": "Calculate your Box 3 tax",
+    "tips": "How to reduce your Box 3 tax"
+  }
+}

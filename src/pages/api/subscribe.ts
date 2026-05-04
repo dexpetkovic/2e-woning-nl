@@ -32,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await resend.emails.send({
       from: 'noreply@2e-woning.nl',
       to: ADMIN_EMAIL,
-      subject: 'Nieuwe aanmelding — Box 3 tarieven notificatie',
+      subject: 'Nieuwe aanmelding - Box 3 tarieven notificatie',
       html: `<p>Nieuw e-mailadres aangemeld voor tarieven 2026: <strong>${normalizedEmail}</strong></p>`,
     });
 

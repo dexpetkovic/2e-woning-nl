@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "title": "How to reduce your Box 3 tax: 5 tips that actually work",
+    "description": "Five legal ways to pay less Box 3 tax in 2025. Fiscal partnership, green investments, reference-date optimisation and more.",
+    "keywords": "reduce box 3 tax, box 3 tips, pay less box 3, green investment exemption, fiscal partner box 3, box 3 optimise"
+  },
+  "badge": "Practical tips",
+  "hero": {
+    "title": "How to reduce your Box 3 tax",
+    "subtitle": "There is no magic trick. But there are choices you can make, and they do make a difference."
+  },
+  "tips": [
+    {
+      "number": "01",
+      "title": "Make the most of your fiscal partnership",
+      "body": [
+        "If you have a fiscal partner, you may divide your Box 3 assets between you in whichever way is most tax-efficient. In practice that means: you can shift assets from the partner with the higher taxable income to the other.",
+        "On top of that, the tax-free allowance applies per person. Together you are entitled to €114,000 in exemption rather than €57,000. On an average-sized portfolio that quickly saves hundreds of euros a year.",
+        "The split does not have to be fifty-fifty. You are free to optimise, but do it through your tax return, not after the fact."
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Pay off debts before 1 January",
+      "body": [
+        "Box 3 is calculated on the reference date of 1 January. Your net asset position on that day determines your assessment for the whole year.",
+        "If you can make a significant repayment before year-end and thereby lower your Box 3 base, it can sometimes be worth doing. Note: debts are only deductible above a threshold of €3,700 (or €7,400 with a partner). Paying off small debts therefore has no tax effect.",
+        "This is a timing consideration, not a workaround. It reduces your actual assets, but it also reduces your tax bill."
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Invest (partly) in green funds",
+      "body": [
+        "Green investments are exempt from Box 3 up to €71,251 per person (up to €142,502 with a partner). If you are planning to invest anyway and have a choice, it is worth checking whether sustainable alternatives work for you.",
+        "This applies to investments in funds carrying the Dutch tax authority's quality mark. Not every fund that calls itself \"green\" qualifies. Check with your bank or broker.",
+        "The exemption directly reduces your tax base, meaning you pay tax on a smaller portion of your assets."
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Check your tax return carefully",
+      "body": [
+        "This sounds obvious, but errors are common. The tax authority pre-fills part of the return based on bank balances and property valuations, but that information is not always correct.",
+        "At minimum check: are all debts above the threshold included? Is the WOZ value of your second property correct? Are your green investments declared as such?",
+        "Use this calculator to have a reference point before filing your return. If the outcome differs significantly from what the tax authority calculates, that is a reason to investigate further."
+      ]
+    },
+    {
+      "number": "05",
+      "title": "Follow the legal developments",
+      "body": [
+        "Legal proceedings about Box 3 are still ongoing. People who overpaid in earlier years under the old system may in some cases be entitled to remediation or a refund.",
+        "Whether you are entitled to anything depends on whether you filed a timely objection and which year is involved. The Supreme Court and lower courts continue to hand down rulings, sometimes with consequences for your situation.",
+        "It is worth looking into, especially if you had substantial assets in the years 2017 to 2022. Consult a tax advisor if you think you may be entitled to remediation."
+      ]
+    }
+  ],
+  "disclaimerBold": "To be honest:",
+  "disclaimerText": " if you have assets above the tax-free threshold, you cannot escape Box 3 tax entirely. The tips above help you limit it, but they do not eliminate it. For more complex situations (large property portfolios, multiple investment accounts, ongoing objection procedures) a tax advisor is worth the cost.",
+  "cta": {
+    "calculator": "Calculate your Box 3 tax",
+    "uitleg": "Box 3 explained"
+  }
+}

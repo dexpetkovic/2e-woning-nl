@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Box 3 & the Courts | Legal cases and rulings",
+    "description": "Overview of the key court rulings on Box 3 tax in the Netherlands: the Christmas ruling 2021, mass objection, remediation legislation and the new system.",
+    "keywords": "box 3 court case, box 3 ruling, christmas ruling box 3, mass objection box 3, box 3 supreme court netherlands, box 3 new system 2027"
+  },
+  "badge": "Legal overview",
+  "hero": {
+    "title": "Box 3 & the Courts",
+    "subtitle": "From the Christmas ruling in 2021 to the new system in 2027. Everything you need to know about the legal battles around Box 3."
+  },
+  "context": {
+    "title": "What is going on exactly?",
+    "p1": "The Dutch Box 3 system calculated wealth tax for years based on a <strong>deemed return</strong>, regardless of what you actually earned. The Supreme Court ruled that this violated property rights and the prohibition of discrimination under the European Convention on Human Rights (ECHR).",
+    "p2": "Since then, the government has introduced temporary legislation and is developing a completely new system based on actual returns. For taxpayers who overpaid, remediation arrangements are in place."
+  },
+  "timelineTitle": "Timeline of rulings",
+  "timeline": [
+    {
+      "year": "2021",
+      "label": "Christmas ruling (Supreme Court)",
+      "summary": "On 24 December 2021 the Supreme Court ruled that the deemed-return system of Box 3 is incompatible with European law. Taxpayers who had filed an objection were entitled to remediation.",
+      "impact": "hoog",
+      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963"
+    },
+    {
+      "year": "2022",
+      "label": "Mass objection & remediation",
+      "summary": "The tax authority accepted the ruling and set up a mass-objection process. Millions of assessments were revised. Taxpayers who had not filed an objection were initially excluded.",
+      "impact": "hoog",
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3"
+    },
+    {
+      "year": "2023",
+      "label": "Bridging legislation",
+      "summary": "As developing a new system takes time, the government introduced bridging legislation. Box 3 is now temporarily calculated using actual asset categories rather than a single deemed return.",
+      "impact": "middel",
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/"
+    },
+    {
+      "year": "2024",
+      "label": "Non-objectors: rulings",
+      "summary": "The Supreme Court and lower courts considered whether non-objectors are also entitled to remediation. In several cases the courts ruled this was not automatic, though individual proceedings remained possible.",
+      "impact": "middel",
+      "href": "https://uitspraken.rechtspraak.nl/"
+    },
+    {
+      "year": "2025",
+      "label": "New Box 3 system in preparation",
+      "summary": "The government is developing a new system based on actual returns, intended to take effect in 2027. Until then the bridging legislation remains in force.",
+      "impact": "laag",
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+    }
+  ],
+  "impactLabels": {
+    "hoog": "Major significance",
+    "middel": "Relevant",
+    "laag": "Developing"
+  },
+  "readMore": "Read more",
+  "whatYouCanDo": {
+    "title": "What can you do?",
+    "items": [
+      {
+        "title": "Check your assessments",
+        "body": "Check whether you filed a timely objection for the years 2017 to 2022. Taxpayers who were part of the mass-objection process are entitled to remediation."
+      },
+      {
+        "title": "Calculate your actual return",
+        "body": "Use our calculator to see what you pay under the current bridging legislation, and compare it to earlier years."
+      },
+      {
+        "title": "Consult a tax advisor",
+        "body": "The Box 3 situation is complex and depends on your personal circumstances. A tax advisor can help you with objection procedures or optimisation."
+      }
+    ]
+  },
+  "cta": "Calculate your Box 3 tax",
+  "source": "Source"
+}

@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "title": "Zo verlaag je je Box 3 belasting: 5 tips die werken",
+    "description": "Vijf legale manieren om minder Box 3 belasting te betalen in 2025. Fiscaal partnerschap, groene beleggingen, peildatum-optimalisatie en meer.",
+    "keywords": "box 3 belasting verlagen, box 3 tips, minder box 3 betalen, groene beleggingen vrijstelling, fiscaal partner box 3, box 3 optimaliseren"
+  },
+  "badge": "Praktische tips",
+  "hero": {
+    "title": "Zo verlaag je je Box 3 belasting",
+    "subtitle": "Er is geen magische truc. Maar er zijn wel degelijk keuzes die je kunt maken, en die het verschil maken."
+  },
+  "tips": [
+    {
+      "number": "01",
+      "title": "Gebruik je fiscaal partnerschap optimaal",
+      "body": [
+        "Als je een fiscale partner hebt, mogen jullie het Box 3-vermogen onderling verdelen op de manier die fiscaal het gunstigst is. In de praktijk betekent dat: je kunt vermogen verschuiven van de partner met het hoogste belastbaar inkomen naar de ander.",
+        "Bovendien geldt het heffingvrij vermogen per persoon. Samen hebben jullie dus recht op €114.000 vrijstelling in plaats van €57.000. Dat scheelt bij een gemiddeld vermogen al snel honderden euro's per jaar.",
+        "De verdeling hoef je niet fifty-fifty te doen. Je mag optimaliseren, maar doe dit wel via je aangifte, niet achteraf."
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Betaal schulden af vóór 1 januari",
+      "body": [
+        "Box 3 wordt berekend op peildatum 1 januari. Je vermogenssaldo op die dag bepaalt je aanslag voor het hele jaar.",
+        "Als je een grote aflossing kunt doen vóór het einde van het jaar en daarmee je Box 3-grondslag verlaagt, is dat soms de moeite waard. Let op: schulden zijn pas aftrekbaar boven een drempel van €3.700 (of €7.400 met partner). Kleine schulden afbetalen heeft dus geen fiscaal effect.",
+        "Dit is een timing-kwestie, geen trucje. Het vermindert je daadwerkelijke vermogen, maar het verlaagt ook je belastingaanslag."
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Beleg (deels) in groene fondsen",
+      "body": [
+        "Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (met partner tot €142.502). Als je toch al van plan bent om te beleggen en je hebt een keuze, loont het om te kijken of er duurzame alternatieven zijn die voor jou werken.",
+        "Het gaat om beleggingen in fondsen met het keurmerk van de Belastingdienst. Niet elk fonds dat zichzelf \"groen\" noemt, telt. Check dit via je bank of broker.",
+        "De vrijstelling scheelt direct in je belastinggrondslag: je betaalt dan over een kleiner deel van je vermogen."
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Controleer je aangifte zorgvuldig",
+      "body": [
+        "Dit klinkt voor de hand liggend, maar het gaat regelmatig mis. De Belastingdienst vult de aangifte voor een deel zelf in op basis van banksaldi en WOZ-waarden, maar die gegevens kloppen niet altijd.",
+        "Controleer in elk geval: zijn alle schulden boven de drempel meegenomen? Is de WOZ-waarde van je tweede woning correct? Heb je groene beleggingen die als zodanig zijn opgegeven?",
+        "Gebruik deze calculator om een richtlijn te hebben voordat je de aangifte doet. Als de uitkomst sterk afwijkt van wat de Belastingdienst berekent, is dat een reden om verder te kijken."
+      ]
+    },
+    {
+      "number": "05",
+      "title": "Houd de rechtsontwikkeling in de gaten",
+      "body": [
+        "Er lopen nog steeds procedures over Box 3. Mensen die in eerdere jaren te veel hebben betaald onder het oude systeem kunnen in sommige gevallen aanspraak maken op herstel of teruggave.",
+        "Of je recht hebt op iets, hangt af van of je destijds bezwaar hebt gemaakt en in welk jaar het om gaat. De Hoge Raad en lagere rechters blijven uitspraken doen, soms met gevolgen voor jouw situatie.",
+        "Het is de moeite waard om je erin te verdiepen, zeker als je in de jaren 2017 tot 2022 een flink vermogen had. Raadpleeg een belastingadviseur als je denkt recht te hebben op herstel."
+      ]
+    }
+  ],
+  "disclaimerBold": "Even eerlijk zijn:",
+  "disclaimerText": " als je vermogen hebt boven het heffingvrij vermogen, ontkom je niet volledig aan Box 3-belasting. Bovenstaande tips helpen je het te beperken, maar ze lossen het niet op. Voor complexere situaties (groot vastgoedvermogen, meerdere beleggingsrekeningen, lopende bezwaarprocedures) is een belastingadviseur de moeite waard.",
+  "cta": {
+    "calculator": "Bereken uw Box 3 belasting",
+    "uitleg": "Box 3 uitgelegd"
+  }
+}
