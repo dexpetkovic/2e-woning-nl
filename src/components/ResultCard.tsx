@@ -152,6 +152,18 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.benefitFromSavingsAndInvestments')}</p>
           <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.benefitFromSavingsAndInvestments)}</p>
         </div>
+        {result.treatyReduction > 0 && (
+          <>
+            <div className="bg-appleGray-50 p-4 rounded-xl border border-appleGray-100">
+              <p className="text-xs font-medium text-appleGray-500 mb-1">{t('results.grossTax')}</p>
+              <p className="text-base font-semibold text-appleGray-900 tabular-nums">€ {fmt(result.grossTaxAmount)}</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-xl border border-green-200">
+              <p className="text-xs font-medium text-green-600 mb-1">{t('results.treatyReduction')}</p>
+              <p className="text-base font-semibold text-green-700 tabular-nums">- € {fmt(result.treatyReduction)}</p>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Calculation steps */}

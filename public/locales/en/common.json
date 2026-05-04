@@ -7,6 +7,12 @@
     "bankSavings": "Bank and savings accounts",
     "investments": "Investments (stocks, bonds, etc.)",
     "properties": "Real estate (second home, rental property)",
+    "propertiesTitle": "Second homes and real estate",
+    "addProperty": "Add property",
+    "netherlands": "Netherlands",
+    "treatyCountry": "Treaty country",
+    "treatyNote": "Real estate in a treaty country counts toward the tax-free allowance calculation, but Dutch Box 3 tax on that portion is waived (Bvdb 2001 art. 23).",
+    "removeProperty": "Remove",
     "otherAssets": "Other assets",
     "greenInvestments": "Green investments"
   },
@@ -45,9 +51,11 @@
     "year2028est": "2028 (estimate)",
     "assumedReturn": "Expected annual return",
     "estimate2028Note": "Estimate based on accrual taxation. The final rules have not yet been set.",
+    "treatyReduction": "Treaty reduction",
+    "grossTax": "Tax before treaty",
     "vs2025": "vs 2025",
-    "impact2028More": "more than now",
-    "impact2028Less": "less than now"
+    "impact2028More": "more tax under the new system (2028) than the current one (2025)",
+    "impact2028Less": "less tax under the new system (2028) than the current one (2025)"
   },
   "placeholder": {
     "title": "Enter your details",

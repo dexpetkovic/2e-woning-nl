@@ -41,6 +41,7 @@ const EMPTY_ASSETS: Assets = {
   bankSavings: 0,
   investments: 0,
   properties: 0,
+  foreignTreatyProperties: 0,
   otherAssets: 0,
   greenInvestments: 0,
   debts: 0,
@@ -49,6 +50,7 @@ const EMPTY_ASSETS: Assets = {
 type FaqItem = { q: string; a: string };
 type MoreLezenItem = { href: string; title: string; desc: string };
 type RateGridItem = { label: string; rate: string };
+type PropertyEntry = { id: string; value: number; isTreaty: boolean };
 
 const Home = () => {
   const { t } = useTranslation('common');
@@ -70,6 +72,38 @@ const Home = () => {
   const [result2024, setResult2024] = useState<TaxCalculationResult | null>(null);
   const [alternativeTaxAmount, setAlternativeTaxAmount] = useState<number | undefined>(undefined);
 
+  const [propertyEntries, setPropertyEntries] = useState<PropertyEntry[]>([
+    { id: '1', value: 0, isTreaty: false },
+  ]);
+
+  const syncPropertyTotals = (entries: PropertyEntry[]) => {
+    const nlTotal = entries.filter(e => !e.isTreaty).reduce((s, e) => s + e.value, 0);
+    const ftpTotal = entries.filter(e => e.isTreaty).reduce((s, e) => s + e.value, 0);
+    setAssets(a => ({ ...a, properties: nlTotal, foreignTreatyProperties: ftpTotal }));
+  };
+
+  const addPropertyEntry = () => {
+    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, isTreaty: false }]);
+  };
+
+  const removePropertyEntry = (id: string) => {
+    setPropertyEntries(prev => {
+      const updated = prev.filter(e => e.id !== id);
+      syncPropertyTotals(updated);
+      return updated;
+    });
+    if (showResults) setShowResults(false);
+  };
+
+  const updatePropertyEntry = (id: string, field: 'value' | 'isTreaty', val: number | boolean) => {
+    setPropertyEntries(prev => {
+      const updated = prev.map(e => e.id === id ? { ...e, [field]: val } : e);
+      syncPropertyTotals(updated);
+      return updated;
+    });
+    if (showResults) setShowResults(false);
+  };
+
   // Initialise form from URL query params (shareable links)
   useEffect(() => {
     if (didInitFromUrl.current) return;
@@ -79,6 +113,7 @@ const Home = () => {
       bankSavings: parseFloat(p.get('bs') || '0') || 0,
       investments: parseFloat(p.get('inv') || '0') || 0,
       properties: parseFloat(p.get('prop') || '0') || 0,
+      foreignTreatyProperties: parseFloat(p.get('ftp') || '0') || 0,
       otherAssets: parseFloat(p.get('oth') || '0') || 0,
       greenInvestments: parseFloat(p.get('gri') || '0') || 0,
       debts: parseFloat(p.get('dbt') || '0') || 0,
@@ -86,6 +121,11 @@ const Home = () => {
     const fp = p.get('fp') === '1';
     if (Object.values(fromUrl).some((v) => v > 0)) {
       setAssets(fromUrl);
+      // Reconstruct property entries from URL totals
+      const entries: PropertyEntry[] = [];
+      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, isTreaty: false });
+      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, isTreaty: true });
+      if (entries.length > 0) setPropertyEntries(entries);
       setHasFiscalPartner(fp);
       // Auto-calculate if values were pre-filled from URL
       const r = calculateBox3Tax(fromUrl, fp);
@@ -107,6 +147,7 @@ const Home = () => {
     if (currentAssets.bankSavings) p.set('bs', String(currentAssets.bankSavings));
     if (currentAssets.investments) p.set('inv', String(currentAssets.investments));
     if (currentAssets.properties) p.set('prop', String(currentAssets.properties));
+    if (currentAssets.foreignTreatyProperties) p.set('ftp', String(currentAssets.foreignTreatyProperties));
     if (currentAssets.otherAssets) p.set('oth', String(currentAssets.otherAssets));
     if (currentAssets.greenInvestments) p.set('gri', String(currentAssets.greenInvestments));
     if (currentAssets.debts) p.set('dbt', String(currentAssets.debts));
@@ -268,7 +309,78 @@ const Home = () => {
                   <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('assets.possessions')}</h3>
                   <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} />
                   <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} />
-                  <InputField label={t('assets.properties')} value={assets.properties} onChange={(v) => handleInputChange('properties', v)} />
+                  {/* Property list — multiple second homes with NL/treaty toggle */}
+                  <div className="mb-6">
+                    <p className="block text-appleGray-700 mb-3 font-medium text-base">{t('assets.propertiesTitle')}</p>
+                    <div className="space-y-3">
+                      {propertyEntries.map((entry, index) => (
+                        <div key={entry.id} className="bg-appleGray-50 rounded-xl border border-appleGray-100 p-3">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-medium text-appleGray-500">
+                              {t('assets.propertiesTitle').replace(/en.*/, '')} {index + 1}
+                            </span>
+                            <div className="flex items-center gap-2">
+                              <div className="flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium">
+                                <button
+                                  type="button"
+                                  className={`px-2.5 py-1 transition-colors ${!entry.isTreaty ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
+                                  onClick={() => updatePropertyEntry(entry.id, 'isTreaty', false)}
+                                >
+                                  {t('assets.netherlands')}
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`px-2.5 py-1 transition-colors ${entry.isTreaty ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
+                                  onClick={() => updatePropertyEntry(entry.id, 'isTreaty', true)}
+                                >
+                                  {t('assets.treatyCountry')}
+                                </button>
+                              </div>
+                              {propertyEntries.length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => removePropertyEntry(entry.id)}
+                                  className="text-appleGray-300 hover:text-red-400 transition-colors p-0.5"
+                                  title={t('assets.removeProperty')}
+                                >
+                                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
+                            <input
+                              type="text"
+                              inputMode="decimal"
+                              value={entry.value === 0 ? '' : entry.value.toLocaleString('nl-NL')}
+                              onChange={e => {
+                                const sanitized = e.target.value.replace(/[^0-9.]/g, '');
+                                updatePropertyEntry(entry.id, 'value', parseFloat(sanitized) || 0);
+                              }}
+                              placeholder="0"
+                              className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
+                            />
+                          </div>
+                          {entry.isTreaty && (
+                            <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.treatyNote')}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={addPropertyEntry}
+                      className="mt-3 flex items-center gap-1.5 text-sm font-medium text-accent-500 hover:text-accent-600 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                      {t('assets.addProperty')}
+                    </button>
+                  </div>
                   <InputField label={t('assets.otherAssets')} value={assets.otherAssets} onChange={(v) => handleInputChange('otherAssets', v)} optional />
                   <InputField label={t('assets.greenInvestments')} value={assets.greenInvestments} onChange={(v) => handleInputChange('greenInvestments', v)} optional />
                 </div>

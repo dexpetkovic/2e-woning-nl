@@ -7,6 +7,12 @@
     "bankSavings": "Bank- en spaartegoeden",
     "investments": "Beleggingen (aandelen, obligaties, etc.)",
     "properties": "Onroerend goed (tweede woning, verhuurde woning)",
+    "propertiesTitle": "Tweede woningen en vastgoed",
+    "addProperty": "Woning toevoegen",
+    "netherlands": "Nederland",
+    "treatyCountry": "Verdragsland",
+    "treatyNote": "Vastgoed in een verdragsland telt mee voor de berekening van het heffingvrij vermogen, maar Nederlandse Box 3 belasting over dit deel wordt kwijtgescholden (Bvdb 2001 art. 23).",
+    "removeProperty": "Verwijder",
     "otherAssets": "Overige bezittingen",
     "greenInvestments": "Groene beleggingen"
   },
@@ -45,9 +51,11 @@
     "year2028est": "2028 (schatting)",
     "assumedReturn": "Verwacht jaarlijks rendement",
     "estimate2028Note": "Schatting op basis van aanwasbelasting. De definitieve regels zijn nog niet vastgesteld.",
+    "treatyReduction": "Verdragsvermindering",
+    "grossTax": "Belasting voor verdrag",
     "vs2025": "vs 2025",
-    "impact2028More": "meer dan nu",
-    "impact2028Less": "minder dan nu"
+    "impact2028More": "meer belasting onder het nieuwe stelsel (2028) dan het huidige (2025)",
+    "impact2028Less": "minder belasting onder het nieuwe stelsel (2028) dan het huidige (2025)"
   },
   "placeholder": {
     "title": "Vul uw gegevens in",

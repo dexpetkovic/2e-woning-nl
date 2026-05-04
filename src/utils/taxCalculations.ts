@@ -27,7 +27,8 @@ export const THRESHOLDS = {
 export interface Assets {
   bankSavings: number;
   investments: number;
-  properties: number;
+  properties: number;               // Dutch real estate (second homes, rental)
+  foreignTreatyProperties: number;  // Real estate in tax-treaty countries
   otherAssets: number;
   greenInvestments: number;
   debts: number;
@@ -39,7 +40,9 @@ export interface TaxCalculationResult {
   savingsAndInvestmentBase: number;
   shareInTaxBase: number;
   benefitFromSavingsAndInvestments: number;
-  taxAmount: number;
+  grossTaxAmount: number;   // before treaty reduction
+  treatyReduction: number;  // Bvdb 2001 art. 23 proportional exemption
+  taxAmount: number;        // net tax (grossTaxAmount - treatyReduction)
   steps: {
     step1: string;
     step2: string;
@@ -53,6 +56,8 @@ export interface TaxCalculationResult {
 type TaxRates = typeof TAX_RATES_2025;
 
 function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: TaxRates): TaxCalculationResult {
+  const foreignTreatyProperties = assets.foreignTreatyProperties ?? 0;
+
   const greenInvestmentsExemption = hasFiscalPartner
     ? THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_PARTNER
     : THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
@@ -60,7 +65,7 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
   const taxableGreenInvestments = Math.max(0, assets.greenInvestments - greenInvestmentsExemption);
 
   const bankSavingsReturn = assets.bankSavings * rates.BANK_SAVINGS_RATE;
-  const investmentsValue = assets.investments + assets.properties + assets.otherAssets + taxableGreenInvestments;
+  const investmentsValue = assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const investmentsReturn = investmentsValue * rates.INVESTMENTS_RATE;
 
   const debtThreshold = hasFiscalPartner ? THRESHOLDS.DEBT_THRESHOLD_PARTNER : THRESHOLDS.DEBT_THRESHOLD_SINGLE;
@@ -69,7 +74,7 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
 
   const taxableReturn = bankSavingsReturn + investmentsReturn - debtReturn;
 
-  const totalAssets = assets.bankSavings + assets.investments + assets.properties + assets.otherAssets + taxableGreenInvestments;
+  const totalAssets = assets.bankSavings + assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const taxBase = totalAssets - taxableDebt;
 
   const taxFreeAmount = hasFiscalPartner ? THRESHOLDS.TAX_FREE_AMOUNT_PARTNER : THRESHOLDS.TAX_FREE_AMOUNT_SINGLE;
@@ -77,11 +82,19 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
 
   const shareInTaxBase = taxBase === 0 ? 0 : savingsAndInvestmentBase / taxBase;
   const benefitFromSavingsAndInvestments = taxableReturn * shareInTaxBase;
-  const taxAmount = benefitFromSavingsAndInvestments * rates.TAX_PERCENTAGE;
+  const grossTaxAmount = benefitFromSavingsAndInvestments * rates.TAX_PERCENTAGE;
+
+  // Bvdb 2001 art. 23: proportional reduction for treaty-country real estate.
+  // The foreign property sits in the grondslag (uses up tax-free allowance) but
+  // Dutch tax on its share is reduced to zero via this proportional exemption.
+  const treatyReduction = taxBase > 0 && foreignTreatyProperties > 0
+    ? grossTaxAmount * (foreignTreatyProperties / taxBase)
+    : 0;
+  const taxAmount = grossTaxAmount - treatyReduction;
 
   const steps = {
     step1: `Bank savings: €${assets.bankSavings.toLocaleString('nl-NL')} × ${(rates.BANK_SAVINGS_RATE * 100).toFixed(2)}% = €${bankSavingsReturn.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-Investments and other assets: €${investmentsValue.toLocaleString('nl-NL')} × ${(rates.INVESTMENTS_RATE * 100).toFixed(2)}% = €${investmentsReturn.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+Investments and other assets: €${investmentsValue.toLocaleString('nl-NL')} × ${(rates.INVESTMENTS_RATE * 100).toFixed(2)}% = €${investmentsReturn.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${foreignTreatyProperties > 0 ? `\n  (incl. treaty-country real estate: €${foreignTreatyProperties.toLocaleString('nl-NL')})` : ''}
 Taxable debt: €${taxableDebt.toLocaleString('nl-NL')} × ${(rates.DEBT_RATE * 100).toFixed(2)}% = €${debtReturn.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 Taxable return: €${taxableReturn.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     step2: `Total assets: €${totalAssets.toLocaleString('nl-NL')}
@@ -92,10 +105,11 @@ Tax-free amount: €${taxFreeAmount.toLocaleString('nl-NL')}
 Savings and investment base: €${savingsAndInvestmentBase.toLocaleString('nl-NL')}`,
     step4: `Share in tax base: ${(shareInTaxBase * 100).toFixed(3)}%`,
     step5: `Benefit from savings and investments: €${benefitFromSavingsAndInvestments.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
-    step6: `Tax amount: €${benefitFromSavingsAndInvestments.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} × ${(rates.TAX_PERCENTAGE * 100).toFixed(0)}% = €${taxAmount.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+    step6: `Gross tax: €${benefitFromSavingsAndInvestments.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} × ${(rates.TAX_PERCENTAGE * 100).toFixed(0)}% = €${grossTaxAmount.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${treatyReduction > 0 ? `\nTreaty reduction (Bvdb 2001 art. 23): -€${treatyReduction.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : ''}
+Net tax: €${taxAmount.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
   };
 
-  return { taxableReturn, taxBase, savingsAndInvestmentBase, shareInTaxBase, benefitFromSavingsAndInvestments, taxAmount, steps };
+  return { taxableReturn, taxBase, savingsAndInvestmentBase, shareInTaxBase, benefitFromSavingsAndInvestments, grossTaxAmount, treatyReduction, taxAmount, steps };
 }
 
 export function calculateBox3Tax(assets: Assets, hasFiscalPartner = false): TaxCalculationResult {
@@ -107,17 +121,23 @@ export function calculateBox3TaxForYear(assets: Assets, hasFiscalPartner: boolea
 }
 
 // Rough estimate for 2028 accrual-tax scenario: taxableBase × assumedReturnRate × 36%
+// Treaty reduction applied proportionally (same principle, rules not yet finalised).
 // The final rules are not set; this uses a user-provided assumed annual return.
 export function calculateBox3Tax2028(assets: Assets, hasFiscalPartner: boolean, assumedReturnRate: number): number {
+  const foreignTreatyProperties = assets.foreignTreatyProperties ?? 0;
   const greenInvestmentsExemption = hasFiscalPartner
     ? THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_PARTNER
     : THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
   const taxableGreenInvestments = Math.max(0, assets.greenInvestments - greenInvestmentsExemption);
   const debtThreshold = hasFiscalPartner ? THRESHOLDS.DEBT_THRESHOLD_PARTNER : THRESHOLDS.DEBT_THRESHOLD_SINGLE;
   const taxableDebt = Math.max(0, assets.debts - debtThreshold);
-  const totalAssets = assets.bankSavings + assets.investments + assets.properties + assets.otherAssets + taxableGreenInvestments;
+  const totalAssets = assets.bankSavings + assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const taxBase = totalAssets - taxableDebt;
   const taxFreeAmount = hasFiscalPartner ? THRESHOLDS.TAX_FREE_AMOUNT_PARTNER : THRESHOLDS.TAX_FREE_AMOUNT_SINGLE;
   const taxableBase = Math.max(0, taxBase - taxFreeAmount);
-  return taxableBase * assumedReturnRate * 0.36;
+  const grossTax = taxableBase * assumedReturnRate * 0.36;
+  const treatyReduction = taxBase > 0 && foreignTreatyProperties > 0
+    ? grossTax * (foreignTreatyProperties / taxBase)
+    : 0;
+  return grossTax - treatyReduction;
 }
