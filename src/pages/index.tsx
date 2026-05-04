@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import InputField from '@/components/InputField';
 import ResultCard from '@/components/ResultCard';
 import AdBanner from '@/components/AdBanner';
@@ -241,6 +242,14 @@ const Home = () => {
                   {b.label}
                 </span>
               ))}
+            </div>
+            <div className="mt-5">
+              <Link href="/box3-tips" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-500 hover:text-accent-600 transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {t('moreLezen.items.1.title')}
+              </Link>
             </div>
           </div>
         </section>
