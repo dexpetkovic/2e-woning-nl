@@ -12,6 +12,8 @@
     "netherlands": "Netherlands",
     "treatyCountry": "Treaty country",
     "treatyNote": "Real estate in a treaty country counts toward the tax-free allowance calculation, but Dutch Box 3 tax on that portion is waived (Bvdb 2001 art. 23).",
+    "noTreatyCountry": "No treaty",
+    "noTreatyNote": "Even without a tax treaty, Dutch Box 3 tax on this property is waived proportionally (Bvdb 2001 art. 23). Note: if the other country also taxes the property, you bear that cost yourself.",
     "removeProperty": "Remove",
     "otherAssets": "Other assets",
     "greenInvestments": "Green investments"

@@ -12,6 +12,8 @@
     "netherlands": "Nederland",
     "treatyCountry": "Verdragsland",
     "treatyNote": "Vastgoed in een verdragsland telt mee voor de berekening van het heffingvrij vermogen, maar Nederlandse Box 3 belasting over dit deel wordt kwijtgescholden (Bvdb 2001 art. 23).",
+    "noTreatyCountry": "Geen verdrag",
+    "noTreatyNote": "Ook zonder belastingverdrag wordt de Nederlandse Box 3 belasting over dit vastgoed naar evenredigheid kwijtgescholden (Bvdb 2001 art. 23). Let op: als het andere land ook belasting heft, draag je dat zelf.",
     "removeProperty": "Verwijder",
     "otherAssets": "Overige bezittingen",
     "greenInvestments": "Groene beleggingen"

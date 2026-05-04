@@ -50,7 +50,8 @@ const EMPTY_ASSETS: Assets = {
 type FaqItem = { q: string; a: string };
 type MoreLezenItem = { href: string; title: string; desc: string };
 type RateGridItem = { label: string; rate: string };
-type PropertyEntry = { id: string; value: number; isTreaty: boolean };
+type PropertyLocation = 'nl' | 'treaty' | 'noTreaty';
+type PropertyEntry = { id: string; value: number; location: PropertyLocation };
 
 const Home = () => {
   const { t } = useTranslation('common');
@@ -73,17 +74,20 @@ const Home = () => {
   const [alternativeTaxAmount, setAlternativeTaxAmount] = useState<number | undefined>(undefined);
 
   const [propertyEntries, setPropertyEntries] = useState<PropertyEntry[]>([
-    { id: '1', value: 0, isTreaty: false },
+    { id: '1', value: 0, location: 'nl' },
   ]);
+  const [focusedPropertyId, setFocusedPropertyId] = useState<string | null>(null);
 
+  // NL properties pay full Dutch Box 3. Foreign properties (treaty OR no-treaty) both
+  // get the Bvdb 2001 art. 23 proportional reduction — same formula, different user note.
   const syncPropertyTotals = (entries: PropertyEntry[]) => {
-    const nlTotal = entries.filter(e => !e.isTreaty).reduce((s, e) => s + e.value, 0);
-    const ftpTotal = entries.filter(e => e.isTreaty).reduce((s, e) => s + e.value, 0);
+    const nlTotal = entries.filter(e => e.location === 'nl').reduce((s, e) => s + e.value, 0);
+    const ftpTotal = entries.filter(e => e.location !== 'nl').reduce((s, e) => s + e.value, 0);
     setAssets(a => ({ ...a, properties: nlTotal, foreignTreatyProperties: ftpTotal }));
   };
 
   const addPropertyEntry = () => {
-    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, isTreaty: false }]);
+    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, location: 'nl' }]);
   };
 
   const removePropertyEntry = (id: string) => {
@@ -95,7 +99,7 @@ const Home = () => {
     if (showResults) setShowResults(false);
   };
 
-  const updatePropertyEntry = (id: string, field: 'value' | 'isTreaty', val: number | boolean) => {
+  const updatePropertyEntry = (id: string, field: 'value' | 'location', val: number | PropertyLocation) => {
     setPropertyEntries(prev => {
       const updated = prev.map(e => e.id === id ? { ...e, [field]: val } : e);
       syncPropertyTotals(updated);
@@ -123,8 +127,8 @@ const Home = () => {
       setAssets(fromUrl);
       // Reconstruct property entries from URL totals
       const entries: PropertyEntry[] = [];
-      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, isTreaty: false });
-      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, isTreaty: true });
+      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl' });
+      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty' });
       if (entries.length > 0) setPropertyEntries(entries);
       setHasFiscalPartner(fp);
       // Auto-calculate if values were pre-filled from URL
@@ -309,7 +313,7 @@ const Home = () => {
                   <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('assets.possessions')}</h3>
                   <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} />
                   <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} />
-                  {/* Property list — multiple second homes with NL/treaty toggle */}
+                  {/* Property list — multiple second homes with NL / treaty / no-treaty selector */}
                   <div className="mb-6">
                     <p className="block text-appleGray-700 mb-3 font-medium text-base">{t('assets.propertiesTitle')}</p>
                     <div className="space-y-3">
@@ -317,55 +321,58 @@ const Home = () => {
                         <div key={entry.id} className="bg-appleGray-50 rounded-xl border border-appleGray-100 p-3">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs font-medium text-appleGray-500">
-                              {t('assets.propertiesTitle').replace(/en.*/, '')} {index + 1}
+                              Woning {index + 1}
                             </span>
-                            <div className="flex items-center gap-2">
-                              <div className="flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium">
-                                <button
-                                  type="button"
-                                  className={`px-2.5 py-1 transition-colors ${!entry.isTreaty ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
-                                  onClick={() => updatePropertyEntry(entry.id, 'isTreaty', false)}
-                                >
-                                  {t('assets.netherlands')}
-                                </button>
-                                <button
-                                  type="button"
-                                  className={`px-2.5 py-1 transition-colors ${entry.isTreaty ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
-                                  onClick={() => updatePropertyEntry(entry.id, 'isTreaty', true)}
-                                >
-                                  {t('assets.treatyCountry')}
-                                </button>
-                              </div>
-                              {propertyEntries.length > 1 && (
-                                <button
-                                  type="button"
-                                  onClick={() => removePropertyEntry(entry.id)}
-                                  className="text-appleGray-300 hover:text-red-400 transition-colors p-0.5"
-                                  title={t('assets.removeProperty')}
-                                >
-                                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                  </svg>
-                                </button>
-                              )}
-                            </div>
+                            {propertyEntries.length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => removePropertyEntry(entry.id)}
+                                className="text-appleGray-300 hover:text-red-400 transition-colors p-0.5"
+                                title={t('assets.removeProperty')}
+                              >
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              </button>
+                            )}
                           </div>
+                          {/* Location toggle */}
+                          <div className="flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium mb-2">
+                            {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
+                              <button
+                                key={loc}
+                                type="button"
+                                className={`flex-1 px-2 py-1.5 transition-colors ${entry.location === loc ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
+                                onClick={() => updatePropertyEntry(entry.id, 'location', loc)}
+                              >
+                                {loc === 'nl' ? t('assets.netherlands') : loc === 'treaty' ? t('assets.treatyCountry') : t('assets.noTreatyCountry')}
+                              </button>
+                            ))}
+                          </div>
+                          {/* Value input — show raw number while focused to avoid Dutch . separator breaking parseFloat */}
                           <div className="relative">
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
                             <input
                               type="text"
                               inputMode="decimal"
-                              value={entry.value === 0 ? '' : entry.value.toLocaleString('nl-NL')}
+                              value={focusedPropertyId === entry.id
+                                ? (entry.value === 0 ? '' : String(entry.value))
+                                : (entry.value === 0 ? '' : entry.value.toLocaleString('nl-NL'))}
+                              onFocus={() => setFocusedPropertyId(entry.id)}
+                              onBlur={() => setFocusedPropertyId(null)}
                               onChange={e => {
-                                const sanitized = e.target.value.replace(/[^0-9.]/g, '');
-                                updatePropertyEntry(entry.id, 'value', parseFloat(sanitized) || 0);
+                                const sanitized = e.target.value.replace(/[^0-9]/g, '');
+                                updatePropertyEntry(entry.id, 'value', parseInt(sanitized, 10) || 0);
                               }}
                               placeholder="0"
                               className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
                             />
                           </div>
-                          {entry.isTreaty && (
+                          {entry.location === 'treaty' && (
                             <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.treatyNote')}</p>
+                          )}
+                          {entry.location === 'noTreaty' && (
+                            <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.noTreatyNote')}</p>
                           )}
                         </div>
                       ))}
