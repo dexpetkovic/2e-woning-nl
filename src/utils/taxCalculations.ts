@@ -105,3 +105,19 @@ export function calculateBox3Tax(assets: Assets, hasFiscalPartner = false): TaxC
 export function calculateBox3TaxForYear(assets: Assets, hasFiscalPartner: boolean, year: '2024' | '2025'): TaxCalculationResult {
   return calculateWithRates(assets, hasFiscalPartner, year === '2024' ? TAX_RATES_2024 : TAX_RATES_2025);
 }
+
+// Rough estimate for 2028 accrual-tax scenario: taxableBase × assumedReturnRate × 36%
+// The final rules are not set; this uses a user-provided assumed annual return.
+export function calculateBox3Tax2028(assets: Assets, hasFiscalPartner: boolean, assumedReturnRate: number): number {
+  const greenInvestmentsExemption = hasFiscalPartner
+    ? THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_PARTNER
+    : THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
+  const taxableGreenInvestments = Math.max(0, assets.greenInvestments - greenInvestmentsExemption);
+  const debtThreshold = hasFiscalPartner ? THRESHOLDS.DEBT_THRESHOLD_PARTNER : THRESHOLDS.DEBT_THRESHOLD_SINGLE;
+  const taxableDebt = Math.max(0, assets.debts - debtThreshold);
+  const totalAssets = assets.bankSavings + assets.investments + assets.properties + assets.otherAssets + taxableGreenInvestments;
+  const taxBase = totalAssets - taxableDebt;
+  const taxFreeAmount = hasFiscalPartner ? THRESHOLDS.TAX_FREE_AMOUNT_PARTNER : THRESHOLDS.TAX_FREE_AMOUNT_SINGLE;
+  const taxableBase = Math.max(0, taxBase - taxFreeAmount);
+  return taxableBase * assumedReturnRate * 0.36;
+}

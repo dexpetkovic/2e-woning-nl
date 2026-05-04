@@ -39,9 +39,12 @@
     "step6": "Step 6: Calculate how much tax you need to pay in box 3",
     "disclaimer": "This calculation is an estimate. Your actual tax may differ depending on your personal situation.",
     "vs2024": "vs 2024",
-    "yearComparison": "Comparison 2024 vs 2025",
+    "yearComparison": "Year comparison",
     "withPartner": "With fiscal partner",
-    "withoutPartner": "Without fiscal partner"
+    "withoutPartner": "Without fiscal partner",
+    "year2028est": "2028 (estimate)",
+    "assumedReturn": "Expected annual return",
+    "estimate2028Note": "Estimate based on accrual taxation. The final rules have not yet been set."
   },
   "placeholder": {
     "title": "Enter your details",
@@ -61,7 +64,7 @@
     "p2": "What makes Box 3 unusual is that the tax authority does not look at what you actually earned. They apply a <strong>deemed return</strong>: a percentage you are assumed to have made, regardless of what actually happened. You then pay 36% tax on that deemed return.",
     "p3": "The deemed return is split by asset category. Savings get a low percentage (1.44% in 2025) because savings rates are low. Investments and real estate get a higher percentage (6.04%), as you are assumed to take on more risk and be rewarded for it. Debts are deductible at 2.61%.",
     "p4": "There is also an exemption: the <strong>tax-free allowance of €57,000 per person</strong>. If you are below that, you pay nothing. With a fiscal partner the combined threshold is €114,000. Many people with only savings are simply below that limit.",
-    "p5": "This system has only been in its current form since 2023. The old system used one fixed deemed return for everything, and that led in December 2021 to the Supreme Court ruling that it was incompatible with European law. Since then a bridging scheme has been in force. A new system based on actual returns is planned for 2027.",
+    "p5": "This system has only been in its current form since 2023. The old system used one fixed deemed return for everything, and that led in December 2021 to the Supreme Court ruling that it was incompatible with European law. Since then a bridging scheme has been in force. A new system based on actual returns (accrual tax) starts on <strong>1 January 2028</strong>.",
     "savingsLabel": "Savings",
     "investmentsVastgoed": "Investments & property",
     "debtsLabel": "Debts",
@@ -279,7 +282,7 @@
       {
         "href": "/rechtbank",
         "title": "Box 3 & the Courts",
-        "desc": "From the Christmas ruling to the new system in 2027."
+        "desc": "From the Christmas ruling to the new system in 2028."
       }
     ]
   }

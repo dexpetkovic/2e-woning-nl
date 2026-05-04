@@ -2,12 +2,12 @@
   "meta": {
     "title": "Box 3 & the Courts | Legal cases and rulings",
     "description": "Overview of the key court rulings on Box 3 tax in the Netherlands: the Christmas ruling 2021, mass objection, remediation legislation and the new system.",
-    "keywords": "box 3 court case, box 3 ruling, christmas ruling box 3, mass objection box 3, box 3 supreme court netherlands, box 3 new system 2027"
+    "keywords": "box 3 court case, box 3 ruling, christmas ruling box 3, mass objection box 3, box 3 supreme court netherlands, box 3 new system 2028"
   },
   "badge": "Legal overview",
   "hero": {
     "title": "Box 3 & the Courts",
-    "subtitle": "From the Christmas ruling in 2021 to the new system in 2027. Everything you need to know about the legal battles around Box 3."
+    "subtitle": "From the Christmas ruling in 2021 to the new system in 2028. Everything you need to know about the legal battles around Box 3."
   },
   "context": {
     "title": "What is going on exactly?",
@@ -47,8 +47,15 @@
     {
       "year": "2025",
       "label": "New Box 3 system in preparation",
-      "summary": "The government is developing a new system based on actual returns, intended to take effect in 2027. Until then the bridging legislation remains in force.",
+      "summary": "The government is developing a new system based on actual returns. Accrual taxation (aanwasbelasting) was confirmed as the basis; the intended start date is 1 January 2028. Until then the bridging legislation remains in force.",
       "impact": "laag",
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+    },
+    {
+      "year": "2026",
+      "label": "Start date confirmed: 1 January 2028",
+      "summary": "The government confirms the new Box 3 system will take effect on 1 January 2028. Accrual tax will be the basis: an annual levy on the actual increase in asset value. Exception: real estate and shares in startups are taxed at the moment of sale (profit tax).",
+      "impact": "hoog",
       "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
     }
   ],

@@ -346,6 +346,8 @@ const Home = () => {
                     result2024={result2024 ?? undefined}
                     alternativeTaxAmount={alternativeTaxAmount}
                     alternativeHasFiscalPartner={!hasFiscalPartner}
+                    assets={assets}
+                    hasFiscalPartner={hasFiscalPartner}
                   />
                   <EmailCapture />
                 </>
@@ -372,7 +374,7 @@ const Home = () => {
               <p dangerouslySetInnerHTML={{ __html: t('about.p2') }} />
               <p>{t('about.p3')}</p>
               <p dangerouslySetInnerHTML={{ __html: t('about.p4') }} />
-              <p>{t('about.p5')}</p>
+              <p dangerouslySetInnerHTML={{ __html: t('about.p5') }} />
               <div className="grid grid-cols-3 gap-3 pt-2">
                 {rateGridItems.map((r) => (
                   <div key={r.label} className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">

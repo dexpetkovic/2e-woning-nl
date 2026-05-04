@@ -39,9 +39,12 @@
     "step6": "Stap 6: Bereken hoeveel belasting u moet betalen in box 3",
     "disclaimer": "Deze berekening is een schatting. Uw werkelijke belasting kan afwijken afhankelijk van uw persoonlijke situatie.",
     "vs2024": "vs 2024",
-    "yearComparison": "Vergelijking 2024 vs 2025",
+    "yearComparison": "Vergelijking belastingjaren",
     "withPartner": "Met fiscale partner",
-    "withoutPartner": "Zonder fiscale partner"
+    "withoutPartner": "Zonder fiscale partner",
+    "year2028est": "2028 (schatting)",
+    "assumedReturn": "Verwacht jaarlijks rendement",
+    "estimate2028Note": "Schatting op basis van aanwasbelasting. De definitieve regels zijn nog niet vastgesteld."
   },
   "placeholder": {
     "title": "Vul uw gegevens in",
@@ -61,7 +64,7 @@
     "p2": "Het bijzondere aan Box 3 is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong>fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat er werkelijk is gebeurd. Over dat fictieve rendement betaal je vervolgens 36% belasting.",
     "p3": "Dat fictieve rendement is opgesplitst per vermogenscategorie. Spaargeld krijgt een laag percentage (1,44% in 2025) omdat de spaarrentes laag zijn. Beleggingen en onroerend goed krijgen een hoger percentage (6,04%), omdat je geacht wordt meer risico te nemen en daarvoor beloond te worden. Schulden zijn aftrekbaar tegen 2,61%.",
     "p4": "Er is ook een vrijstelling: het <strong>heffingvrij vermogen van €57.000 per persoon</strong>. Zit je eronder, dan betaal je niks. Heb je een fiscale partner, dan is die grens samen €114.000. Veel mensen met alleen spaargeld zitten dus gewoon onder die grens.",
-    "p5": "Dit systeem bestaat in de huidige vorm pas sinds 2023. Het oude systeem gebruikte één vast fictief rendement voor alles, en dat leidde in december 2021 tot het Kerstarrest van de Hoge Raad, die oordeelde dat het in strijd was met Europees recht. Sindsdien is er een overbruggingsstelsel van kracht. Een nieuw systeem op basis van werkelijk rendement staat gepland voor 2027.",
+    "p5": "Dit systeem bestaat in de huidige vorm pas sinds 2023. Het oude systeem gebruikte één vast fictief rendement voor alles, en dat leidde in december 2021 tot het Kerstarrest van de Hoge Raad, die oordeelde dat het in strijd was met Europees recht. Sindsdien is er een overbruggingsstelsel van kracht. Een nieuw systeem op basis van werkelijk rendement (aanwasbelasting) start op <strong>1 januari 2028</strong>.",
     "savingsLabel": "Spaargeld",
     "investmentsVastgoed": "Beleggingen & vastgoed",
     "debtsLabel": "Schulden",
@@ -279,7 +282,7 @@
       {
         "href": "/rechtbank",
         "title": "Box 3 & de Rechter",
-        "desc": "Van het Kerstarrest tot het nieuwe stelsel in 2027."
+        "desc": "Van het Kerstarrest tot het nieuwe stelsel in 2028."
       }
     ]
   }

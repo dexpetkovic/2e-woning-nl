@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { TaxCalculationResult } from '@/utils/taxCalculations';
+import { TaxCalculationResult, Assets, calculateBox3Tax2028 } from '@/utils/taxCalculations';
 
 interface ResultCardProps {
   result: TaxCalculationResult;
   result2024?: TaxCalculationResult;
   alternativeTaxAmount?: number;
   alternativeHasFiscalPartner?: boolean;
+  assets: Assets;
+  hasFiscalPartner: boolean;
   className?: string;
 }
 
@@ -30,11 +32,15 @@ const ResultCard: React.FC<ResultCardProps> = ({
   result2024,
   alternativeTaxAmount,
   alternativeHasFiscalPartner,
+  assets,
+  hasFiscalPartner,
   className = '',
 }) => {
   const { t } = useTranslation('common');
+  const [assumedReturn, setAssumedReturn] = useState(5);
 
   const delta2024 = result2024 != null ? result.taxAmount - result2024.taxAmount : null;
+  const tax2028 = calculateBox3Tax2028(assets, hasFiscalPartner, assumedReturn / 100);
 
   return (
     <div className={`card animate-fade-in-up ${className}`}>
@@ -71,21 +77,47 @@ const ResultCard: React.FC<ResultCardProps> = ({
       </div>
 
       {/* Year comparison row */}
-      {result2024 != null && (
-        <div className="mb-6 pb-6 border-b border-appleGray-100">
-          <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.yearComparison')}</p>
-          <div className="grid grid-cols-2 gap-3">
+      <div className="mb-6 pb-6 border-b border-appleGray-100">
+        <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.yearComparison')}</p>
+        <div className="grid grid-cols-3 gap-2">
+          {result2024 != null && (
             <div className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">
               <p className="text-xs text-appleGray-400 mb-1">2024</p>
-              <p className="text-xl font-bold text-appleGray-600 tabular-nums">€ {fmt(result2024.taxAmount)}</p>
+              <p className="text-lg font-bold text-appleGray-600 tabular-nums">€ {fmt(result2024.taxAmount)}</p>
             </div>
-            <div className="bg-accent-500/5 rounded-xl p-3 border border-accent-500/20 text-center">
-              <p className="text-xs text-accent-600 font-medium mb-1">2025</p>
-              <p className="text-xl font-bold text-accent-500 tabular-nums">€ {fmt(result.taxAmount)}</p>
-            </div>
+          )}
+          <div className={`bg-accent-500/5 rounded-xl p-3 border border-accent-500/20 text-center ${result2024 == null ? 'col-span-2' : ''}`}>
+            <p className="text-xs text-accent-600 font-medium mb-1">2025</p>
+            <p className="text-lg font-bold text-accent-500 tabular-nums">€ {fmt(result.taxAmount)}</p>
+          </div>
+          <div className="bg-amber-50 rounded-xl p-3 border border-amber-200 text-center">
+            <p className="text-xs text-amber-600 font-medium mb-1">{t('results.year2028est')}</p>
+            <p className="text-lg font-bold text-amber-600 tabular-nums">€ {fmt(tax2028)}</p>
           </div>
         </div>
-      )}
+
+        {/* 2028 slider */}
+        <div className="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-xs font-medium text-amber-700">{t('results.assumedReturn')}</label>
+            <span className="text-sm font-bold text-amber-700 tabular-nums">{assumedReturn}%</span>
+          </div>
+          <input
+            type="range"
+            min={1}
+            max={12}
+            step={0.5}
+            value={assumedReturn}
+            onChange={(e) => setAssumedReturn(parseFloat(e.target.value))}
+            className="w-full h-1.5 bg-amber-200 rounded-full appearance-none cursor-pointer accent-amber-500"
+          />
+          <div className="flex justify-between mt-1">
+            <span className="text-xs text-amber-500">1%</span>
+            <span className="text-xs text-amber-500">12%</span>
+          </div>
+          <p className="mt-2 text-xs text-amber-600 leading-relaxed">{t('results.estimate2028Note')}</p>
+        </div>
+      </div>
 
       {/* Summary grid */}
       <div className="grid grid-cols-2 gap-3 mb-6">
