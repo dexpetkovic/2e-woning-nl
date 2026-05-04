@@ -41,6 +41,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
 
   const delta2024 = result2024 != null ? result.taxAmount - result2024.taxAmount : null;
   const tax2028 = calculateBox3Tax2028(assets, hasFiscalPartner, assumedReturn / 100);
+  const delta2028 = tax2028 - result.taxAmount;
 
   return (
     <div className={`card animate-fade-in-up ${className}`}>
@@ -92,8 +93,22 @@ const ResultCard: React.FC<ResultCardProps> = ({
           </div>
           <div className="bg-amber-50 rounded-xl p-3 border border-amber-200 text-center">
             <p className="text-xs text-amber-600 font-medium mb-1">{t('results.year2028est')}</p>
-            <p className="text-lg font-bold text-amber-600 tabular-nums">€ {fmt(tax2028)}</p>
+            <p className="text-lg font-bold text-amber-700 tabular-nums">€ {fmt(tax2028)}</p>
+            <p className={`mt-1 text-xs font-semibold tabular-nums ${delta2028 > 0 ? 'text-red-500' : 'text-green-600'}`}>
+              {delta2028 > 0 ? '▲' : '▼'} € {fmt(Math.abs(delta2028))} {t('results.vs2025')}
+            </p>
           </div>
+        </div>
+
+        {/* 2028 impact summary */}
+        <div className={`mt-3 flex items-center gap-3 p-3 rounded-xl border ${delta2028 > 0 ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
+          <span className={`text-xl flex-shrink-0 ${delta2028 > 0 ? 'text-red-400' : 'text-green-500'}`}>
+            {delta2028 > 0 ? '↑' : '↓'}
+          </span>
+          <p className={`text-sm leading-snug ${delta2028 > 0 ? 'text-red-700' : 'text-green-700'}`}>
+            <strong>€ {fmt(Math.abs(delta2028))}</strong>{' '}
+            {delta2028 > 0 ? t('results.impact2028More') : t('results.impact2028Less')}
+          </p>
         </div>
 
         {/* 2028 slider */}

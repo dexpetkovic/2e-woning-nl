@@ -44,7 +44,10 @@
     "withoutPartner": "Zonder fiscale partner",
     "year2028est": "2028 (schatting)",
     "assumedReturn": "Verwacht jaarlijks rendement",
-    "estimate2028Note": "Schatting op basis van aanwasbelasting. De definitieve regels zijn nog niet vastgesteld."
+    "estimate2028Note": "Schatting op basis van aanwasbelasting. De definitieve regels zijn nog niet vastgesteld.",
+    "vs2025": "vs 2025",
+    "impact2028More": "meer dan nu",
+    "impact2028Less": "minder dan nu"
   },
   "placeholder": {
     "title": "Vul uw gegevens in",

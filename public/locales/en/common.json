@@ -44,7 +44,10 @@
     "withoutPartner": "Without fiscal partner",
     "year2028est": "2028 (estimate)",
     "assumedReturn": "Expected annual return",
-    "estimate2028Note": "Estimate based on accrual taxation. The final rules have not yet been set."
+    "estimate2028Note": "Estimate based on accrual taxation. The final rules have not yet been set.",
+    "vs2025": "vs 2025",
+    "impact2028More": "more than now",
+    "impact2028Less": "less than now"
   },
   "placeholder": {
     "title": "Enter your details",
