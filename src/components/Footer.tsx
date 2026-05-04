@@ -12,18 +12,16 @@ const Footer: React.FC = () => {
           <Link href="/" className="text-base font-semibold text-accent-500 tracking-tight">2e-woning.nl</Link>
           <p className="text-xs text-appleGray-400 mt-0.5">&copy; {new Date().getFullYear()} · {t('footer.copyright')}</p>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-4">
-          <Link href="/privacy" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">
-            {t('cookie.privacyPolicy')}
-          </Link>
+        <div className="flex flex-col md:flex-row items-center gap-4 flex-wrap justify-center md:justify-start">
+          <Link href="/box3-uitleg" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">Box 3 uitgelegd</Link>
           <span className="hidden md:inline text-appleGray-200">·</span>
-          <Link href="/cookies" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">
-            {t('cookie.cookiePolicy')}
-          </Link>
+          <Link href="/box3-tips" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">Box 3 tips</Link>
           <span className="hidden md:inline text-appleGray-200">·</span>
-          <Link href="/contact" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">
-            {t('contact.title')}
-          </Link>
+          <Link href="/rechtbank" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">Box 3 & Rechter</Link>
+          <span className="hidden md:inline text-appleGray-200">·</span>
+          <Link href="/privacy" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">{t('cookie.privacyPolicy')}</Link>
+          <span className="hidden md:inline text-appleGray-200">·</span>
+          <Link href="/contact" className="hover:text-accent-500 transition-colors text-sm text-appleGray-400">{t('contact.title')}</Link>
         </div>
         <p className="text-xs text-appleGray-300 max-w-xs leading-relaxed">
           {t('footer.disclaimer')}

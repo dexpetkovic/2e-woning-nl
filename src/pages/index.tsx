@@ -344,34 +344,95 @@ const Home = () => {
             </div>
           </div>
 
-          {/* About section */}
+          {/* About section — expanded */}
           <div className="mt-10 card">
-            <h2 className="text-xl font-semibold text-appleGray-900 mb-4">{t('about.title')}</h2>
-            <div className="text-appleGray-600 text-sm leading-relaxed space-y-3">
-              <p>{t('about.description')}</p>
-              <p>{t('about.rates')}</p>
-              <ul className="space-y-1 pl-4">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 flex-shrink-0" />
-                  <span><strong className="text-appleGray-700">{t('about.bankSavings')}:</strong> 1,44%</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 flex-shrink-0" />
-                  <span><strong className="text-appleGray-700">{t('about.investments')}:</strong> 6,04%</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 flex-shrink-0" />
-                  <span><strong className="text-appleGray-700">{t('about.debts')}:</strong> 2,61%</span>
-                </li>
-              </ul>
-              <p>{t('about.taxRate')}</p>
-              <p>{t('about.taxFreeAmount')}</p>
-              <p className="text-appleGray-400 text-xs pt-1">
-                {t('about.source')}:{' '}
+            <h2 className="text-xl font-semibold text-appleGray-900 mb-5">Over Box 3 belasting</h2>
+            <div className="text-appleGray-600 text-sm leading-relaxed space-y-4 max-w-3xl">
+              <p>
+                Box 3 is het belastingvak voor vermogen buiten je eigen woning en je bedrijf. Spaargeld, beleggingen, een tweede woning, verhuurde panden — dat valt allemaal in Box 3. De meeste mensen komen er pas echt mee in aanraking als ze iets opbouwen dat boven het heffingvrij vermogen uitkomt.
+              </p>
+              <p>
+                Het bijzondere — en voor velen frustrerende — aan Box 3 is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong className="text-appleGray-700">fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat er werkelijk is gebeurd. Over dat fictieve rendement betaal je vervolgens 36% belasting.
+              </p>
+              <p>
+                Dat fictieve rendement is opgesplitst per vermogenscategorie. Spaargeld krijgt een laag percentage (1,44% in 2025) omdat de spaarrentes laag zijn. Beleggingen en onroerend goed krijgen een hoger percentage (6,04%), omdat je geacht wordt meer risico te nemen en daarvoor beloond te worden. Schulden zijn aftrekbaar tegen 2,61%.
+              </p>
+              <p>
+                Er is ook een vrijstelling: het <strong className="text-appleGray-700">heffingvrij vermogen van €57.000 per persoon</strong>. Zit je eronder, dan betaal je niks. Heb je een fiscale partner, dan is die grens samen €114.000. Veel mensen met alleen spaargeld zitten dus gewoon onder die grens.
+              </p>
+              <p>
+                Dit systeem bestaat in de huidige vorm pas since 2023. Het oude systeem gebruikte één vast fictief rendement voor alles — en dat leidde in december 2021 tot het Kerstarrest van de Hoge Raad, die oordeelde dat het in strijd was met Europees recht. Sindsdien is er een overbruggingsstelsel van kracht. Een nieuw systeem op basis van werkelijk rendement staat gepland voor 2027 (of later, we zullen zien).
+              </p>
+              <div className="grid grid-cols-3 gap-3 pt-2">
+                {[
+                  { label: 'Spaargeld', rate: '1,44%' },
+                  { label: 'Beleggingen & vastgoed', rate: '6,04%' },
+                  { label: 'Schulden', rate: '2,61%' },
+                ].map((r) => (
+                  <div key={r.label} className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">
+                    <p className="text-xs text-appleGray-400 mb-1">{r.label}</p>
+                    <p className="text-lg font-bold text-appleGray-800">{r.rate}</p>
+                    <p className="text-xs text-appleGray-400">fictief rendement 2025</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-appleGray-400 pt-1">
+                Bron:{' '}
                 <a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/berekening-box-3-inkomen-2024" target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:underline">
                   Belastingdienst
                 </a>
               </p>
+            </div>
+          </div>
+
+          {/* FAQ — visible for AdSense + SEO */}
+          <div className="mt-8 card">
+            <h2 className="text-xl font-semibold text-appleGray-900 mb-6">Veelgestelde vragen over Box 3</h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: 'Telt mijn eigen woning mee voor Box 3?',
+                  a: 'Nee. Je eigen woning en de bijbehorende hypotheekschuld vallen in Box 1, niet in Box 3. Alleen tweede woningen, vakantiehuisjes en verhuurde panden horen in Box 3 thuis.',
+                },
+                {
+                  q: 'Hoe werkt het heffingvrij vermogen precies?',
+                  a: 'Het heffingvrij vermogen (€57.000 per persoon in 2025) is een drempel. Zit je totale Box 3-vermogen na aftrek van schulden onder dit bedrag, dan betaal je niks. Met een fiscale partner is de grens samen €114.000 — en jullie mogen het vermogen onderling verdelen op de gunstigste manier.',
+                },
+                {
+                  q: 'Hoe zit het met schulden?',
+                  a: 'Schulden mag je aftrekken van je vermogen, maar niet volledig. Er is een drempel: de eerste €3.700 aan schulden (of €7.400 met partner) telt niet mee. Alles daarboven vermindert je belastbare grondslag. Let op: hypotheekschuld op je eigen woning hoort bij Box 1 en telt hier niet mee.',
+                },
+                {
+                  q: 'Zijn groene beleggingen anders behandeld?',
+                  a: 'Ja. Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (€142.502 met partner). Als je bewust in duurzame fondsen belegt, scheelt dat direct in je belastinggrondslag.',
+                },
+                {
+                  q: 'Is deze berekening hetzelfde als mijn definitieve aanslag?',
+                  a: 'Nee, dit is een indicatie. De Belastingdienst berekent je definitieve aanslag op basis van je ingediende aangifte en kan daarin afwijken. Gebruik dit als richtlijn — niet als bindende uitkomst.',
+                },
+              ].map((item) => (
+                <div key={item.q} className="border-b border-appleGray-100 pb-5 last:border-0 last:pb-0">
+                  <h3 className="text-sm font-semibold text-appleGray-800 mb-2">{item.q}</h3>
+                  <p className="text-sm text-appleGray-500 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Article links */}
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold text-appleGray-900 mb-4">Meer lezen</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { href: '/box3-uitleg', title: 'Box 3 uitgelegd', desc: 'Wat het is, hoe het werkt en waarom het zo ingewikkeld lijkt.' },
+                { href: '/box3-tips', title: 'Zo verlaag je je Box 3 belasting', desc: '5 legale manieren om minder te betalen.' },
+                { href: '/rechtbank', title: 'Box 3 & de Rechter', desc: 'Van het Kerstarrest tot het nieuwe stelsel in 2027.' },
+              ].map((a) => (
+                <a key={a.href} href={a.href} className="card hover:shadow-lg transition-shadow group block no-underline">
+                  <p className="text-sm font-semibold text-appleGray-900 group-hover:text-accent-500 transition-colors mb-1">{a.title}</p>
+                  <p className="text-xs text-appleGray-400 leading-relaxed">{a.desc}</p>
+                </a>
+              ))}
             </div>
           </div>
 
