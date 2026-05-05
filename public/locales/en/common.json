@@ -8,6 +8,7 @@
     "investments": "Investments (stocks, bonds, etc.)",
     "properties": "Real estate (second home, rental property)",
     "propertiesTitle": "Second homes and real estate",
+    "wozNote": "Use the WOZ value, not the market value. The WOZ value is typically 10–20% lower.",
     "addProperty": "Add property",
     "netherlands": "Netherlands",
     "treatyCountry": "Treaty country",

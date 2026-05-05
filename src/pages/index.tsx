@@ -387,6 +387,8 @@ const Home = () => {
                               className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
                             />
                           </div>
+                          {/* WOZ note */}
+                          <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('assets.wozNote')}</p>
                           {/* Mortgage toggle — only for NL properties */}
                           {entry.location === 'nl' && (
                             <div className="mt-2">
