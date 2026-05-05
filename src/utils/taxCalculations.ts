@@ -84,11 +84,14 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
   const benefitFromSavingsAndInvestments = taxableReturn * shareInTaxBase;
   const grossTaxAmount = benefitFromSavingsAndInvestments * rates.TAX_PERCENTAGE;
 
-  // Bvdb 2001 art. 23: proportional reduction for treaty-country real estate.
-  // The foreign property sits in the grondslag (uses up tax-free allowance) but
-  // Dutch tax on its share is reduced to zero via this proportional exemption.
-  const treatyReduction = taxBase > 0 && foreignTreatyProperties > 0
-    ? grossTaxAmount * (foreignTreatyProperties / taxBase)
+  // Bvdb 2001 art. 23: reduction = tax attributable to the foreign property's income.
+  // Formula: foreign property's share of voordeel × tax rate
+  //   = (foreignProperties × investmentRate × shareInTaxBase) × TAX_PERCENTAGE
+  // Using income proportion (not asset proportion) because bank savings and real estate
+  // have different rates — asset proportion would overstate the Dutch taxing share.
+  const foreignTreatyReturn = foreignTreatyProperties * rates.INVESTMENTS_RATE;
+  const treatyReduction = foreignTreatyProperties > 0 && benefitFromSavingsAndInvestments > 0
+    ? foreignTreatyReturn * shareInTaxBase * rates.TAX_PERCENTAGE
     : 0;
   const taxAmount = grossTaxAmount - treatyReduction;
 
