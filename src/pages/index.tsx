@@ -388,9 +388,23 @@ const Home = () => {
                               {entry.location === 'nl' && (
                                 <button
                                   type="button"
+                                  title={t('assets.primaryResidenceNote')}
                                   onClick={() => updatePropertyEntry(entry.id, 'isPrimaryResidence', !entry.isPrimaryResidence)}
-                                  className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${entry.isPrimaryResidence ? 'bg-appleGray-700 text-white border-appleGray-700' : 'bg-white text-appleGray-400 border-appleGray-200 hover:border-appleGray-400 hover:text-appleGray-600'}`}
+                                  className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border transition-all ${
+                                    entry.isPrimaryResidence
+                                      ? 'bg-appleGray-800 text-white border-appleGray-800'
+                                      : 'bg-appleGray-100 text-appleGray-600 border-appleGray-300 hover:bg-appleGray-200 hover:border-appleGray-500 hover:text-appleGray-800'
+                                  }`}
                                 >
+                                  {entry.isPrimaryResidence ? (
+                                    <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  ) : (
+                                    <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                  )}
                                   {t('assets.primaryResidence')}
                                 </button>
                               )}
