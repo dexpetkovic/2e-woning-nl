@@ -12,10 +12,18 @@ export const TAX_RATES_2025 = {
   TAX_PERCENTAGE: 0.36,      // 36%
 };
 
-// Keep TAX_RATES as an alias for current year
+// 2026: investments rate is final (6.00%); savings and debt rates are provisional
+// (based on July 2025 data; final rates published Jan 2027)
+export const TAX_RATES_2026 = {
+  BANK_SAVINGS_RATE: 0.0128, // 1.28% provisional
+  INVESTMENTS_RATE: 0.0600,  // 6.00% final
+  DEBT_RATE: 0.0270,         // 2.70% provisional
+  TAX_PERCENTAGE: 0.36,      // 36%
+};
+
 export const TAX_RATES = TAX_RATES_2025;
 
-export const THRESHOLDS = {
+export const THRESHOLDS_2024 = {
   TAX_FREE_AMOUNT_SINGLE: 57000,
   TAX_FREE_AMOUNT_PARTNER: 114000,
   DEBT_THRESHOLD_SINGLE: 3700,
@@ -23,6 +31,36 @@ export const THRESHOLDS = {
   GREEN_INVESTMENTS_EXEMPTION_SINGLE: 71251,
   GREEN_INVESTMENTS_EXEMPTION_PARTNER: 142502,
 };
+
+export const THRESHOLDS_2025 = {
+  TAX_FREE_AMOUNT_SINGLE: 57000,
+  TAX_FREE_AMOUNT_PARTNER: 114000,
+  DEBT_THRESHOLD_SINGLE: 3700,
+  DEBT_THRESHOLD_PARTNER: 7400,
+  GREEN_INVESTMENTS_EXEMPTION_SINGLE: 71251,
+  GREEN_INVESTMENTS_EXEMPTION_PARTNER: 142502,
+};
+
+export const THRESHOLDS_2026 = {
+  TAX_FREE_AMOUNT_SINGLE: 59357,
+  TAX_FREE_AMOUNT_PARTNER: 118714,
+  DEBT_THRESHOLD_SINGLE: 3800,
+  DEBT_THRESHOLD_PARTNER: 7600,
+  GREEN_INVESTMENTS_EXEMPTION_SINGLE: 71251,  // unchanged from 2025
+  GREEN_INVESTMENTS_EXEMPTION_PARTNER: 142502,
+};
+
+export const THRESHOLDS = THRESHOLDS_2025;
+
+export type TaxYear = '2024' | '2025' | '2026';
+
+type TaxThresholds = typeof THRESHOLDS_2025;
+
+export function getThresholdsForYear(year: TaxYear): TaxThresholds {
+  if (year === '2026') return THRESHOLDS_2026;
+  if (year === '2024') return THRESHOLDS_2024;
+  return THRESHOLDS_2025;
+}
 
 export interface Assets {
   bankSavings: number;
@@ -55,12 +93,12 @@ export interface TaxCalculationResult {
 
 type TaxRates = typeof TAX_RATES_2025;
 
-function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: TaxRates): TaxCalculationResult {
+function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: TaxRates, thresholds: TaxThresholds = THRESHOLDS_2025): TaxCalculationResult {
   const foreignTreatyProperties = assets.foreignTreatyProperties ?? 0;
 
   const greenInvestmentsExemption = hasFiscalPartner
-    ? THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_PARTNER
-    : THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
+    ? thresholds.GREEN_INVESTMENTS_EXEMPTION_PARTNER
+    : thresholds.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
 
   const taxableGreenInvestments = Math.max(0, assets.greenInvestments - greenInvestmentsExemption);
 
@@ -68,7 +106,7 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
   const investmentsValue = assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const investmentsReturn = investmentsValue * rates.INVESTMENTS_RATE;
 
-  const debtThreshold = hasFiscalPartner ? THRESHOLDS.DEBT_THRESHOLD_PARTNER : THRESHOLDS.DEBT_THRESHOLD_SINGLE;
+  const debtThreshold = hasFiscalPartner ? thresholds.DEBT_THRESHOLD_PARTNER : thresholds.DEBT_THRESHOLD_SINGLE;
   const taxableDebt = Math.max(0, assets.debts - debtThreshold);
   const debtReturn = taxableDebt * rates.DEBT_RATE;
 
@@ -77,7 +115,7 @@ function calculateWithRates(assets: Assets, hasFiscalPartner: boolean, rates: Ta
   const totalAssets = assets.bankSavings + assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const taxBase = totalAssets - taxableDebt;
 
-  const taxFreeAmount = hasFiscalPartner ? THRESHOLDS.TAX_FREE_AMOUNT_PARTNER : THRESHOLDS.TAX_FREE_AMOUNT_SINGLE;
+  const taxFreeAmount = hasFiscalPartner ? thresholds.TAX_FREE_AMOUNT_PARTNER : thresholds.TAX_FREE_AMOUNT_SINGLE;
   const savingsAndInvestmentBase = Math.max(0, taxBase - taxFreeAmount);
 
   const shareInTaxBase = taxBase === 0 ? 0 : savingsAndInvestmentBase / taxBase;
@@ -116,27 +154,29 @@ Net tax: €${taxAmount.toLocaleString('nl-NL', { minimumFractionDigits: 2, maxi
 }
 
 export function calculateBox3Tax(assets: Assets, hasFiscalPartner = false): TaxCalculationResult {
-  return calculateWithRates(assets, hasFiscalPartner, TAX_RATES_2025);
+  return calculateWithRates(assets, hasFiscalPartner, TAX_RATES_2025, THRESHOLDS_2025);
 }
 
-export function calculateBox3TaxForYear(assets: Assets, hasFiscalPartner: boolean, year: '2024' | '2025'): TaxCalculationResult {
-  return calculateWithRates(assets, hasFiscalPartner, year === '2024' ? TAX_RATES_2024 : TAX_RATES_2025);
+export function calculateBox3TaxForYear(assets: Assets, hasFiscalPartner: boolean, year: TaxYear): TaxCalculationResult {
+  if (year === '2024') return calculateWithRates(assets, hasFiscalPartner, TAX_RATES_2024, THRESHOLDS_2024);
+  if (year === '2026') return calculateWithRates(assets, hasFiscalPartner, TAX_RATES_2026, THRESHOLDS_2026);
+  return calculateWithRates(assets, hasFiscalPartner, TAX_RATES_2025, THRESHOLDS_2025);
 }
 
 // Rough estimate for 2028 accrual-tax scenario: taxableBase × assumedReturnRate × 36%
 // Treaty reduction applied proportionally (same principle, rules not yet finalised).
 // The final rules are not set; this uses a user-provided assumed annual return.
-export function calculateBox3Tax2028(assets: Assets, hasFiscalPartner: boolean, assumedReturnRate: number): number {
+export function calculateBox3Tax2028(assets: Assets, hasFiscalPartner: boolean, assumedReturnRate: number, thresholds: TaxThresholds = THRESHOLDS_2025): number {
   const foreignTreatyProperties = assets.foreignTreatyProperties ?? 0;
   const greenInvestmentsExemption = hasFiscalPartner
-    ? THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_PARTNER
-    : THRESHOLDS.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
+    ? thresholds.GREEN_INVESTMENTS_EXEMPTION_PARTNER
+    : thresholds.GREEN_INVESTMENTS_EXEMPTION_SINGLE;
   const taxableGreenInvestments = Math.max(0, assets.greenInvestments - greenInvestmentsExemption);
-  const debtThreshold = hasFiscalPartner ? THRESHOLDS.DEBT_THRESHOLD_PARTNER : THRESHOLDS.DEBT_THRESHOLD_SINGLE;
+  const debtThreshold = hasFiscalPartner ? thresholds.DEBT_THRESHOLD_PARTNER : thresholds.DEBT_THRESHOLD_SINGLE;
   const taxableDebt = Math.max(0, assets.debts - debtThreshold);
   const totalAssets = assets.bankSavings + assets.investments + assets.properties + foreignTreatyProperties + assets.otherAssets + taxableGreenInvestments;
   const taxBase = totalAssets - taxableDebt;
-  const taxFreeAmount = hasFiscalPartner ? THRESHOLDS.TAX_FREE_AMOUNT_PARTNER : THRESHOLDS.TAX_FREE_AMOUNT_SINGLE;
+  const taxFreeAmount = hasFiscalPartner ? thresholds.TAX_FREE_AMOUNT_PARTNER : thresholds.TAX_FREE_AMOUNT_SINGLE;
   const taxableBase = Math.max(0, taxBase - taxFreeAmount);
   const grossTax = taxableBase * assumedReturnRate * 0.36;
   const treatyReduction = taxBase > 0 && foreignTreatyProperties > 0

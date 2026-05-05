@@ -9,6 +9,9 @@
     "properties": "Onroerend goed (tweede woning, verhuurde woning)",
     "propertiesTitle": "Tweede woningen en vastgoed",
     "wozNote": "Gebruik de WOZ-waarde, niet de marktwaarde. De WOZ-waarde is doorgaans 10–20% lager.",
+    "propertyLabel": "Woning {{number}}",
+    "primaryResidence": "Eigen woning",
+    "primaryResidenceNote": "Eigen woning valt in Box 1 en wordt niet meegeteld in Box 3.",
     "addProperty": "Woning toevoegen",
     "netherlands": "Nederland",
     "treatyCountry": "Verdragsland",
@@ -26,6 +29,10 @@
     "hasMortgage": "Hypotheek op deze woning",
     "mortgageAmount": "Hypotheekschuld",
     "mortgageNote": "Hypotheekschuld op een tweede woning is aftrekbaar in Box 3 (drempel €3.700, of €7.400 met fiscale partner)."
+  },
+  "yearSelector": {
+    "label": "Belastingjaar",
+    "note2026": "De spaartarieven en schuldenrente voor 2026 zijn voorlopig. Definitieve tarieven worden gepubliceerd in januari 2027."
   },
   "personal": {
     "title": "Persoonlijke situatie",
@@ -61,8 +68,8 @@
     "treatyReduction": "Verdragsvermindering",
     "grossTax": "Belasting voor verdrag",
     "vs2025": "vs 2025",
-    "impact2028More": "meer belasting onder het nieuwe stelsel (2028) dan het huidige (2025)",
-    "impact2028Less": "minder belasting onder het nieuwe stelsel (2028) dan het huidige (2025)"
+    "impact2028More": "meer belasting onder het nieuwe stelsel (2028) dan het huidige ({{year}})",
+    "impact2028Less": "minder belasting onder het nieuwe stelsel (2028) dan het huidige ({{year}})"
   },
   "placeholder": {
     "title": "Vul uw gegevens in",

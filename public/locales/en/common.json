@@ -9,6 +9,9 @@
     "properties": "Real estate (second home, rental property)",
     "propertiesTitle": "Second homes and real estate",
     "wozNote": "Use the WOZ value, not the market value. The WOZ value is typically 10–20% lower.",
+    "propertyLabel": "Property {{number}}",
+    "primaryResidence": "Primary residence",
+    "primaryResidenceNote": "Primary residence is in Box 1 and is not included in the Box 3 calculation.",
     "addProperty": "Add property",
     "netherlands": "Netherlands",
     "treatyCountry": "Treaty country",
@@ -26,6 +29,10 @@
     "hasMortgage": "Mortgage on this property",
     "mortgageAmount": "Mortgage debt",
     "mortgageNote": "A mortgage on a second home is deductible in Box 3 (threshold €3,700, or €7,400 with a fiscal partner)."
+  },
+  "yearSelector": {
+    "label": "Tax year",
+    "note2026": "The 2026 savings and debt rates are provisional. Final rates will be published in January 2027."
   },
   "personal": {
     "title": "Personal situation",
@@ -61,8 +68,8 @@
     "treatyReduction": "Treaty reduction",
     "grossTax": "Tax before treaty",
     "vs2025": "vs 2025",
-    "impact2028More": "more tax under the new system (2028) than the current one (2025)",
-    "impact2028Less": "less tax under the new system (2028) than the current one (2025)"
+    "impact2028More": "more tax under the new system (2028) than the current one ({{year}})",
+    "impact2028Less": "less tax under the new system (2028) than the current one ({{year}})"
   },
   "placeholder": {
     "title": "Enter your details",

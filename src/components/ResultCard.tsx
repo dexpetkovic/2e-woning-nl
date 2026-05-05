@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { TaxCalculationResult, Assets, calculateBox3Tax2028 } from '@/utils/taxCalculations';
+import { TaxCalculationResult, Assets, TaxYear, calculateBox3Tax2028, getThresholdsForYear } from '@/utils/taxCalculations';
 
 interface ResultCardProps {
   result: TaxCalculationResult;
-  result2024?: TaxCalculationResult;
+  resultPrevYear?: TaxCalculationResult;
   alternativeTaxAmount?: number;
   alternativeHasFiscalPartner?: boolean;
   assets: Assets;
   hasFiscalPartner: boolean;
+  selectedYear?: TaxYear;
   className?: string;
 }
 
@@ -29,18 +30,21 @@ const StepCard: React.FC<{ index: number; title: string; content: string }> = ({
 
 const ResultCard: React.FC<ResultCardProps> = ({
   result,
-  result2024,
+  resultPrevYear,
   alternativeTaxAmount,
   alternativeHasFiscalPartner,
   assets,
   hasFiscalPartner,
+  selectedYear = '2025',
   className = '',
 }) => {
   const { t } = useTranslation('common');
   const [assumedReturn, setAssumedReturn] = useState(5);
 
-  const delta2024 = result2024 != null ? result.taxAmount - result2024.taxAmount : null;
-  const tax2028 = calculateBox3Tax2028(assets, hasFiscalPartner, assumedReturn / 100);
+  const prevYear = selectedYear === '2026' ? '2025' : selectedYear === '2025' ? '2024' : null;
+  const deltaPrevYear = resultPrevYear != null ? result.taxAmount - resultPrevYear.taxAmount : null;
+  const thresholds = getThresholdsForYear(selectedYear);
+  const tax2028 = calculateBox3Tax2028(assets, hasFiscalPartner, assumedReturn / 100, thresholds);
   const delta2028 = tax2028 - result.taxAmount;
 
   return (
@@ -53,9 +57,9 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <span className="text-5xl font-bold text-accent-500 tabular-nums">
             {fmt(result.taxAmount)}
           </span>
-          {delta2024 != null && (
-            <span className={`ml-2 text-xs font-semibold px-2 py-1 rounded-full self-center ${delta2024 > 0 ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}`}>
-              {delta2024 > 0 ? '▲' : '▼'} €{fmt(Math.abs(delta2024))} {t('results.vs2024')}
+          {deltaPrevYear != null && prevYear != null && (
+            <span className={`ml-2 text-xs font-semibold px-2 py-1 rounded-full self-center ${deltaPrevYear > 0 ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}`}>
+              {deltaPrevYear > 0 ? '▲' : '▼'} €{fmt(Math.abs(deltaPrevYear))} vs {prevYear}
             </span>
           )}
         </div>
@@ -81,15 +85,15 @@ const ResultCard: React.FC<ResultCardProps> = ({
       <div className="mb-6 pb-6 border-b border-appleGray-100">
         <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.yearComparison')}</p>
         <div className="grid grid-cols-3 gap-1.5">
-          {result2024 != null && (
+          {resultPrevYear != null && prevYear != null && (
             <div className="bg-appleGray-50 rounded-xl p-2 border border-appleGray-100 text-center">
-              <p className="text-xs text-appleGray-400 mb-1">2024</p>
+              <p className="text-xs text-appleGray-400 mb-1">{prevYear}</p>
               <p className="text-xs text-appleGray-400 mb-0.5 tabular-nums">€</p>
-              <p className="text-sm font-bold text-appleGray-600 tabular-nums leading-tight">{fmt(result2024.taxAmount)}</p>
+              <p className="text-sm font-bold text-appleGray-600 tabular-nums leading-tight">{fmt(resultPrevYear.taxAmount)}</p>
             </div>
           )}
-          <div className={`bg-accent-500/5 rounded-xl p-2 border border-accent-500/20 text-center ${result2024 == null ? 'col-span-2' : ''}`}>
-            <p className="text-xs text-accent-600 font-medium mb-1">2025</p>
+          <div className={`bg-accent-500/5 rounded-xl p-2 border border-accent-500/20 text-center ${resultPrevYear == null ? 'col-span-2' : ''}`}>
+            <p className="text-xs text-accent-600 font-medium mb-1">{selectedYear}</p>
             <p className="text-xs text-accent-500 mb-0.5 tabular-nums">€</p>
             <p className="text-sm font-bold text-accent-500 tabular-nums leading-tight">{fmt(result.taxAmount)}</p>
           </div>
@@ -108,7 +112,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
           </span>
           <p className={`text-sm leading-snug ${delta2028 > 0 ? 'text-red-700' : 'text-green-700'}`}>
             <strong>€ {fmt(Math.abs(delta2028))}</strong>{' '}
-            {delta2028 > 0 ? t('results.impact2028More') : t('results.impact2028Less')}
+            {delta2028 > 0 ? t('results.impact2028More', { year: selectedYear }) : t('results.impact2028Less', { year: selectedYear })}
           </p>
         </div>
 

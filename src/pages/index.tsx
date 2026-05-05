@@ -9,7 +9,7 @@ import ResultCard from '@/components/ResultCard';
 import AdBanner from '@/components/AdBanner';
 import CompanyInfo from '@/components/CompanyInfo';
 import EmailCapture from '@/components/EmailCapture';
-import { Assets, calculateBox3Tax, calculateBox3TaxForYear, TaxCalculationResult } from '@/utils/taxCalculations';
+import { Assets, TaxYear, calculateBox3TaxForYear, TaxCalculationResult } from '@/utils/taxCalculations';
 import { NextSeo } from 'next-seo';
 import Script from 'next/script';
 import { trackEvent, AnalyticsEvent } from '@/utils/analytics';
@@ -51,7 +51,7 @@ type FaqItem = { q: string; a: string };
 type MoreLezenItem = { href: string; title: string; desc: string };
 type RateGridItem = { label: string; rate: string };
 type PropertyLocation = 'nl' | 'treaty' | 'noTreaty';
-type PropertyEntry = { id: string; value: number; location: PropertyLocation; mortgage: number; hasMortgage: boolean };
+type PropertyEntry = { id: string; value: number; location: PropertyLocation; mortgage: number; hasMortgage: boolean; isPrimaryResidence: boolean };
 
 const Home = () => {
   const { t } = useTranslation('common');
@@ -73,8 +73,10 @@ const Home = () => {
   const [result2024, setResult2024] = useState<TaxCalculationResult | null>(null);
   const [alternativeTaxAmount, setAlternativeTaxAmount] = useState<number | undefined>(undefined);
 
+  const [selectedYear, setSelectedYear] = useState<TaxYear>('2025');
+
   const [propertyEntries, setPropertyEntries] = useState<PropertyEntry[]>([
-    { id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false },
+    { id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false },
   ]);
   const [focusedPropertyId, setFocusedPropertyId] = useState<string | null>(null);
   const [focusedMortgageId, setFocusedMortgageId] = useState<string | null>(null);
@@ -82,16 +84,17 @@ const Home = () => {
 
   // NL properties pay full Dutch Box 3. Foreign properties (treaty OR no-treaty) both
   // get the Bvdb 2001 art. 23 proportional reduction — same formula, different user note.
-  // Mortgages on NL properties are Box 3 debts; tracked here and merged with otherDebts.
+  // Primary residence is Box 1 — excluded entirely from Box 3 (value and mortgage).
+  // Mortgages on non-primary NL properties are Box 3 debts; merged with otherDebts.
   const syncPropertyTotals = (entries: PropertyEntry[], oDebts = otherDebts) => {
-    const nlTotal = entries.filter(e => e.location === 'nl').reduce((s, e) => s + e.value, 0);
+    const nlTotal = entries.filter(e => e.location === 'nl' && !e.isPrimaryResidence).reduce((s, e) => s + e.value, 0);
     const ftpTotal = entries.filter(e => e.location !== 'nl').reduce((s, e) => s + e.value, 0);
-    const mortgageTotal = entries.reduce((s, e) => s + (e.hasMortgage ? e.mortgage : 0), 0);
+    const mortgageTotal = entries.filter(e => !e.isPrimaryResidence).reduce((s, e) => s + (e.hasMortgage ? e.mortgage : 0), 0);
     setAssets(a => ({ ...a, properties: nlTotal, foreignTreatyProperties: ftpTotal, debts: oDebts + mortgageTotal }));
   };
 
   const addPropertyEntry = () => {
-    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, location: 'nl', mortgage: 0, hasMortgage: false }]);
+    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false }]);
   };
 
   const removePropertyEntry = (id: string) => {
@@ -106,10 +109,23 @@ const Home = () => {
   const updatePropertyEntry = (id: string, field: keyof Omit<PropertyEntry, 'id'>, val: number | PropertyLocation | boolean) => {
     setPropertyEntries(prev => {
       const updated = prev.map(e => {
+        if (field === 'isPrimaryResidence' && val === true && e.id !== id) {
+          // Radio behavior: clear primary residence on all other entries
+          return { ...e, isPrimaryResidence: false };
+        }
         if (e.id !== id) return e;
         const next = { ...e, [field]: val };
-        // Clear mortgage amount when toggling off
         if (field === 'hasMortgage' && val === false) next.mortgage = 0;
+        if (field === 'isPrimaryResidence' && val === true) {
+          // Primary residence must be NL; clear mortgage (Box 1 debt)
+          next.location = 'nl';
+          next.hasMortgage = false;
+          next.mortgage = 0;
+        }
+        if (field === 'location' && val !== 'nl') {
+          // Can't be primary residence outside NL
+          next.isPrimaryResidence = false;
+        }
         return next;
       });
       syncPropertyTotals(updated);
@@ -137,16 +153,19 @@ const Home = () => {
       setAssets(fromUrl);
       // Reconstruct property entries from URL totals (mortgages not encoded in URL — put total debts in otherDebts)
       const entries: PropertyEntry[] = [];
-      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl', mortgage: 0, hasMortgage: false });
-      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty', mortgage: 0, hasMortgage: false });
+      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false });
+      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty', mortgage: 0, hasMortgage: false, isPrimaryResidence: false });
       if (entries.length > 0) setPropertyEntries(entries);
       if (fromUrl.debts > 0) setOtherDebts(fromUrl.debts);
+      const urlYear = (p.get('yr') as TaxYear) || '2025';
+      setSelectedYear(urlYear);
       setHasFiscalPartner(fp);
       // Auto-calculate if values were pre-filled from URL
-      const r = calculateBox3Tax(fromUrl, fp);
+      const r = calculateBox3TaxForYear(fromUrl, fp, urlYear);
       setCalculationResult(r);
-      setResult2024(calculateBox3TaxForYear(fromUrl, fp, '2024'));
-      setAlternativeTaxAmount(calculateBox3Tax(fromUrl, !fp).taxAmount);
+      const urlPrevYear = urlYear === '2026' ? '2025' : urlYear === '2025' ? '2024' : null;
+      setResult2024(urlPrevYear ? calculateBox3TaxForYear(fromUrl, fp, urlPrevYear) : null);
+      setAlternativeTaxAmount(calculateBox3TaxForYear(fromUrl, !fp, urlYear).taxAmount);
       setShowResults(true);
     }
   }, []);
@@ -163,7 +182,7 @@ const Home = () => {
     if (showResults) setShowResults(false);
   };
 
-  const buildShareUrl = (currentAssets: Assets, fp: boolean): string => {
+  const buildShareUrl = (currentAssets: Assets, fp: boolean, year: TaxYear): string => {
     const p = new URLSearchParams();
     if (currentAssets.bankSavings) p.set('bs', String(currentAssets.bankSavings));
     if (currentAssets.investments) p.set('inv', String(currentAssets.investments));
@@ -173,28 +192,30 @@ const Home = () => {
     if (currentAssets.greenInvestments) p.set('gri', String(currentAssets.greenInvestments));
     if (currentAssets.debts) p.set('dbt', String(currentAssets.debts));
     if (fp) p.set('fp', '1');
+    if (year !== '2025') p.set('yr', year);
     const base = typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}` : '';
     return `${base}?${p.toString()}`;
   };
 
   const handleCalculate = () => {
-    const r2025 = calculateBox3Tax(assets, hasFiscalPartner);
-    const r2024 = calculateBox3TaxForYear(assets, hasFiscalPartner, '2024');
-    const altAmount = calculateBox3Tax(assets, !hasFiscalPartner).taxAmount;
+    const r = calculateBox3TaxForYear(assets, hasFiscalPartner, selectedYear);
+    const prevYear = selectedYear === '2026' ? '2025' : selectedYear === '2025' ? '2024' : null;
+    const rPrev = prevYear ? calculateBox3TaxForYear(assets, hasFiscalPartner, prevYear) : null;
+    const altAmount = calculateBox3TaxForYear(assets, !hasFiscalPartner, selectedYear).taxAmount;
 
-    setCalculationResult(r2025);
-    setResult2024(r2024);
+    setCalculationResult(r);
+    setResult2024(rPrev);
     setAlternativeTaxAmount(altAmount);
     setShowResults(true);
 
     // Update URL for shareable link
-    router.replace(buildShareUrl(assets, hasFiscalPartner), undefined, { shallow: true });
+    router.replace(buildShareUrl(assets, hasFiscalPartner, selectedYear), undefined, { shallow: true });
 
     trackEvent(AnalyticsEvent.CALCULATE_TAX, {
       hasFiscalPartner,
       totalAssets: Object.values(assets).reduce((s, v) => s + v, 0) - assets.debts,
       totalDebts: assets.debts,
-      taxAmount: r2025.taxAmount,
+      taxAmount: r.taxAmount,
     });
   };
 
@@ -205,14 +226,15 @@ const Home = () => {
     setCalculationResult(null);
     setResult2024(null);
     setAlternativeTaxAmount(undefined);
-    setPropertyEntries([{ id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false }]);
+    setPropertyEntries([{ id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false }]);
     setOtherDebts(0);
+    setSelectedYear('2025');
     router.replace(router.pathname, undefined, { shallow: true });
     trackEvent(AnalyticsEvent.RESET_CALCULATOR);
   };
 
   const handleCopyLink = () => {
-    const url = buildShareUrl(assets, hasFiscalPartner);
+    const url = buildShareUrl(assets, hasFiscalPartner, selectedYear);
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -328,6 +350,26 @@ const Home = () => {
               <div className="card">
                 <h2 className="text-2xl font-semibold text-appleGray-900 mb-6">{t('assets.title')}</h2>
 
+                {/* Year selector */}
+                <div className="mb-6 pb-6 border-b border-appleGray-100">
+                  <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('yearSelector.label')}</h3>
+                  <div className="flex rounded-xl border border-appleGray-200 overflow-hidden text-sm font-medium">
+                    {(['2024', '2025', '2026'] as TaxYear[]).map(y => (
+                      <button
+                        key={y}
+                        type="button"
+                        onClick={() => { setSelectedYear(y); if (showResults) setShowResults(false); }}
+                        className={`flex-1 px-4 py-2 transition-colors ${selectedYear === y ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-600 hover:bg-appleGray-50'}`}
+                      >
+                        {y}
+                      </button>
+                    ))}
+                  </div>
+                  {selectedYear === '2026' && (
+                    <p className="mt-2 text-xs text-amber-600 leading-relaxed">{t('yearSelector.note2026')}</p>
+                  )}
+                </div>
+
                 <div className="mb-6">
                   <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('assets.possessions')}</h3>
                   <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} />
@@ -339,9 +381,20 @@ const Home = () => {
                       {propertyEntries.map((entry, index) => (
                         <div key={entry.id} className="bg-appleGray-50 rounded-xl border border-appleGray-100 p-3">
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-medium text-appleGray-500">
-                              Woning {index + 1}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-medium text-appleGray-500">
+                                {t('assets.propertyLabel', { number: index + 1 })}
+                              </span>
+                              {entry.location === 'nl' && (
+                                <button
+                                  type="button"
+                                  onClick={() => updatePropertyEntry(entry.id, 'isPrimaryResidence', !entry.isPrimaryResidence)}
+                                  className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${entry.isPrimaryResidence ? 'bg-appleGray-700 text-white border-appleGray-700' : 'bg-white text-appleGray-400 border-appleGray-200 hover:border-appleGray-400 hover:text-appleGray-600'}`}
+                                >
+                                  {t('assets.primaryResidence')}
+                                </button>
+                              )}
+                            </div>
                             {propertyEntries.length > 1 && (
                               <button
                                 type="button"
@@ -355,8 +408,8 @@ const Home = () => {
                               </button>
                             )}
                           </div>
-                          {/* Location toggle */}
-                          <div className="flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium mb-2">
+                          {/* Location toggle — locked to NL when primary residence */}
+                          <div className={`flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium mb-2 ${entry.isPrimaryResidence ? 'opacity-40 pointer-events-none' : ''}`}>
                             {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
                               <button
                                 key={loc}
@@ -369,7 +422,7 @@ const Home = () => {
                             ))}
                           </div>
                           {/* Value input — show raw number while focused to avoid Dutch . separator breaking parseFloat */}
-                          <div className="relative">
+                          <div className={`relative ${entry.isPrimaryResidence ? 'opacity-50' : ''}`}>
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
                             <input
                               type="text"
@@ -387,10 +440,14 @@ const Home = () => {
                               className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
                             />
                           </div>
-                          {/* WOZ note */}
-                          <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('assets.wozNote')}</p>
-                          {/* Mortgage toggle — only for NL properties */}
-                          {entry.location === 'nl' && (
+                          {/* WOZ / primary residence note */}
+                          {entry.isPrimaryResidence ? (
+                            <p className="mt-1 text-xs text-appleGray-500 leading-relaxed font-medium">{t('assets.primaryResidenceNote')}</p>
+                          ) : (
+                            <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('assets.wozNote')}</p>
+                          )}
+                          {/* Mortgage toggle — only for non-primary NL properties */}
+                          {entry.location === 'nl' && !entry.isPrimaryResidence && (
                             <div className="mt-2">
                               <label className="flex items-center gap-2 cursor-pointer group">
                                 <div className="relative flex-shrink-0">
@@ -529,11 +586,12 @@ const Home = () => {
                 <>
                   <ResultCard
                     result={calculationResult}
-                    result2024={result2024 ?? undefined}
+                    resultPrevYear={result2024 ?? undefined}
                     alternativeTaxAmount={alternativeTaxAmount}
                     alternativeHasFiscalPartner={!hasFiscalPartner}
                     assets={assets}
                     hasFiscalPartner={hasFiscalPartner}
+                    selectedYear={selectedYear}
                   />
                   <EmailCapture />
                 </>
