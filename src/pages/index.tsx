@@ -381,34 +381,9 @@ const Home = () => {
                       {propertyEntries.map((entry, index) => (
                         <div key={entry.id} className="bg-appleGray-50 rounded-xl border border-appleGray-100 p-3">
                           <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs font-medium text-appleGray-500">
-                                {t('assets.propertyLabel', { number: index + 1 })}
-                              </span>
-                              {entry.location === 'nl' && (
-                                <button
-                                  type="button"
-                                  title={t('assets.primaryResidenceNote')}
-                                  onClick={() => updatePropertyEntry(entry.id, 'isPrimaryResidence', !entry.isPrimaryResidence)}
-                                  className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border transition-all ${
-                                    entry.isPrimaryResidence
-                                      ? 'bg-appleGray-800 text-white border-appleGray-800'
-                                      : 'bg-appleGray-100 text-appleGray-600 border-appleGray-300 hover:bg-appleGray-200 hover:border-appleGray-500 hover:text-appleGray-800'
-                                  }`}
-                                >
-                                  {entry.isPrimaryResidence ? (
-                                    <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                  ) : (
-                                    <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                    </svg>
-                                  )}
-                                  {t('assets.primaryResidence')}
-                                </button>
-                              )}
-                            </div>
+                            <span className="text-xs font-medium text-appleGray-500">
+                              {t('assets.propertyLabel', { number: index + 1 })}
+                            </span>
                             {propertyEntries.length > 1 && (
                               <button
                                 type="button"
@@ -422,6 +397,29 @@ const Home = () => {
                               </button>
                             )}
                           </div>
+                          {/* Primary residence checkbox — only for NL properties */}
+                          {entry.location === 'nl' && (
+                            <div className="mb-2">
+                              <label className="flex items-center gap-2 cursor-pointer group">
+                                <div className="relative flex-shrink-0">
+                                  <input
+                                    type="checkbox"
+                                    checked={entry.isPrimaryResidence}
+                                    onChange={e => updatePropertyEntry(entry.id, 'isPrimaryResidence', e.target.checked)}
+                                    className="sr-only"
+                                  />
+                                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${entry.isPrimaryResidence ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'}`}>
+                                    {entry.isPrimaryResidence && (
+                                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    )}
+                                  </div>
+                                </div>
+                                <span className="text-xs font-medium text-appleGray-600">{t('assets.primaryResidence')}</span>
+                              </label>
+                            </div>
+                          )}
                           {/* Location toggle — locked to NL when primary residence */}
                           <div className={`flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium mb-2 ${entry.isPrimaryResidence ? 'opacity-40 pointer-events-none' : ''}`}>
                             {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
