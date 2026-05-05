@@ -80,23 +80,24 @@ const ResultCard: React.FC<ResultCardProps> = ({
       {/* Year comparison row */}
       <div className="mb-6 pb-6 border-b border-appleGray-100">
         <p className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('results.yearComparison')}</p>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-1.5">
           {result2024 != null && (
-            <div className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">
+            <div className="bg-appleGray-50 rounded-xl p-2 border border-appleGray-100 text-center">
               <p className="text-xs text-appleGray-400 mb-1">2024</p>
-              <p className="text-lg font-bold text-appleGray-600 tabular-nums">€ {fmt(result2024.taxAmount)}</p>
+              <p className="text-xs text-appleGray-400 mb-0.5 tabular-nums">€</p>
+              <p className="text-sm font-bold text-appleGray-600 tabular-nums leading-tight">{fmt(result2024.taxAmount)}</p>
             </div>
           )}
-          <div className={`bg-accent-500/5 rounded-xl p-3 border border-accent-500/20 text-center ${result2024 == null ? 'col-span-2' : ''}`}>
+          <div className={`bg-accent-500/5 rounded-xl p-2 border border-accent-500/20 text-center ${result2024 == null ? 'col-span-2' : ''}`}>
             <p className="text-xs text-accent-600 font-medium mb-1">2025</p>
-            <p className="text-lg font-bold text-accent-500 tabular-nums">€ {fmt(result.taxAmount)}</p>
+            <p className="text-xs text-accent-500 mb-0.5 tabular-nums">€</p>
+            <p className="text-sm font-bold text-accent-500 tabular-nums leading-tight">{fmt(result.taxAmount)}</p>
           </div>
-          <div className="bg-amber-50 rounded-xl p-3 border border-amber-200 text-center">
-            <p className="text-xs text-amber-600 font-medium mb-1">{t('results.year2028est')}</p>
-            <p className="text-lg font-bold text-amber-700 tabular-nums">€ {fmt(tax2028)}</p>
-            <p className={`mt-1 text-xs font-semibold tabular-nums ${delta2028 > 0 ? 'text-red-500' : 'text-green-600'}`}>
-              {delta2028 > 0 ? '▲' : '▼'} € {fmt(Math.abs(delta2028))} {t('results.vs2025')}
-            </p>
+          <div className="bg-amber-50 rounded-xl p-2 border border-amber-200 text-center">
+            <p className="text-xs text-amber-600 font-medium mb-1">2028</p>
+            <p className="text-xs text-amber-500 mb-0.5 tabular-nums">€</p>
+            <p className="text-sm font-bold text-amber-700 tabular-nums leading-tight">{fmt(tax2028)}</p>
+            <p className="text-[10px] text-amber-500 mt-1 leading-none">{t('results.year2028est')}</p>
           </div>
         </div>
 
