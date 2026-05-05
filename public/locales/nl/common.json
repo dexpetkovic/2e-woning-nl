@@ -20,7 +20,11 @@
   },
   "debts": {
     "title": "Schulden",
-    "debts": "Schulden"
+    "debts": "Schulden",
+    "otherDebtsLabel": "Overige schulden (excl. hypotheek tweede woning)",
+    "hasMortgage": "Hypotheek op deze woning",
+    "mortgageAmount": "Hypotheekschuld",
+    "mortgageNote": "Hypotheekschuld op een tweede woning is aftrekbaar in Box 3 (drempel €3.700, of €7.400 met fiscale partner)."
   },
   "personal": {
     "title": "Persoonlijke situatie",

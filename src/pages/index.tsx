@@ -51,7 +51,7 @@ type FaqItem = { q: string; a: string };
 type MoreLezenItem = { href: string; title: string; desc: string };
 type RateGridItem = { label: string; rate: string };
 type PropertyLocation = 'nl' | 'treaty' | 'noTreaty';
-type PropertyEntry = { id: string; value: number; location: PropertyLocation };
+type PropertyEntry = { id: string; value: number; location: PropertyLocation; mortgage: number; hasMortgage: boolean };
 
 const Home = () => {
   const { t } = useTranslation('common');
@@ -74,20 +74,24 @@ const Home = () => {
   const [alternativeTaxAmount, setAlternativeTaxAmount] = useState<number | undefined>(undefined);
 
   const [propertyEntries, setPropertyEntries] = useState<PropertyEntry[]>([
-    { id: '1', value: 0, location: 'nl' },
+    { id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false },
   ]);
   const [focusedPropertyId, setFocusedPropertyId] = useState<string | null>(null);
+  const [focusedMortgageId, setFocusedMortgageId] = useState<string | null>(null);
+  const [otherDebts, setOtherDebts] = useState(0);
 
   // NL properties pay full Dutch Box 3. Foreign properties (treaty OR no-treaty) both
   // get the Bvdb 2001 art. 23 proportional reduction — same formula, different user note.
-  const syncPropertyTotals = (entries: PropertyEntry[]) => {
+  // Mortgages on NL properties are Box 3 debts; tracked here and merged with otherDebts.
+  const syncPropertyTotals = (entries: PropertyEntry[], oDebts = otherDebts) => {
     const nlTotal = entries.filter(e => e.location === 'nl').reduce((s, e) => s + e.value, 0);
     const ftpTotal = entries.filter(e => e.location !== 'nl').reduce((s, e) => s + e.value, 0);
-    setAssets(a => ({ ...a, properties: nlTotal, foreignTreatyProperties: ftpTotal }));
+    const mortgageTotal = entries.reduce((s, e) => s + (e.hasMortgage ? e.mortgage : 0), 0);
+    setAssets(a => ({ ...a, properties: nlTotal, foreignTreatyProperties: ftpTotal, debts: oDebts + mortgageTotal }));
   };
 
   const addPropertyEntry = () => {
-    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, location: 'nl' }]);
+    setPropertyEntries(prev => [...prev, { id: Date.now().toString(), value: 0, location: 'nl', mortgage: 0, hasMortgage: false }]);
   };
 
   const removePropertyEntry = (id: string) => {
@@ -99,9 +103,15 @@ const Home = () => {
     if (showResults) setShowResults(false);
   };
 
-  const updatePropertyEntry = (id: string, field: 'value' | 'location', val: number | PropertyLocation) => {
+  const updatePropertyEntry = (id: string, field: keyof Omit<PropertyEntry, 'id'>, val: number | PropertyLocation | boolean) => {
     setPropertyEntries(prev => {
-      const updated = prev.map(e => e.id === id ? { ...e, [field]: val } : e);
+      const updated = prev.map(e => {
+        if (e.id !== id) return e;
+        const next = { ...e, [field]: val };
+        // Clear mortgage amount when toggling off
+        if (field === 'hasMortgage' && val === false) next.mortgage = 0;
+        return next;
+      });
       syncPropertyTotals(updated);
       return updated;
     });
@@ -125,11 +135,12 @@ const Home = () => {
     const fp = p.get('fp') === '1';
     if (Object.values(fromUrl).some((v) => v > 0)) {
       setAssets(fromUrl);
-      // Reconstruct property entries from URL totals
+      // Reconstruct property entries from URL totals (mortgages not encoded in URL — put total debts in otherDebts)
       const entries: PropertyEntry[] = [];
-      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl' });
-      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty' });
+      if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl', mortgage: 0, hasMortgage: false });
+      if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty', mortgage: 0, hasMortgage: false });
       if (entries.length > 0) setPropertyEntries(entries);
+      if (fromUrl.debts > 0) setOtherDebts(fromUrl.debts);
       setHasFiscalPartner(fp);
       // Auto-calculate if values were pre-filled from URL
       const r = calculateBox3Tax(fromUrl, fp);
@@ -143,6 +154,12 @@ const Home = () => {
   const handleInputChange = (field: keyof Assets, value: number) => {
     setAssets((prev) => ({ ...prev, [field]: value }));
     trackEvent(AnalyticsEvent.UPDATE_ASSET, { assetType: field, assetValue: value });
+    if (showResults) setShowResults(false);
+  };
+
+  const handleOtherDebtsChange = (v: number) => {
+    setOtherDebts(v);
+    syncPropertyTotals(propertyEntries, v);
     if (showResults) setShowResults(false);
   };
 
@@ -188,6 +205,8 @@ const Home = () => {
     setCalculationResult(null);
     setResult2024(null);
     setAlternativeTaxAmount(undefined);
+    setPropertyEntries([{ id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false }]);
+    setOtherDebts(0);
     router.replace(router.pathname, undefined, { shallow: true });
     trackEvent(AnalyticsEvent.RESET_CALCULATOR);
   };
@@ -368,6 +387,52 @@ const Home = () => {
                               className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
                             />
                           </div>
+                          {/* Mortgage toggle — only for NL properties */}
+                          {entry.location === 'nl' && (
+                            <div className="mt-2">
+                              <label className="flex items-center gap-2 cursor-pointer group">
+                                <div className="relative flex-shrink-0">
+                                  <input
+                                    type="checkbox"
+                                    checked={entry.hasMortgage}
+                                    onChange={e => updatePropertyEntry(entry.id, 'hasMortgage', e.target.checked)}
+                                    className="sr-only"
+                                  />
+                                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${entry.hasMortgage ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'}`}>
+                                    {entry.hasMortgage && (
+                                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    )}
+                                  </div>
+                                </div>
+                                <span className="text-xs font-medium text-appleGray-600">{t('debts.hasMortgage')}</span>
+                              </label>
+                              {entry.hasMortgage && (
+                                <div className="mt-2">
+                                  <div className="relative">
+                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
+                                    <input
+                                      type="text"
+                                      inputMode="decimal"
+                                      placeholder={t('debts.mortgageAmount')}
+                                      value={focusedMortgageId === entry.id
+                                        ? (entry.mortgage === 0 ? '' : String(entry.mortgage))
+                                        : (entry.mortgage === 0 ? '' : entry.mortgage.toLocaleString('nl-NL'))}
+                                      onFocus={() => setFocusedMortgageId(entry.id)}
+                                      onBlur={() => setFocusedMortgageId(null)}
+                                      onChange={e => {
+                                        const sanitized = e.target.value.replace(/[^0-9]/g, '');
+                                        updatePropertyEntry(entry.id, 'mortgage', parseInt(sanitized, 10) || 0);
+                                      }}
+                                      className="w-full pl-10 pr-4 py-2.5 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-sm transition-all hover:border-appleGray-300"
+                                    />
+                                  </div>
+                                  <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('debts.mortgageNote')}</p>
+                                </div>
+                              )}
+                            </div>
+                          )}
                           {entry.location === 'treaty' && (
                             <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.treatyNote')}</p>
                           )}
@@ -394,7 +459,7 @@ const Home = () => {
 
                 <div className="mb-6">
                   <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('debts.title')}</h3>
-                  <InputField label={t('debts.debts')} value={assets.debts} onChange={(v) => handleInputChange('debts', v)} />
+                  <InputField label={t('debts.otherDebtsLabel')} value={otherDebts} onChange={handleOtherDebtsChange} />
                 </div>
 
                 <div className="mb-8">

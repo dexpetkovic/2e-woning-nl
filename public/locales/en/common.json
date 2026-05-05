@@ -20,7 +20,11 @@
   },
   "debts": {
     "title": "Debts",
-    "debts": "Debts"
+    "debts": "Debts",
+    "otherDebtsLabel": "Other debts (excl. second home mortgage)",
+    "hasMortgage": "Mortgage on this property",
+    "mortgageAmount": "Mortgage debt",
+    "mortgageNote": "A mortgage on a second home is deductible in Box 3 (threshold €3,700, or €7,400 with a fiscal partner)."
   },
   "personal": {
     "title": "Personal situation",
