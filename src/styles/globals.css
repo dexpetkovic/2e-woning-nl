@@ -2,16 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #F5F2EB;
+  --bg-2: #EFEBE1;
+  --ink: #161513;
+  --ink-2: #2B2823;
+  --muted: #6E6A60;
+  --line: rgba(22,21,19,.10);
+  --line-2: rgba(22,21,19,.18);
+  --accent: #C76A3F;
+  --accent-soft: #FBF1E9;
+  --display: 'Bricolage Grotesque', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-appleGray-50 text-appleGray-900 font-sans text-base md:text-lg antialiased;
+  @apply bg-appleGray-50 text-appleGray-900 font-sans text-base antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold tracking-tight;
+  @apply font-display font-medium text-appleGray-900;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
@@ -27,45 +46,298 @@ h3 {
   @apply text-2xl md:text-3xl;
 }
 
-input, select {
-  @apply rounded-xl border border-appleGray-200 px-5 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-lg transition-all;
+/* Default input styles — components opting into the editorial look should set
+   their own. Kept here as a baseline for plain HTML usage. */
+input, select, textarea {
+  @apply font-mono;
+}
+
+input[type="text"], input[type="number"], input[type="email"], select, textarea {
+  @apply rounded-xl border border-appleGray-200 px-4 py-3 bg-white focus:outline-none text-base transition-all;
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
 }
 
 .btn {
-  @apply px-7 py-3 rounded-xl font-medium transition-all duration-200 active:scale-95;
+  @apply inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium font-sans transition-all duration-150 active:scale-[0.98];
 }
 
 .btn-primary {
-  @apply bg-accent-500 text-white hover:bg-accent-600 shadow-sm;
+  @apply bg-appleGray-900 text-appleGray-50;
+}
+.btn-primary:hover {
+  background: var(--accent);
 }
 
 .btn-secondary {
-  @apply bg-appleGray-200 text-appleGray-900 hover:bg-appleGray-300;
+  @apply bg-appleGray-100 text-appleGray-900 hover:bg-appleGray-200;
 }
 
 .btn-outline {
-  @apply border border-appleGray-200 text-appleGray-700 hover:bg-appleGray-100 bg-white;
+  @apply bg-transparent text-appleGray-700 border border-appleGray-300 hover:bg-white;
 }
 
+.btn .arr {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Editorial card — warm cream background, terracotta-soft border, layered shadow */
 .card {
-  @apply bg-white rounded-xl p-8 shadow border border-appleGray-100/50;
+  @apply bg-white rounded-2xl border border-appleGray-200/80;
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset,
+              0 24px 60px -32px rgba(22,21,19,.22),
+              0 8px 18px -10px rgba(22,21,19,.10);
+}
+
+.card-plain {
+  @apply bg-white rounded-2xl border border-appleGray-200/80 p-6;
 }
 
 .glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/40;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
 }
 
+/* Eyebrow label — caps, tracked, mono, with optional pulsing dot */
+.eyebrow {
+  @apply inline-flex items-center gap-2 font-mono text-[11px] uppercase text-appleGray-500;
+  letter-spacing: .16em;
+}
+.eyebrow .blip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 22%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: .6; }
+}
+
+/* Display heading — Bricolage Grotesque, oversize, accent emphasis */
+.display-h {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: .98;
+  font-feature-settings: "ss01", "ss02";
+  color: var(--ink);
+  text-wrap: balance;
+}
+.display-h em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Section heading */
+.section-h h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.section-h h2 em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Brand dot — used in nav and footer */
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Language pill */
+.lang-pill {
+  display: inline-flex;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 3px;
+  font-size: 12px;
+  background: transparent;
+}
+.lang-pill button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+}
+.lang-pill button.on {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Segmented control (NL / Verdrag / Geen) */
+.seg {
+  display: inline-flex;
+  background: var(--bg);
+  padding: 3px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+}
+.seg button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 500;
+  font-family: inherit;
+  transition: background .15s, color .15s, box-shadow .15s;
+}
+.seg button.on {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* Tick row — feature badges below the hero */
+.ticks {
+  @apply flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase text-appleGray-500;
+  letter-spacing: .08em;
+}
+.ticks > span {
+  @apply inline-flex items-center gap-1.5;
+}
+.ticks > span::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Black rate strip */
+.strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--bg);
+}
+.strip-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: color-mix(in oklab, var(--bg) 75%, transparent);
+}
+.strip-cell b {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--bg);
+  letter-spacing: -0.03em;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+}
+@media (min-width: 768px) {
+  .strip-cell b { font-size: 34px; }
+}
+
+/* FAQ item — rotating + → × icon */
+.qa-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  flex: none;
+  transition: transform .2s, background .15s, color .15s, border-color .15s;
+}
+details[open] > summary .qa-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Property card (inside calculator) */
+.property-card {
+  @apply rounded-xl bg-white border border-appleGray-200/80;
+}
+.property-card-head {
+  @apply flex justify-between items-center px-3 py-2.5 rounded-t-xl;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.property-name {
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Partner toggle (terracotta switch when on) */
+.partner-toggle {
+  @apply flex items-center gap-3 px-3.5 py-3 rounded-xl border border-appleGray-200 cursor-pointer text-sm;
+  background: var(--bg-2);
+  color: var(--ink-2);
+}
+.partner-toggle .toggle {
+  width: 36px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--line-2);
+  position: relative;
+  flex: none;
+  transition: background .2s;
+}
+.partner-toggle .toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left .2s;
+}
+.partner-toggle.is-on .toggle { background: var(--accent); }
+.partner-toggle.is-on .toggle::after { left: 16px; }
+
+/* Tabular numerics helper */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Animations */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.4s ease-out forwards;
-}
+.animate-fade-in-up { animation: fadeInUp 0.4s ease-out forwards; }

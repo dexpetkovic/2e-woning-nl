@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html lang="nl">
         <Head>
-          <meta name="theme-color" content="#2997ff" />
+          <meta name="theme-color" content="#F5F2EB" />
           <meta name="google-adsense-account" content={GOOGLE_ADSENSE_CLIENT} />
 
           {GOOGLE_ADSENSE_CLIENT && (
@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
             rel="stylesheet"
           />
         </Head>

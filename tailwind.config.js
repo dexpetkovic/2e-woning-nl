@@ -7,75 +7,68 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0f7ff',
-          100: '#e0eefe',
-          200: '#bae0fd',
-          300: '#7cc8fb',
-          400: '#36aaf5',
-          500: '#0c8ee0',
-          600: '#0071bd',
-          700: '#005a9a',
-          800: '#004c80',
-          900: '#00406b',
-        },
-        secondary: {
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9d174d',
-          900: '#831843',
-        },
-        neutral: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
+        // Editorial Dutch palette — warm paper background, deep ink, terracotta accent.
+        // The `appleGray` and `accent` names are retained so existing utility classes
+        // (e.g. text-appleGray-700, bg-accent-500) carry over with the new visual language.
+        paper: '#F5F2EB',
+        'paper-2': '#EFEBE1',
+        ink: '#161513',
+        'ink-2': '#2B2823',
+        muted: '#6E6A60',
+        line: '#E0DDD2',
+        'line-2': '#CFC9B9',
         appleGray: {
-          50: '#f5f5f7',
-          100: '#e5e5ea',
-          200: '#d1d1d6',
-          300: '#aeaeb2',
-          400: '#8e8e93',
-          500: '#636366',
-          600: '#48484a',
-          700: '#3a3a3c',
-          800: '#2c2c2e',
-          900: '#1c1c1e',
+          50: '#F5F2EB',   // paper bg
+          100: '#EFEBE1',  // paper-2
+          200: '#E0DDD2',  // line
+          300: '#CFC9B9',  // line-2
+          400: '#8A8576',  // muted-light
+          500: '#6E6A60',  // muted
+          600: '#4A463E',  // body
+          700: '#2B2823',  // ink-2
+          800: '#1F1D1A',
+          900: '#161513',  // ink
         },
         accent: {
-          400: '#4da8ff',
-          500: '#2997ff',
-          600: '#0077ed',
+          50:  '#FBF1E9',
+          100: '#F4D8C2',
+          200: '#E9B698',
+          300: '#DD9472',
+          400: '#D27E55',
+          500: '#C76A3F',  // terracotta primary
+          600: '#A95630',
+          700: '#874426',
         },
+        good: '#3A8A5E',
+        warn: '#C58A2A',
       },
       fontFamily: {
         sans: [
-          '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'
+          'Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
+          'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'
+        ],
+        display: [
+          'Bricolage Grotesque', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'
+        ],
+        mono: [
+          'Geist Mono', 'JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'
         ],
       },
+      letterSpacing: {
+        'display': '-0.035em',
+        'display-tight': '-0.045em',
+      },
       borderRadius: {
-        'xl': '0.5rem',
-        '2xl': '0.75rem',
+        'xl': '0.625rem',
+        '2xl': '0.875rem',
+        '3xl': '1.125rem',
         'full': '9999px',
       },
       boxShadow: {
-        sm: '0 1px 3px rgba(0,0,0,0.08)',
-        DEFAULT: '0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)',
-        lg: '0 8px 32px rgba(0,0,0,0.10)',
-        apple: '0 20px 60px rgba(0,0,0,0.15)',
+        sm: '0 1px 3px rgba(22,21,19,0.08)',
+        DEFAULT: '0 4px 16px rgba(22,21,19,0.06), 0 1px 4px rgba(22,21,19,0.04)',
+        lg: '0 8px 32px rgba(22,21,19,0.08)',
+        card: '0 1px 0 rgba(255,255,255,.8) inset, 0 24px 60px -32px rgba(22,21,19,.25), 0 8px 18px -10px rgba(22,21,19,.12)',
       },
       backdropBlur: {
         xs: '4px',
@@ -85,4 +78,4 @@ module.exports = {
     },
   },
   plugins: [],
-} 
+}

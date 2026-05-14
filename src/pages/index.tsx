@@ -9,7 +9,7 @@ import ResultCard from '@/components/ResultCard';
 import AdBanner from '@/components/AdBanner';
 import CompanyInfo from '@/components/CompanyInfo';
 import EmailCapture from '@/components/EmailCapture';
-import { Assets, TaxYear, calculateBox3TaxForYear, TaxCalculationResult } from '@/utils/taxCalculations';
+import { Assets, TaxYear, calculateBox3TaxForYear, TaxCalculationResult, TAX_RATES_2024, TAX_RATES_2025, TAX_RATES_2026 } from '@/utils/taxCalculations';
 import { NextSeo } from 'next-seo';
 import Script from 'next/script';
 import { trackEvent, AnalyticsEvent } from '@/utils/analytics';
@@ -30,13 +30,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 };
 
-const TRUST_BADGES = [
-  { icon: '✓', label: 'Gratis' },
-  { icon: '✓', label: '2025 tarieven' },
-  { icon: '✓', label: 'Direct resultaat' },
-  { icon: '✓', label: 'Geen registratie' },
-];
-
 const EMPTY_ASSETS: Assets = {
   bankSavings: 0,
   investments: 0,
@@ -47,9 +40,21 @@ const EMPTY_ASSETS: Assets = {
   debts: 0,
 };
 
+const fmtEUR = (n: number) => {
+  if (!isFinite(n)) n = 0;
+  return new Intl.NumberFormat('nl-NL').format(Math.round(n));
+};
+
+const pctNL = (n: number) => (n * 100).toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+
+const RATES_BY_YEAR: Record<TaxYear, { savings: string; invest: string; debt: string }> = {
+  '2024': { savings: pctNL(TAX_RATES_2024.BANK_SAVINGS_RATE), invest: pctNL(TAX_RATES_2024.INVESTMENTS_RATE), debt: pctNL(TAX_RATES_2024.DEBT_RATE) },
+  '2025': { savings: pctNL(TAX_RATES_2025.BANK_SAVINGS_RATE), invest: pctNL(TAX_RATES_2025.INVESTMENTS_RATE), debt: pctNL(TAX_RATES_2025.DEBT_RATE) },
+  '2026': { savings: pctNL(TAX_RATES_2026.BANK_SAVINGS_RATE), invest: pctNL(TAX_RATES_2026.INVESTMENTS_RATE), debt: pctNL(TAX_RATES_2026.DEBT_RATE) },
+};
+
 type FaqItem = { q: string; a: string };
 type MoreLezenItem = { href: string; title: string; desc: string };
-type RateGridItem = { label: string; rate: string };
 type PropertyLocation = 'nl' | 'treaty' | 'noTreaty';
 type PropertyEntry = { id: string; value: number; location: PropertyLocation; mortgage: number; hasMortgage: boolean; isPrimaryResidence: boolean };
 
@@ -58,11 +63,6 @@ const Home = () => {
   const router = useRouter();
   const faqItems = t('faq.items', { returnObjects: true }) as FaqItem[];
   const moreLezenItems = t('moreLezen.items', { returnObjects: true }) as MoreLezenItem[];
-  const rateGridItems: RateGridItem[] = [
-    { label: t('about.savingsLabel'), rate: '1,44%' },
-    { label: t('about.investmentsVastgoed'), rate: '6,04%' },
-    { label: t('about.debtsLabel'), rate: '2,61%' },
-  ];
   const [copied, setCopied] = useState(false);
   const didInitFromUrl = useRef(false);
 
@@ -70,7 +70,7 @@ const Home = () => {
   const [hasFiscalPartner, setHasFiscalPartner] = useState<boolean>(false);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [calculationResult, setCalculationResult] = useState<TaxCalculationResult | null>(null);
-  const [result2024, setResult2024] = useState<TaxCalculationResult | null>(null);
+  const [resultPrevYear, setResultPrevYear] = useState<TaxCalculationResult | null>(null);
   const [alternativeTaxAmount, setAlternativeTaxAmount] = useState<number | undefined>(undefined);
 
   const [selectedYear, setSelectedYear] = useState<TaxYear>('2025');
@@ -82,10 +82,15 @@ const Home = () => {
   const [focusedMortgageId, setFocusedMortgageId] = useState<string | null>(null);
   const [otherDebts, setOtherDebts] = useState(0);
 
-  // NL properties pay full Dutch Box 3. Foreign properties (treaty OR no-treaty) both
-  // get the Bvdb 2001 art. 23 proportional reduction — same formula, different user note.
-  // Primary residence is Box 1 — excluded entirely from Box 3 (value and mortgage).
-  // Mortgages on non-primary NL properties are Box 3 debts; merged with otherDebts.
+  // Live preview (always-on rough preview shown above the formal "Bereken" result)
+  const previewResult = (() => {
+    try {
+      return calculateBox3TaxForYear(assets, hasFiscalPartner, selectedYear);
+    } catch {
+      return null;
+    }
+  })();
+
   const syncPropertyTotals = (entries: PropertyEntry[], oDebts = otherDebts) => {
     const nlTotal = entries.filter(e => e.location === 'nl' && !e.isPrimaryResidence).reduce((s, e) => s + e.value, 0);
     const ftpTotal = entries.filter(e => e.location !== 'nl').reduce((s, e) => s + e.value, 0);
@@ -110,20 +115,17 @@ const Home = () => {
     setPropertyEntries(prev => {
       const updated = prev.map(e => {
         if (field === 'isPrimaryResidence' && val === true && e.id !== id) {
-          // Radio behavior: clear primary residence on all other entries
           return { ...e, isPrimaryResidence: false };
         }
         if (e.id !== id) return e;
         const next = { ...e, [field]: val };
         if (field === 'hasMortgage' && val === false) next.mortgage = 0;
         if (field === 'isPrimaryResidence' && val === true) {
-          // Primary residence must be NL; clear mortgage (Box 1 debt)
           next.location = 'nl';
           next.hasMortgage = false;
           next.mortgage = 0;
         }
         if (field === 'location' && val !== 'nl') {
-          // Can't be primary residence outside NL
           next.isPrimaryResidence = false;
         }
         return next;
@@ -134,7 +136,6 @@ const Home = () => {
     if (showResults) setShowResults(false);
   };
 
-  // Initialise form from URL query params (shareable links)
   useEffect(() => {
     if (didInitFromUrl.current) return;
     didInitFromUrl.current = true;
@@ -151,7 +152,6 @@ const Home = () => {
     const fp = p.get('fp') === '1';
     if (Object.values(fromUrl).some((v) => v > 0)) {
       setAssets(fromUrl);
-      // Reconstruct property entries from URL totals (mortgages not encoded in URL — put total debts in otherDebts)
       const entries: PropertyEntry[] = [];
       if (fromUrl.properties > 0) entries.push({ id: '1', value: fromUrl.properties, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false });
       if (fromUrl.foreignTreatyProperties > 0) entries.push({ id: '2', value: fromUrl.foreignTreatyProperties, location: 'treaty', mortgage: 0, hasMortgage: false, isPrimaryResidence: false });
@@ -160,11 +160,10 @@ const Home = () => {
       const urlYear = (p.get('yr') as TaxYear) || '2025';
       setSelectedYear(urlYear);
       setHasFiscalPartner(fp);
-      // Auto-calculate if values were pre-filled from URL
       const r = calculateBox3TaxForYear(fromUrl, fp, urlYear);
       setCalculationResult(r);
       const urlPrevYear = urlYear === '2026' ? '2025' : urlYear === '2025' ? '2024' : null;
-      setResult2024(urlPrevYear ? calculateBox3TaxForYear(fromUrl, fp, urlPrevYear) : null);
+      setResultPrevYear(urlPrevYear ? calculateBox3TaxForYear(fromUrl, fp, urlPrevYear) : null);
       setAlternativeTaxAmount(calculateBox3TaxForYear(fromUrl, !fp, urlYear).taxAmount);
       setShowResults(true);
     }
@@ -204,11 +203,10 @@ const Home = () => {
     const altAmount = calculateBox3TaxForYear(assets, !hasFiscalPartner, selectedYear).taxAmount;
 
     setCalculationResult(r);
-    setResult2024(rPrev);
+    setResultPrevYear(rPrev);
     setAlternativeTaxAmount(altAmount);
     setShowResults(true);
 
-    // Update URL for shareable link
     router.replace(buildShareUrl(assets, hasFiscalPartner, selectedYear), undefined, { shallow: true });
 
     trackEvent(AnalyticsEvent.CALCULATE_TAX, {
@@ -217,6 +215,11 @@ const Home = () => {
       totalDebts: assets.debts,
       taxAmount: r.taxAmount,
     });
+
+    // Scroll detailed result into view
+    setTimeout(() => {
+      document.getElementById('detailed-result')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
   };
 
   const handleReset = () => {
@@ -224,7 +227,7 @@ const Home = () => {
     setHasFiscalPartner(false);
     setShowResults(false);
     setCalculationResult(null);
-    setResult2024(null);
+    setResultPrevYear(null);
     setAlternativeTaxAmount(undefined);
     setPropertyEntries([{ id: '1', value: 0, location: 'nl', mortgage: 0, hasMortgage: false, isPrimaryResidence: false }]);
     setOtherDebts(0);
@@ -241,55 +244,33 @@ const Home = () => {
     });
   };
 
-  const structuredData = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Box 3 Belastingcalculator",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web Browser",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-      "description": "Bereken eenvoudig uw Box 3 vermogensbelasting voor tweede woning, investeringen en spaargeld. Gratis belastingcalculator met actuele 2025 tarieven.",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
+  // Use a single JSON-LD object with @graph for multiple records — some
+  // SEO/validator extensions iterate top-level script content and fail on
+  // arrays where each entry has its own @context.
+  const faqItemsArr = Array.isArray(faqItems) ? faqItems : [];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Box 3 Belastingcalculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "description": "Bereken eenvoudig uw Box 3 vermogensbelasting voor tweede woning, investeringen en spaargeld. Gratis belastingcalculator met actuele 2025 tarieven.",
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqItemsArr.map((it) => ({
           "@type": "Question",
-          "name": "Wat is Box 3 belasting?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Box 3 is de belastingcategorie voor vermogen buiten de eigen woning en de onderneming. U betaalt belasting over een fictief rendement op spaargeld, beleggingen, tweede woningen en andere vermogensbestanddelen." }
-        },
-        {
-          "@type": "Question",
-          "name": "Wat is het heffingvrij vermogen in 2025?",
-          "acceptedAnswer": { "@type": "Answer", "text": "In 2025 is het heffingvrij vermogen €57.000 per persoon. Voor fiscale partners samen is dit €114.000. Over vermogen onder dit bedrag betaalt u geen Box 3 belasting." }
-        },
-        {
-          "@type": "Question",
-          "name": "Wat zijn de Box 3 tarieven in 2025?",
-          "acceptedAnswer": { "@type": "Answer", "text": "De fictieve rendementspercentages voor 2025 zijn: spaargeld 1,44%, beleggingen 6,04%, schulden 2,61%. Over het berekende fictieve rendement betaalt u 36% belasting." }
-        },
-        {
-          "@type": "Question",
-          "name": "Hoe werkt de Box 3 calculator?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Vul uw spaargeld, beleggingen, tweede woning en schulden in. De calculator berekent automatisch uw belastbare rendement, de belastinggrondslag en het uiteindelijke te betalen bedrag op basis van de officiële 2025 Belastingdienst tarieven." }
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "Hoe bereken ik mijn Box 3 belasting?",
-      "description": "Stap voor stap berekening van Box 3 vermogensbelasting met de gratis calculator op 2e-woning.nl",
-      "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Vul uw vermogen in", "text": "Voer uw spaargeld, beleggingen, tweede woning en eventuele andere bezittingen in." },
-        { "@type": "HowToStep", "position": 2, "name": "Voer uw schulden in", "text": "Vul schulden in die meetellen voor Box 3 (exclusief hypotheek op eigen woning)." },
-        { "@type": "HowToStep", "position": 3, "name": "Geef aan of u een fiscaal partner heeft", "text": "Met een fiscaal partner verdubbelt het heffingvrij vermogen naar €114.000." },
-        { "@type": "HowToStep", "position": 4, "name": "Bereken en bekijk het resultaat", "text": "Klik op Bereken en u ziet direct uw geschatte Box 3 belasting met stapsgewijze toelichting." }
-      ]
-    }
-  ];
+          "name": it.q,
+          "acceptedAnswer": { "@type": "Answer", "text": it.a },
+        })),
+      },
+    ],
+  };
+
+  const currentRates = RATES_BY_YEAR[selectedYear];
 
   return (
     <>
@@ -304,381 +285,654 @@ const Home = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <main className="min-h-screen bg-appleGray-50">
-        {/* Hero */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-accent-500/6 blur-3xl" />
-          </div>
-          <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-12 text-center">
-            <div className="inline-flex items-center gap-2 bg-accent-500/10 text-accent-600 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-              Belastingcalculator 2025
-            </div>
-            <h1 className="text-5xl md:text-6xl font-semibold text-appleGray-900 mb-4 tracking-tight">
-              {t('title')}
-            </h1>
-            <p className="text-xl text-appleGray-500 max-w-xl mx-auto mb-8 leading-relaxed">
-              {t('subtitle')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {TRUST_BADGES.map((b) => (
-                <span key={b.label} className="inline-flex items-center gap-1.5 bg-white border border-appleGray-100 text-appleGray-600 text-sm font-medium px-3 py-1.5 rounded-full shadow-sm">
-                  <span className="text-accent-500 font-bold">{b.icon}</span>
-                  {b.label}
-                </span>
-              ))}
-            </div>
-            <div className="mt-5">
-              <Link href="/box3-tips" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-500 hover:text-accent-600 transition-colors">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {t('moreLezen.items.1.title')}
-              </Link>
+      <main className="min-h-screen bg-appleGray-50 text-appleGray-900">
+        {/* ───────── Hero with inline calculator ───────── */}
+        <section className="border-b border-appleGray-200/80" id="calculator">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8 pt-12 pb-6">
+            <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-end">
+              {/* Left — editorial headline */}
+              <div>
+                <div className="eyebrow mb-4">
+                  <span className="blip" />
+                  Belastingcalculator · {selectedYear}
+                </div>
+                <h1 className="display-h text-[clamp(46px,6.6vw,96px)] mb-5">
+                  Box 3 belasting,<br />
+                  <em>zonder de</em> bureaucratie.
+                </h1>
+                <p className="text-lg text-appleGray-700 max-w-[46ch] mb-7 leading-relaxed">
+                  {t('subtitle')}
+                </p>
+                <div className="ticks">
+                  <span>Gratis</span>
+                  <span>Tarieven {selectedYear}</span>
+                  <span>Direct resultaat</span>
+                  <span>Anoniem</span>
+                </div>
+              </div>
+
+              {/* Right — calculator card */}
+              <div data-no-auto-ads>
+                <CalculatorCard
+                  selectedYear={selectedYear}
+                  setSelectedYear={(y) => { setSelectedYear(y); if (showResults) setShowResults(false); }}
+                  assets={assets}
+                  handleInputChange={handleInputChange}
+                  hasFiscalPartner={hasFiscalPartner}
+                  setHasFiscalPartner={(v) => { setHasFiscalPartner(v); if (showResults) setShowResults(false); }}
+                  propertyEntries={propertyEntries}
+                  addPropertyEntry={addPropertyEntry}
+                  removePropertyEntry={removePropertyEntry}
+                  updatePropertyEntry={updatePropertyEntry}
+                  focusedPropertyId={focusedPropertyId}
+                  setFocusedPropertyId={setFocusedPropertyId}
+                  focusedMortgageId={focusedMortgageId}
+                  setFocusedMortgageId={setFocusedMortgageId}
+                  otherDebts={otherDebts}
+                  handleOtherDebtsChange={handleOtherDebtsChange}
+                  previewResult={previewResult}
+                  onCalculate={handleCalculate}
+                  onCopyLink={handleCopyLink}
+                  onReset={handleReset}
+                  copied={copied}
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-6 pb-16">
-          {/* data-no-auto-ads tells AdSense Auto Ads to skip injecting inside the calculator.
-              Configure the CSS selector "[data-no-auto-ads]" as an exclusion zone in your
-              AdSense dashboard → Auto Ads → Excluded areas. */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" data-no-auto-ads>
-            {/* Calculator form */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="card">
-                <h2 className="text-2xl font-semibold text-appleGray-900 mb-6">{t('assets.title')}</h2>
-
-                {/* Year selector */}
-                <div className="mb-6 pb-6 border-b border-appleGray-100">
-                  <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-3">{t('yearSelector.label')}</h3>
-                  <div className="flex rounded-xl border border-appleGray-200 overflow-hidden text-sm font-medium">
-                    {(['2024', '2025', '2026'] as TaxYear[]).map(y => (
-                      <button
-                        key={y}
-                        type="button"
-                        onClick={() => { setSelectedYear(y); if (showResults) setShowResults(false); }}
-                        className={`flex-1 px-4 py-2 transition-colors ${selectedYear === y ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-600 hover:bg-appleGray-50'}`}
-                      >
-                        {y}
-                      </button>
-                    ))}
-                  </div>
-                  {selectedYear === '2026' && (
-                    <p className="mt-2 text-xs text-amber-600 leading-relaxed">{t('yearSelector.note2026')}</p>
-                  )}
-                </div>
-
-                <div className="mb-6">
-                  <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('assets.possessions')}</h3>
-                  <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} />
-                  <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} />
-                  {/* Property list — multiple second homes with NL / treaty / no-treaty selector */}
-                  <div className="mb-6">
-                    <p className="block text-appleGray-700 mb-3 font-medium text-base">{t('assets.propertiesTitle')}</p>
-                    <div className="space-y-3">
-                      {propertyEntries.map((entry, index) => (
-                        <div key={entry.id} className="bg-appleGray-50 rounded-xl border border-appleGray-100 p-3">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-medium text-appleGray-500">
-                              {t('assets.propertyLabel', { number: index + 1 })}
-                            </span>
-                            {propertyEntries.length > 1 && (
-                              <button
-                                type="button"
-                                onClick={() => removePropertyEntry(entry.id)}
-                                className="text-appleGray-300 hover:text-red-400 transition-colors p-0.5"
-                                title={t('assets.removeProperty')}
-                              >
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                              </button>
-                            )}
-                          </div>
-                          {/* Primary residence checkbox — only for NL properties */}
-                          {entry.location === 'nl' && (
-                            <div className="mb-2">
-                              <label className="flex items-center gap-2 cursor-pointer group">
-                                <div className="relative flex-shrink-0">
-                                  <input
-                                    type="checkbox"
-                                    checked={entry.isPrimaryResidence}
-                                    onChange={e => updatePropertyEntry(entry.id, 'isPrimaryResidence', e.target.checked)}
-                                    className="sr-only"
-                                  />
-                                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${entry.isPrimaryResidence ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'}`}>
-                                    {entry.isPrimaryResidence && (
-                                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                      </svg>
-                                    )}
-                                  </div>
-                                </div>
-                                <span className="text-xs font-medium text-appleGray-600">{t('assets.primaryResidence')}</span>
-                              </label>
-                            </div>
-                          )}
-                          {/* Location toggle — locked to NL when primary residence */}
-                          <div className={`flex rounded-lg border border-appleGray-200 overflow-hidden text-xs font-medium mb-2 ${entry.isPrimaryResidence ? 'opacity-40 pointer-events-none' : ''}`}>
-                            {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
-                              <button
-                                key={loc}
-                                type="button"
-                                className={`flex-1 px-2 py-1.5 transition-colors ${entry.location === loc ? 'bg-accent-500 text-white' : 'bg-white text-appleGray-500 hover:bg-appleGray-100'}`}
-                                onClick={() => updatePropertyEntry(entry.id, 'location', loc)}
-                              >
-                                {loc === 'nl' ? t('assets.netherlands') : loc === 'treaty' ? t('assets.treatyCountry') : t('assets.noTreatyCountry')}
-                              </button>
-                            ))}
-                          </div>
-                          {/* Value input — show raw number while focused to avoid Dutch . separator breaking parseFloat */}
-                          <div className={`relative ${entry.isPrimaryResidence ? 'opacity-50' : ''}`}>
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
-                            <input
-                              type="text"
-                              inputMode="decimal"
-                              value={focusedPropertyId === entry.id
-                                ? (entry.value === 0 ? '' : String(entry.value))
-                                : (entry.value === 0 ? '' : entry.value.toLocaleString('nl-NL'))}
-                              onFocus={() => setFocusedPropertyId(entry.id)}
-                              onBlur={() => setFocusedPropertyId(null)}
-                              onChange={e => {
-                                const sanitized = e.target.value.replace(/[^0-9]/g, '');
-                                updatePropertyEntry(entry.id, 'value', parseInt(sanitized, 10) || 0);
-                              }}
-                              placeholder="0"
-                              className="w-full pl-10 pr-4 py-3 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base transition-all hover:border-appleGray-300"
-                            />
-                          </div>
-                          {/* WOZ / primary residence note */}
-                          {entry.isPrimaryResidence ? (
-                            <p className="mt-1 text-xs text-appleGray-500 leading-relaxed font-medium">{t('assets.primaryResidenceNote')}</p>
-                          ) : (
-                            <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('assets.wozNote')}</p>
-                          )}
-                          {/* Mortgage toggle — only for non-primary NL properties */}
-                          {entry.location === 'nl' && !entry.isPrimaryResidence && (
-                            <div className="mt-2">
-                              <label className="flex items-center gap-2 cursor-pointer group">
-                                <div className="relative flex-shrink-0">
-                                  <input
-                                    type="checkbox"
-                                    checked={entry.hasMortgage}
-                                    onChange={e => updatePropertyEntry(entry.id, 'hasMortgage', e.target.checked)}
-                                    className="sr-only"
-                                  />
-                                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${entry.hasMortgage ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'}`}>
-                                    {entry.hasMortgage && (
-                                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                      </svg>
-                                    )}
-                                  </div>
-                                </div>
-                                <span className="text-xs font-medium text-appleGray-600">{t('debts.hasMortgage')}</span>
-                              </label>
-                              {entry.hasMortgage && (
-                                <div className="mt-2">
-                                  <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">€</span>
-                                    <input
-                                      type="text"
-                                      inputMode="decimal"
-                                      placeholder={t('debts.mortgageAmount')}
-                                      value={focusedMortgageId === entry.id
-                                        ? (entry.mortgage === 0 ? '' : String(entry.mortgage))
-                                        : (entry.mortgage === 0 ? '' : entry.mortgage.toLocaleString('nl-NL'))}
-                                      onFocus={() => setFocusedMortgageId(entry.id)}
-                                      onBlur={() => setFocusedMortgageId(null)}
-                                      onChange={e => {
-                                        const sanitized = e.target.value.replace(/[^0-9]/g, '');
-                                        updatePropertyEntry(entry.id, 'mortgage', parseInt(sanitized, 10) || 0);
-                                      }}
-                                      className="w-full pl-10 pr-4 py-2.5 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-sm transition-all hover:border-appleGray-300"
-                                    />
-                                  </div>
-                                  <p className="mt-1 text-xs text-appleGray-400 leading-relaxed">{t('debts.mortgageNote')}</p>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          {entry.location === 'treaty' && (
-                            <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.treatyNote')}</p>
-                          )}
-                          {entry.location === 'noTreaty' && (
-                            <p className="mt-2 text-xs text-appleGray-400 leading-relaxed">{t('assets.noTreatyNote')}</p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={addPropertyEntry}
-                      className="mt-3 flex items-center gap-1.5 text-sm font-medium text-accent-500 hover:text-accent-600 transition-colors"
-                    >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                      </svg>
-                      {t('assets.addProperty')}
-                    </button>
-                  </div>
-                  <InputField label={t('assets.otherAssets')} value={assets.otherAssets} onChange={(v) => handleInputChange('otherAssets', v)} optional />
-                  <InputField label={t('assets.greenInvestments')} value={assets.greenInvestments} onChange={(v) => handleInputChange('greenInvestments', v)} optional />
-                </div>
-
-                <div className="mb-6">
-                  <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('debts.title')}</h3>
-                  <InputField label={t('debts.otherDebtsLabel')} value={otherDebts} onChange={handleOtherDebtsChange} />
-                </div>
-
-                <div className="mb-8">
-                  <h3 className="text-xs font-semibold text-appleGray-400 uppercase tracking-wider mb-4">{t('personal.title')}</h3>
-                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        checked={hasFiscalPartner}
-                        onChange={(e) => {
-                          setHasFiscalPartner(e.target.checked);
-                          if (showResults) setShowResults(false);
-                        }}
-                        className="sr-only"
-                      />
-                      <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all ${hasFiscalPartner ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'}`}>
-                        {hasFiscalPartner && (
-                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-                    <span className="text-appleGray-700 text-base">{t('personal.fiscalPartner')}</span>
-                  </label>
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2 border-t border-appleGray-100">
-                  <button onClick={handleCalculate} className="btn btn-primary">
-                    {t('buttons.calculate')}
-                  </button>
-                  <button onClick={handleReset} className="btn btn-outline">
-                    {t('buttons.reset')}
-                  </button>
-                  <button
-                    onClick={handleCopyLink}
-                    className="btn btn-outline ml-auto flex items-center gap-2"
-                    title={t('buttons.copyLink')}
-                  >
-                    {copied ? (
-                      <>
-                        <svg className="w-4 h-4 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-accent-500 text-sm">{t('buttons.copied')}</span>
-                      </>
-                    ) : (
-                      <>
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        <span className="text-sm">{t('buttons.copyLink')}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              <CompanyInfo />
-            </div>
-
-            {/* Results sidebar */}
-            <div className="lg:col-span-1 space-y-6">
-              {showResults && calculationResult ? (
-                <>
-                  <ResultCard
-                    result={calculationResult}
-                    resultPrevYear={result2024 ?? undefined}
-                    alternativeTaxAmount={alternativeTaxAmount}
-                    alternativeHasFiscalPartner={!hasFiscalPartner}
-                    assets={assets}
-                    hasFiscalPartner={hasFiscalPartner}
-                    selectedYear={selectedYear}
-                  />
-                  <EmailCapture />
-                </>
-              ) : (
-                <div className="card border-dashed border-appleGray-200 bg-appleGray-50 flex flex-col items-center justify-center text-center py-12">
-                  <div className="w-14 h-14 rounded-2xl bg-accent-500/10 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-semibold text-appleGray-700 mb-1">{t('placeholder.title')}</h3>
-                  <p className="text-sm text-appleGray-400 max-w-[200px]">{t('placeholder.description')}</p>
-                </div>
-              )}
-
+        {/* ───────── Black rate strip ───────── */}
+        <div className="strip" id="tarieven">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8 py-5">
+            <div className="flex flex-wrap items-center justify-between gap-x-12 gap-y-4">
+              <div className="strip-cell"><span>Spaargeld</span><b>{currentRates.savings}</b></div>
+              <div className="strip-cell"><span>Beleggingen &amp; vastgoed</span><b>{currentRates.invest}</b></div>
+              <div className="strip-cell"><span>Schulden</span><b>{currentRates.debt}</b></div>
+              <div className="strip-cell"><span>Heffingvrij vermogen</span><b>€57k</b></div>
+              <div className="strip-cell"><span>Belasting over rendement</span><b>36%</b></div>
             </div>
           </div>
+        </div>
 
-          {/* About section */}
-          <div className="mt-10 card">
-            <h2 className="text-xl font-semibold text-appleGray-900 mb-5">{t('about.title')}</h2>
-            <div className="text-appleGray-600 text-sm leading-relaxed space-y-4 max-w-3xl">
-              <p>{t('about.p1')}</p>
-              <p dangerouslySetInnerHTML={{ __html: t('about.p2') }} />
-              <p>{t('about.p3')}</p>
-              <p dangerouslySetInnerHTML={{ __html: t('about.p4') }} />
-              <p dangerouslySetInnerHTML={{ __html: t('about.p5') }} />
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                {rateGridItems.map((r) => (
-                  <div key={r.label} className="bg-appleGray-50 rounded-xl p-3 border border-appleGray-100 text-center">
-                    <p className="text-xs text-appleGray-400 mb-1">{r.label}</p>
-                    <p className="text-lg font-bold text-appleGray-800">{r.rate}</p>
-                    <p className="text-xs text-appleGray-400">{t('about.rateNote')}</p>
-                  </div>
-                ))}
+        {/* ───────── Detailed result panel (after Bereken) ───────── */}
+        {showResults && calculationResult && (
+          <section id="detailed-result" className="border-b border-appleGray-200/80">
+            <div className="max-w-[1280px] mx-auto px-5 md:px-8 py-16">
+              <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10 lg:gap-12 items-start mb-10">
+                <div>
+                  <div className="eyebrow mb-2">Volledige berekening</div>
+                  <h2 className="section-h-inner font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
+                    Stap voor stap, <em className="not-italic text-accent-500">in beeld</em>.
+                  </h2>
+                </div>
+                <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
+                  Hieronder zie je hoe de Belastingdienst tot het bedrag komt — per bucket, met
+                  toepassing van vrijstellingen, schulden en (indien van toepassing) verdragskorting.
+                </p>
               </div>
-              <p className="text-xs text-appleGray-400 pt-1">
-                {t('about.source')}:{' '}
-                <a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/berekening-box-3-inkomen-2024" target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:underline">
-                  Belastingdienst
-                </a>
+
+              <div className="grid lg:grid-cols-[2fr_1fr] gap-8 items-start">
+                <ResultCard
+                  result={calculationResult}
+                  resultPrevYear={resultPrevYear ?? undefined}
+                  alternativeTaxAmount={alternativeTaxAmount}
+                  alternativeHasFiscalPartner={!hasFiscalPartner}
+                  assets={assets}
+                  hasFiscalPartner={hasFiscalPartner}
+                  selectedYear={selectedYear}
+                />
+                <div className="space-y-6 lg:sticky lg:top-24">
+                  <EmailCapture />
+                  <CompanyInfo />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ───────── How it works ───────── */}
+        <section className="border-b border-appleGray-200/80 py-20 md:py-24" id="hoe">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+            <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 mb-12 items-end">
+              <div>
+                <div className="eyebrow mb-2">Zo werkt het</div>
+                <h2 className="font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
+                  Drie stappen, <em className="not-italic text-accent-500">nul</em> verrassingen.
+                </h2>
+              </div>
+              <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
+                De Belastingdienst gaat uit van een fictief rendement: een aanname over wat je
+                vermogen had moeten opleveren. Wij rekenen die aanname kraakhelder voor je
+                voor — per categorie, per woning, per partner.
               </p>
             </div>
-          </div>
 
-          {/* FAQ */}
-          <div className="mt-8 card">
-            <h2 className="text-xl font-semibold text-appleGray-900 mb-6">{t('faq.title')}</h2>
-            <div className="space-y-6">
-              {faqItems.map((item) => (
-                <div key={item.q} className="border-b border-appleGray-100 pb-5 last:border-0 last:pb-0">
-                  <h3 className="text-sm font-semibold text-appleGray-800 mb-2">{item.q}</h3>
-                  <p className="text-sm text-appleGray-500 leading-relaxed">{item.a}</p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { num: '1', title: 'Vul je vermogen in', body: 'Spaargeld, beleggingen, tweede woningen en schulden. WOZ-waarde, niet marktwaarde — dat scheelt vaak 10–20%.', tag: '~ 90 seconden' },
+                { num: '2', title: 'Wij splitsen per categorie', body: 'Elke euro krijgt zijn eigen fictief rendement. Schulden trekken we af, partner-vrijstellingen verwerken we automatisch.', tag: 'Live berekening' },
+                { num: '3', title: 'Zie je aanslag in beeld', body: 'Effectief tarief, belastbare grondslag, vrijstellingen en het bedrag onderaan de streep — alles transparant uitgelegd.', tag: 'Deelbaar als link' },
+              ].map((s) => (
+                <div key={s.num} className="p-7 rounded-2xl bg-white border border-appleGray-200/80 flex flex-col gap-3 min-h-[240px]">
+                  <div className="font-display text-[56px] leading-none font-medium text-accent-500 tabular-nums tracking-display-tight">
+                    {s.num}
+                  </div>
+                  <h3 className="font-display text-2xl font-medium tracking-display leading-tight">{s.title}</h3>
+                  <p className="text-appleGray-700 text-[15px] leading-relaxed">{s.body}</p>
+                  <div className="font-mono text-[10.5px] uppercase tracking-[.12em] text-appleGray-500 mt-auto">{s.tag}</div>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* Article links */}
-          <div className="mt-8">
-            <h2 className="text-lg font-semibold text-appleGray-900 mb-4">{t('moreLezen.title')}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {moreLezenItems.map((a) => (
-                <a key={a.href} href={a.href} className="card hover:shadow-lg transition-shadow group block no-underline">
-                  <p className="text-sm font-semibold text-appleGray-900 group-hover:text-accent-500 transition-colors mb-1">{a.title}</p>
-                  <p className="text-xs text-appleGray-400 leading-relaxed">{a.desc}</p>
-                </a>
+        {/* ───────── Rates explainer ───────── */}
+        <section className="border-b border-appleGray-200/80 py-20 md:py-24">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+            <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 mb-12 items-end">
+              <div>
+                <div className="eyebrow mb-2">Fictieve rendementen {selectedYear}</div>
+                <h2 className="font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
+                  De drie <em className="not-italic text-accent-500">aannames</em> waarmee de fiscus rekent.
+                </h2>
+              </div>
+              <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
+                Het oude systeem gebruikte één getal voor alles. Sinds het Kerstarrest van 2021 splitst
+                de Belastingdienst je vermogen in drie buckets, elk met een eigen fictief rendement.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 rounded-2xl overflow-hidden border border-appleGray-200/80 bg-white">
+              <RateCell
+                cat="Spaargeld"
+                pct={currentRates.savings}
+                color="ink"
+                desc="Bank- en spaartegoeden krijgen het laagste percentage — spaarrentes zijn historisch laag."
+                hint="Bron · Belastingdienst"
+              />
+              <RateCell
+                cat="Beleggingen & vastgoed"
+                pct={currentRates.invest}
+                color="accent"
+                desc="Aandelen, obligaties en je tweede woning. Hoger rendement verondersteld, dus hoger fictief percentage."
+                hint="Inclusief tweede woningen"
+              />
+              <RateCell
+                cat="Schulden"
+                pct={currentRates.debt}
+                color="ink"
+                desc="Aftrekbaar van je grondslag, maar de eerste €3.700 (of €7.400 met partner) telt niet mee."
+                hint="Drempel per persoon"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── FAQ ───────── */}
+        <section className="border-b border-appleGray-200/80 py-20 md:py-24" id="faq">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+            <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 mb-12 items-end">
+              <div>
+                <div className="eyebrow mb-2">FAQ</div>
+                <h2 className="font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
+                  Eerlijke antwoorden, <em className="not-italic text-accent-500">geen</em> jargon.
+                </h2>
+              </div>
+              <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
+                De meest gestelde vragen over Box 3 — kort, in mensentaal, en zonder verwijzingen
+                naar 14 andere pagina&apos;s.
+              </p>
+            </div>
+
+            <div className="border-t border-appleGray-200/80">
+              {faqItems.map((it, i) => (
+                <details key={i} className="border-b border-appleGray-200/80 group" {...(i === 0 ? { open: true } : {})}>
+                  <summary className="flex justify-between items-center gap-6 py-6 cursor-pointer list-none">
+                    <h4 className="m-0 font-display text-xl md:text-[28px] font-medium tracking-display leading-tight flex-1">
+                      {it.q}
+                    </h4>
+                    <span className="qa-icon" aria-hidden="true">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="pb-6 text-base text-appleGray-700 max-w-[72ch] leading-[1.55]">
+                    {it.a}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
+        </section>
 
-          <AdBanner client={GOOGLE_ADSENSE_CLIENT} slot={GOOGLE_ADSENSE_SLOT_HORIZONTAL} className="mt-8" />
-        </div>
+        {/* ───────── More articles ───────── */}
+        <section className="py-20 md:py-24">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+            <div className="mb-8">
+              <div className="eyebrow mb-2">Verder lezen</div>
+              <h2 className="font-display text-3xl md:text-4xl font-medium tracking-display leading-[1.02]">
+                {t('moreLezen.title')}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {moreLezenItems.map((a) => (
+                <Link key={a.href} href={a.href} className="card p-6 hover:-translate-y-0.5 transition-transform no-underline block group">
+                  <p className="font-display text-xl font-medium tracking-display text-appleGray-900 group-hover:text-accent-500 transition-colors mb-2 leading-tight">
+                    {a.title}
+                  </p>
+                  <p className="text-sm text-appleGray-600 leading-relaxed">{a.desc}</p>
+                </Link>
+              ))}
+            </div>
+            <AdBanner client={GOOGLE_ADSENSE_CLIENT} slot={GOOGLE_ADSENSE_SLOT_HORIZONTAL} className="mt-10" />
+          </div>
+        </section>
       </main>
     </>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Calculator card — inline live preview, matches the editorial design
+   ───────────────────────────────────────────────────────────────────── */
+
+interface CalculatorCardProps {
+  selectedYear: TaxYear;
+  setSelectedYear: (y: TaxYear) => void;
+  assets: Assets;
+  handleInputChange: (field: keyof Assets, value: number) => void;
+  hasFiscalPartner: boolean;
+  setHasFiscalPartner: (v: boolean) => void;
+  propertyEntries: PropertyEntry[];
+  addPropertyEntry: () => void;
+  removePropertyEntry: (id: string) => void;
+  updatePropertyEntry: (id: string, field: keyof Omit<PropertyEntry, 'id'>, val: number | PropertyLocation | boolean) => void;
+  focusedPropertyId: string | null;
+  setFocusedPropertyId: (id: string | null) => void;
+  focusedMortgageId: string | null;
+  setFocusedMortgageId: (id: string | null) => void;
+  otherDebts: number;
+  handleOtherDebtsChange: (v: number) => void;
+  previewResult: TaxCalculationResult | null;
+  onCalculate: () => void;
+  onCopyLink: () => void;
+  onReset: () => void;
+  copied: boolean;
+}
+
+const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
+  const { t } = useTranslation('common');
+  const {
+    selectedYear, setSelectedYear, assets, handleInputChange,
+    hasFiscalPartner, setHasFiscalPartner,
+    propertyEntries, addPropertyEntry, removePropertyEntry, updatePropertyEntry,
+    focusedPropertyId, setFocusedPropertyId, focusedMortgageId, setFocusedMortgageId,
+    otherDebts, handleOtherDebtsChange,
+    previewResult, onCalculate, onCopyLink, onReset, copied,
+  } = props;
+
+  return (
+    <div className="card overflow-hidden">
+      {/* Head: year selector */}
+      <div className="flex justify-between items-center px-4 md:px-5 py-3.5 border-b border-appleGray-200/80"
+           style={{ background: 'linear-gradient(180deg, #EFEBE1 0%, #fff 100%)' }}>
+        <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[.14em] text-appleGray-500">
+          <span>Belastingjaar</span>
+          <b className="text-appleGray-900">·</b>
+          <span className="text-appleGray-900 font-semibold">Live preview</span>
+        </div>
+        <div className="flex gap-1 bg-appleGray-100 p-1 rounded-lg" role="tablist">
+          {(['2024', '2025', '2026'] as TaxYear[]).map((y) => (
+            <button
+              key={y}
+              onClick={() => setSelectedYear(y)}
+              className={`appearance-none px-2.5 py-1 rounded-md text-xs font-medium font-mono transition-all ${
+                selectedYear === y
+                  ? 'bg-white text-appleGray-900 shadow-sm'
+                  : 'bg-transparent text-appleGray-500 hover:text-appleGray-900'
+              }`}
+            >
+              {y}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="p-5 md:p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0">
+          <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} help="Box 3" />
+          <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} help="Aandelen, obligaties" />
+        </div>
+
+        <div className="flex justify-between items-baseline mb-2 mt-2">
+          <div className="text-[13px] text-appleGray-700 font-medium">Tweede woningen &amp; vastgoed</div>
+          <div className="font-mono text-[11px] uppercase tracking-[.1em] text-appleGray-500">
+            {propertyEntries.length} {propertyEntries.length === 1 ? 'woning' : 'woningen'}
+          </div>
+        </div>
+
+        <div className="space-y-2.5">
+          {propertyEntries.map((entry, idx) => (
+            <PropertyBlock
+              key={entry.id}
+              entry={entry}
+              index={idx}
+              canRemove={propertyEntries.length > 1}
+              onUpdate={(field, val) => updatePropertyEntry(entry.id, field, val)}
+              onRemove={() => removePropertyEntry(entry.id)}
+              focusedPropertyId={focusedPropertyId}
+              setFocusedPropertyId={setFocusedPropertyId}
+              focusedMortgageId={focusedMortgageId}
+              setFocusedMortgageId={setFocusedMortgageId}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={addPropertyEntry}
+          className="mt-3 flex items-center gap-2.5 px-4 py-3 w-full rounded-xl border border-dashed border-appleGray-300 text-appleGray-700 text-sm hover:bg-white hover:border-appleGray-700 transition-all"
+        >
+          <span className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full bg-accent-500 text-white font-semibold text-sm leading-none">
+            +
+          </span>
+          {t('assets.addProperty')}
+        </button>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mt-4">
+          <InputField
+            label={t('assets.otherAssets')}
+            value={assets.otherAssets}
+            onChange={(v) => handleInputChange('otherAssets', v)}
+            optional
+          />
+          <InputField
+            label={t('assets.greenInvestments')}
+            value={assets.greenInvestments}
+            onChange={(v) => handleInputChange('greenInvestments', v)}
+            help="Vrijstelling €71.251"
+            optional
+          />
+          <div className="sm:col-span-2">
+            <InputField
+              label={t('debts.otherDebtsLabel')}
+              value={otherDebts}
+              onChange={handleOtherDebtsChange}
+              help="Excl. hypotheek tweede woning"
+            />
+          </div>
+        </div>
+
+        {/* Partner toggle */}
+        <button
+          type="button"
+          onClick={() => setHasFiscalPartner(!hasFiscalPartner)}
+          className={`partner-toggle mt-3 w-full text-left ${hasFiscalPartner ? 'is-on' : ''}`}
+          role="switch"
+          aria-checked={hasFiscalPartner}
+        >
+          <span className="toggle" aria-hidden="true" />
+          <span className="flex-1">
+            {t('personal.fiscalPartner')}
+            {hasFiscalPartner && (
+              <span className="block text-xs text-appleGray-500 mt-0.5">
+                Vrijstellingen en drempels verdubbeld
+              </span>
+            )}
+          </span>
+        </button>
+      </div>
+
+      {/* Live preview result */}
+      {previewResult && (
+        <div className="grid md:grid-cols-[1.1fr_.9fr] gap-6 items-center px-5 md:px-6 py-5 border-t border-appleGray-200/80"
+             style={{ background: 'linear-gradient(180deg, #EFEBE1, color-mix(in oklab, #EFEBE1 50%, white))' }}>
+          <div>
+            <div className="font-mono text-[11px] uppercase tracking-[.16em] text-appleGray-500 mb-1">
+              Geschatte Box 3 belasting · {selectedYear}
+            </div>
+            <div className="font-display text-[clamp(40px,5.5vw,64px)] font-medium tracking-display-tight leading-[.95] text-appleGray-900 tabular-nums">
+              €{fmtEUR(previewResult.taxAmount)}
+              <small className="text-[.4em] text-appleGray-500 ml-2 font-mono font-medium uppercase tracking-normal align-middle">
+                per jaar
+              </small>
+            </div>
+            <div className="mt-2 text-sm text-appleGray-700">
+              Effectief tarief op vermogen:{' '}
+              <strong className="text-accent-500 font-semibold tabular-nums font-mono">
+                {previewResult.taxBase > 0
+                  ? ((previewResult.taxAmount / previewResult.taxBase) * 100).toFixed(2)
+                  : '0,00'}%
+              </strong>
+              {previewResult.taxAmount === 0 && previewResult.taxBase > 0 && (
+                <span className="text-appleGray-500"> · onder heffingvrij vermogen</span>
+              )}
+            </div>
+          </div>
+
+          <div className="font-mono text-xs">
+            <BreakdownRow k="Netto vermogen" v={`€${fmtEUR(previewResult.taxBase)}`} />
+            <BreakdownRow k="Heffingvrij" v={`−€${fmtEUR(previewResult.taxBase - previewResult.savingsAndInvestmentBase)}`} />
+            <BreakdownRow k="Belastbaar" v={`€${fmtEUR(previewResult.savingsAndInvestmentBase)}`} />
+            <BreakdownRow k="Fictief rendement" v={`€${fmtEUR(previewResult.taxableReturn)}`} last />
+          </div>
+        </div>
+      )}
+
+      {/* CTAs */}
+      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-1 flex gap-2.5 flex-wrap">
+        <button onClick={onCalculate} className="btn btn-primary">
+          Volledige berekening
+          <span className="arr">→</span>
+        </button>
+        <button onClick={onCopyLink} className="btn btn-outline">
+          {copied ? 'Gekopieerd!' : 'Berekening delen'}
+        </button>
+        <button onClick={onReset} className="btn btn-outline">
+          {t('buttons.reset')}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const BreakdownRow: React.FC<{ k: string; v: string; last?: boolean }> = ({ k, v, last }) => (
+  <div className={`flex justify-between items-center py-1.5 ${last ? '' : 'border-b border-dashed border-appleGray-300/60'}`}>
+    <span className="text-appleGray-500 uppercase tracking-[.08em] text-[11px]">{k}</span>
+    <span className="text-appleGray-900 font-medium tabular-nums">{v}</span>
+  </div>
+);
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Property block (single woning row inside the calculator)
+   ───────────────────────────────────────────────────────────────────── */
+
+interface PropertyBlockProps {
+  entry: PropertyEntry;
+  index: number;
+  canRemove: boolean;
+  onUpdate: (field: keyof Omit<PropertyEntry, 'id'>, val: number | PropertyLocation | boolean) => void;
+  onRemove: () => void;
+  focusedPropertyId: string | null;
+  setFocusedPropertyId: (id: string | null) => void;
+  focusedMortgageId: string | null;
+  setFocusedMortgageId: (id: string | null) => void;
+}
+
+const PropertyBlock: React.FC<PropertyBlockProps> = ({
+  entry, index, canRemove, onUpdate, onRemove,
+  focusedPropertyId, setFocusedPropertyId, focusedMortgageId, setFocusedMortgageId,
+}) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <div className="property-card">
+      <div className="property-card-head">
+        <div className="property-name">Woning {index + 1}</div>
+        <div className="flex gap-2 items-center">
+          <div className="seg" role="tablist" aria-label="Locatie">
+            {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
+              <button
+                key={loc}
+                className={entry.location === loc ? 'on' : ''}
+                onClick={() => onUpdate('location', loc)}
+                disabled={entry.isPrimaryResidence}
+                style={entry.isPrimaryResidence ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
+              >
+                {loc === 'nl' ? 'NL' : loc === 'treaty' ? 'Verdrag' : 'Geen'}
+              </button>
+            ))}
+          </div>
+          {canRemove && (
+            <button
+              onClick={onRemove}
+              className="appearance-none border-0 bg-transparent text-appleGray-500 text-sm cursor-pointer px-2 py-1 rounded-md hover:bg-appleGray-100 hover:text-appleGray-900"
+              aria-label={t('assets.removeProperty')}
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="p-3.5">
+        {entry.location === 'nl' && (
+          <label className="flex items-center gap-2 cursor-pointer group mb-2.5">
+            <div className="relative flex-shrink-0">
+              <input
+                type="checkbox"
+                checked={entry.isPrimaryResidence}
+                onChange={e => onUpdate('isPrimaryResidence', e.target.checked)}
+                className="sr-only"
+              />
+              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${
+                entry.isPrimaryResidence ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300 group-hover:border-accent-400'
+              }`}>
+                {entry.isPrimaryResidence && (
+                  <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </div>
+            </div>
+            <span className="text-xs font-medium text-appleGray-700">{t('assets.primaryResidence')}</span>
+          </label>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0">
+          {/* WOZ value */}
+          <div className="mb-3">
+            <div className="flex justify-between items-center mb-1.5">
+              <label className="text-[12.5px] text-appleGray-700 font-medium">WOZ-waarde</label>
+              <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500">Niet marktwaarde</span>
+            </div>
+            <div className={`relative ${entry.isPrimaryResidence ? 'opacity-50' : ''}`}>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-appleGray-500 font-mono text-sm pointer-events-none">€</span>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={focusedPropertyId === entry.id
+                  ? (entry.value === 0 ? '' : String(entry.value))
+                  : (entry.value === 0 ? '' : entry.value.toLocaleString('nl-NL'))}
+                onFocus={() => setFocusedPropertyId(entry.id)}
+                onBlur={() => setFocusedPropertyId(null)}
+                onChange={e => {
+                  const sanitized = e.target.value.replace(/[^0-9]/g, '');
+                  onUpdate('value', parseInt(sanitized, 10) || 0);
+                }}
+                placeholder="350.000"
+                disabled={entry.isPrimaryResidence}
+                className="w-full pl-7 pr-3.5 py-3 border border-appleGray-200 rounded-xl bg-white font-mono text-[15px] font-medium text-appleGray-900 focus:outline-none focus:border-appleGray-900 focus:ring-[3px] focus:ring-accent-500/20 transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Mortgage */}
+          {entry.location === 'nl' && !entry.isPrimaryResidence && (
+            <div className="mb-3">
+              <div className="flex justify-between items-center mb-1.5">
+                <label className="text-[12.5px] text-appleGray-700 font-medium">{t('debts.hasMortgage')}</label>
+                <label className="flex items-center gap-1.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={entry.hasMortgage}
+                    onChange={e => onUpdate('hasMortgage', e.target.checked)}
+                    className="sr-only"
+                  />
+                  <span className={`w-3.5 h-3.5 rounded border-2 inline-flex items-center justify-center transition-all ${
+                    entry.hasMortgage ? 'bg-accent-500 border-accent-500' : 'border-appleGray-300'
+                  }`}>
+                    {entry.hasMortgage && (
+                      <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </span>
+                </label>
+              </div>
+              <div className={`relative ${entry.hasMortgage ? '' : 'opacity-50 pointer-events-none'}`}>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-appleGray-500 font-mono text-sm pointer-events-none">€</span>
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  placeholder={t('debts.mortgageAmount')}
+                  value={focusedMortgageId === entry.id
+                    ? (entry.mortgage === 0 ? '' : String(entry.mortgage))
+                    : (entry.mortgage === 0 ? '' : entry.mortgage.toLocaleString('nl-NL'))}
+                  onFocus={() => setFocusedMortgageId(entry.id)}
+                  onBlur={() => setFocusedMortgageId(null)}
+                  onChange={e => {
+                    const sanitized = e.target.value.replace(/[^0-9]/g, '');
+                    onUpdate('mortgage', parseInt(sanitized, 10) || 0);
+                  }}
+                  className="w-full pl-7 pr-3.5 py-3 border border-appleGray-200 rounded-xl bg-white font-mono text-[15px] font-medium text-appleGray-900 focus:outline-none focus:border-appleGray-900 focus:ring-[3px] focus:ring-accent-500/20 transition-all"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {entry.isPrimaryResidence && (
+          <p className="text-xs text-appleGray-600 leading-relaxed font-medium mt-1">{t('assets.primaryResidenceNote')}</p>
+        )}
+        {entry.location === 'treaty' && (
+          <p className="text-xs text-appleGray-500 leading-relaxed mt-1">{t('assets.treatyNote')}</p>
+        )}
+        {entry.location === 'noTreaty' && (
+          <p className="text-xs text-appleGray-500 leading-relaxed mt-1">{t('assets.noTreatyNote')}</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Rate cell — single column in the rates explainer grid
+   ───────────────────────────────────────────────────────────────────── */
+const RateCell: React.FC<{
+  cat: string;
+  pct: string;
+  color: 'ink' | 'accent';
+  desc: string;
+  hint: string;
+}> = ({ cat, pct, color, desc, hint }) => {
+  // Strip percent from pct so we can render the unit separately
+  const cleaned = pct.replace('%', '');
+  return (
+    <div className="p-8 border-r border-b md:border-b-0 border-appleGray-200/80 last:border-r-0 relative">
+      <div className="font-mono text-[11px] uppercase tracking-[.14em] text-appleGray-500">{cat}</div>
+      <div className={`font-display text-[72px] md:text-[88px] leading-[.9] tracking-[-0.05em] my-4 font-medium tabular-nums ${
+        color === 'accent' ? 'text-accent-500' : 'text-appleGray-900'
+      }`}>
+        {cleaned}
+        <span className="font-mono text-base text-appleGray-500 ml-1.5 font-medium tracking-normal">%</span>
+      </div>
+      <div className="text-sm text-appleGray-700 max-w-[30ch] leading-relaxed">{desc}</div>
+      <div className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500 mt-5 pt-3.5 border-t border-dashed border-appleGray-300/60">
+        {hint}
+      </div>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ interface InputFieldProps {
   onChange: (value: number) => void;
   placeholder?: string;
   optional?: boolean;
+  help?: string;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
   placeholder = '0',
   optional = false,
+  help,
   className = '',
 }) => {
   const { t } = useTranslation('common');
@@ -37,13 +39,20 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <div className={`mb-6 ${className}`}>
-      <label className="block text-appleGray-700 mb-2 font-medium text-base">
-        {label}
-        {optional && <span className="text-appleGray-400 text-sm ml-1">({t('optional')})</span>}
-      </label>
+    <div className={`mb-4 ${className}`}>
+      <div className="flex justify-between items-center mb-1.5">
+        <label className="text-[12.5px] text-appleGray-700 font-medium">
+          {label}
+          {optional && <span className="text-appleGray-500 ml-1 font-normal">({t('optional')})</span>}
+        </label>
+        {help && (
+          <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500">
+            {help}
+          </span>
+        )}
+      </div>
       <div className="relative">
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-appleGray-400 text-lg pointer-events-none">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-appleGray-500 font-mono text-sm pointer-events-none">
           €
         </span>
         <input
@@ -54,7 +63,7 @@ const InputField: React.FC<InputFieldProps> = ({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder={placeholder}
-          className="w-full pl-10 pr-4 py-3.5 border border-appleGray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-lg transition-all hover:border-appleGray-300"
+          className="w-full pl-7 pr-3.5 py-3 border border-appleGray-200 rounded-xl bg-white font-mono text-[15px] font-medium text-appleGray-900 focus:outline-none focus:border-appleGray-900 focus:ring-[3px] focus:ring-accent-500/20 transition-all"
         />
       </div>
     </div>
