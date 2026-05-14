@@ -1,65 +1,105 @@
 {
   "meta": {
-    "title": "Zo verlaag je je Box 3 belasting: 5 tips die werken",
-    "description": "Vijf legale manieren om minder Box 3 belasting te betalen in 2025. Fiscaal partnerschap, groene beleggingen, peildatum-optimalisatie en meer.",
-    "keywords": "box 3 belasting verlagen, box 3 tips, minder box 3 betalen, groene beleggingen vrijstelling, fiscaal partner box 3, box 3 optimaliseren"
+    "title": "Box 3 verlagen: wat ik zelf doe, en wat ik níet doe",
+    "description": "Zes manieren om je Box 3 belasting te verlagen — eerlijk gerangschikt. Met per tip ook wat níet werkt. Fiscaal partnerschap, peildatum, groene beleggingen en meer.",
+    "keywords": "box 3 belasting verlagen, box 3 tips, minder box 3 betalen, fiscaal partner box 3, groene beleggingen vrijstelling, peildatum 1 januari box 3"
   },
   "badge": "Praktische tips",
   "hero": {
     "title": "Zo verlaag je je Box 3 belasting",
-    "subtitle": "Er is geen magische truc. Maar er zijn wel degelijk keuzes die je kunt maken, en die het verschil maken."
+    "subtitle": "Er is geen magische truc. Wel een paar keuzes die echt een verschil maken — en een paar veelgehoorde 'tips' die het niet doen."
+  },
+  "byline": {
+    "prefix": "Geschreven door",
+    "author": "Dejan Petković",
+    "context": "Bouwer van 2e-woning.nl · niet jouw belastingadviseur",
+    "lastUpdated": "Laatst bijgewerkt: 14 mei 2026",
+    "linkLabel": "Over de auteur"
+  },
+  "intro": {
+    "title": "Wat ik zelf doe, en wat ik niet doe",
+    "paragraphs": [
+      "Begin met een paar onaangename waarheden. Als je vermogen boven het heffingvrij vermogen uitkomt, ga je Box 3 betalen — punt. Wat hieronder staat helpt je het te beperken, maar het laat het niet verdampen. Wie je een 'truc' verkoopt die alle Box 3 wegtovert, verkoopt iets anders dan een truc.",
+      "En een tweede punt: ik ben geen belastingadviseur. Ik ben iemand die een rekenmodel heeft gebouwd, dat regelmatig vergelijkt met de Belastingdienst-rekenhulp, en in de tussentijd best veel boze mails leest. Wat hieronder staat is wat ik in die mails als nuttig zie terugkomen. Voor jouw specifieke situatie blijft het altijd zinvol om er met een professional naar te kijken — vooral als het om bedragen gaat waarbij een uur advies zich snel terugverdient."
+    ]
   },
   "tips": [
     {
       "number": "01",
-      "title": "Gebruik je fiscaal partnerschap optimaal",
+      "title": "Verdeel het vermogen met je partner — maar niet op de auto-piloot",
       "body": [
-        "Als je een fiscale partner hebt, mogen jullie het Box 3-vermogen onderling verdelen op de manier die fiscaal het gunstigst is. In de praktijk betekent dat: je kunt vermogen verschuiven van de partner met het hoogste belastbaar inkomen naar de ander.",
-        "Bovendien geldt het heffingvrij vermogen per persoon. Samen hebben jullie dus recht op €114.000 vrijstelling in plaats van €57.000. Dat scheelt bij een gemiddeld vermogen al snel honderden euro's per jaar.",
-        "De verdeling hoef je niet fifty-fifty te doen. Je mag optimaliseren, maar doe dit wel via je aangifte, niet achteraf."
-      ]
+        "Heb je een fiscale partner, dan mag je het Box 3-vermogen onderling verdelen op de fiscaal gunstigste manier. Je hoeft het niet fifty-fifty te splitsen. In de meeste gevallen schuif je vermogen richting de partner met het laagste belastbaar inkomen, of (in de praktijk vaker relevant) zorg je dat het heffingvrij vermogen van beide partners maximaal wordt benut.",
+        "Het heffingvrij vermogen geldt namelijk per persoon. Samen heb je dus €114.000 aan vrijstelling in plaats van €57.000. Voor de meeste mensen die met Box 3 te maken hebben, scheelt dat al snel een paar honderd euro per jaar — soms meer.",
+        "Belangrijk: de verdeling moet je maken in de aangifte zelf. Niet achteraf in een correctie. En de optimale verdeling hangt af van of jullie nog andere bronnen van inkomen hebben (Box 1, Box 2). Een tool zoals deze laat je dat doorrekenen, maar twijfel je tussen twee varianten met een groot verschil — kost het je vijf minuten om beide door de Belastingdienst-rekenhulp te halen voordat je submit."
+      ],
+      "antiTip": "Wat je níet hoeft te doen: vermogen 'op naam van' je partner zetten via overboekingen rond 1 januari. Voor Box 3 telt wie het juridisch bezit, niet op welke rekening het tijdelijk staat — en gedoe met schenkingen tussen partners brengt zijn eigen fiscale problemen mee."
     },
     {
       "number": "02",
-      "title": "Betaal schulden af vóór 1 januari",
+      "title": "Wees slim met de peildatum, niet paniekerig",
       "body": [
-        "Box 3 wordt berekend op peildatum 1 januari. Je vermogenssaldo op die dag bepaalt je aanslag voor het hele jaar.",
-        "Als je een grote aflossing kunt doen vóór het einde van het jaar en daarmee je Box 3-grondslag verlaagt, is dat soms de moeite waard. Let op: schulden zijn pas aftrekbaar boven een drempel van €3.700 (of €7.400 met partner). Kleine schulden afbetalen heeft dus geen fiscaal effect.",
-        "Dit is een timing-kwestie, geen trucje. Het vermindert je daadwerkelijke vermogen, maar het verlaagt ook je belastingaanslag."
-      ]
+        "Box 3 wordt berekend over wat je hebt op 1 januari van het belastingjaar. Wat je in maart koopt of in november uitgeeft, telt voor dat jaar niet mee. Dat is geen geheim, maar het is wel iets om in je achterhoofd te houden bij grote uitgaven en aflossingen.",
+        "Een voorbeeld dat in mijn mailbox vaker terugkomt: iemand wil eind december een renovatie betalen van €40.000 vanaf de spaarrekening. Als dat een paar weken later kan, schuift €40.000 het volgende belastingjaar in plaats van eruit. Voor wie ruim boven het heffingvrij vermogen zit en dat bedrag uit zijn 'gewone' werkkapitaal komt, scheelt dat in 2025 ruwweg €207 aan Box 3 (1,44% × €40.000 × 36%). Geen levensveranderend bedrag, maar als de uitgave toch al gepland was: het is gratis geld.",
+        "Hetzelfde geldt voor schulden boven de drempel. Aflossen vóór 1 januari verlaagt je vermogen én je aftrekbare schuld. Of dat per saldo gunstig is, hangt af van je hele situatie — soms wel, soms niet."
+      ],
+      "antiTip": "Wat je níet moet doen: vermogen 'verplaatsen' naar een buitenlandse rekening op 31 december en op 2 januari terughalen. Internationaal vermogen telt gewoon mee. De peildatum is een wettelijke ijkpunt, geen administratief shortcut."
     },
     {
       "number": "03",
-      "title": "Beleg (deels) in groene fondsen",
+      "title": "Groene beleggingen: alleen als ze sowieso bij je passen",
       "body": [
-        "Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (met partner tot €142.502). Als je toch al van plan bent om te beleggen en je hebt een keuze, loont het om te kijken of er duurzame alternatieven zijn die voor jou werken.",
-        "Het gaat om beleggingen in fondsen met het keurmerk van de Belastingdienst. Niet elk fonds dat zichzelf \"groen\" noemt, telt. Check dit via je bank of broker.",
-        "De vrijstelling scheelt direct in je belastinggrondslag: je betaalt dan over een kleiner deel van je vermogen."
-      ]
+        "Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (€142.502 met fiscale partner). Bovenop die vrijstelling krijg je ook nog een heffingskorting van 0,1% over het belegde bedrag. Klinkt aantrekkelijk, en voor de juiste persoon is het dat ook.",
+        "Het gaat hier specifiek om beleggingen in fondsen met het keurmerk 'groene belegging' van de Belastingdienst. Niet elk fonds dat zichzelf duurzaam noemt, kwalificeert. Vraag het bij je bank of broker expliciet na — of zoek de fondsenlijst op via belastingdienst.nl voordat je inlegt.",
+        "Belangrijker dan de vrijstelling: deze fondsen hebben hun eigen risico- en rendementsprofiel, vaak met wat lager nominaal rendement dan een breed gespreid wereldwijd indexfonds. Voor wie sowieso duurzaam wil beleggen is dat een prima ruil; voor wie alleen voor de vrijstelling instapt is het niet vanzelfsprekend voordelig."
+      ],
+      "antiTip": "Wat je níet moet doen: op 28 december €71.000 in een groen fonds storten 'voor de vrijstelling'. De vrijstelling werkt op peildatum, dus dat zou administratief kloppen — maar uitstapkosten, spreads, en de mogelijke koersbeweging tussen instap en uitstap maken het meestal verlieslatend."
     },
     {
       "number": "04",
-      "title": "Controleer je aangifte zorgvuldig",
+      "title": "Lees je vooringevulde aangifte met argwaan",
       "body": [
-        "Dit klinkt voor de hand liggend, maar het gaat regelmatig mis. De Belastingdienst vult de aangifte voor een deel zelf in op basis van banksaldi en WOZ-waarden, maar die gegevens kloppen niet altijd.",
-        "Controleer in elk geval: zijn alle schulden boven de drempel meegenomen? Is de WOZ-waarde van je tweede woning correct? Heb je groene beleggingen die als zodanig zijn opgegeven?",
-        "Gebruik deze calculator om een richtlijn te hebben voordat je de aangifte doet. Als de uitkomst sterk afwijkt van wat de Belastingdienst berekent, is dat een reden om verder te kijken."
-      ]
+        "De Belastingdienst vult een groot deel van je aangifte voor je in, op basis van gegevens die banken en taxatiediensten doorgeven. Heel handig. Niet altijd correct.",
+        "Wat er regelmatig misgaat: een buitenlandse broker die zijn rapportage incompleet doorzet, een WOZ-waarde die in 2025 nog niet is bijgewerkt, een schuld die wel is gemeld maar onder de verkeerde categorie staat, een groen fonds dat als 'gewone belegging' is verwerkt. In elk van die gevallen betaal je iets meer dan nodig is — soms een paar euro, soms een paar honderd.",
+        "Wat ik aanraad: vergelijk de uitkomst van je voorinvulling met een eigen schatting (van deze tool, of van je eigen Excel). Wijkt het meer dan een paar procent af, dan zit ergens iets fout. Klop alle cijfers tegen je eigen bankafschriften en taxatiebrieven aan voordat je submit."
+      ],
+      "antiTip": "Wat je níet moet doen: blindelings 'akkoord' klikken omdat het er ingewikkeld uitziet. Dat is precies waar het systeem leunt op je vertrouwen — en dat is geen advies, dat is statistiek. Eén keer per jaar twee uur eraan besteden levert verrassend vaak iets op."
     },
     {
       "number": "05",
-      "title": "Houd de rechtsontwikkeling in de gaten",
+      "title": "Houd de jurisprudentie in de gaten — als je dat soort vermogen had",
       "body": [
-        "Er lopen nog steeds procedures over Box 3. Mensen die in eerdere jaren te veel hebben betaald onder het oude systeem kunnen in sommige gevallen aanspraak maken op herstel of teruggave.",
-        "Of je recht hebt op iets, hangt af van of je destijds bezwaar hebt gemaakt en in welk jaar het om gaat. De Hoge Raad en lagere rechters blijven uitspraken doen, soms met gevolgen voor jouw situatie.",
-        "Het is de moeite waard om je erin te verdiepen, zeker als je in de jaren 2017 tot 2022 een flink vermogen had. Raadpleeg een belastingadviseur als je denkt recht te hebben op herstel."
-      ]
+        "Er lopen nog steeds Box 3-procedures, vooral voor de jaren 2017–2022 onder het oude stelsel. Wie destijds op tijd bezwaar heeft gemaakt valt onder het 'rechtsherstel' uit het Kerstarrest (ECLI:NL:HR:2021:1963). Wie geen bezwaar had ingediend valt formeel buiten de boot, maar er zijn nog steeds individuele procedures die gewonnen worden.",
+        "Mijn praktische check: had je in een van die jaren een vermogen van substantieel boven het heffingvrij vermogen, voornamelijk in spaargeld of in een mix waarin je werkelijke rendement duidelijk lager lag dan het destijds geldende forfait? Dan is het de moeite om dat door iemand te laten bekijken die daarin gespecialiseerd is. Niet door mij, niet door een algemene calculator.",
+        "Eerlijk: de jaarvakken die echt scheef stonden waren 2018 tot en met 2022. Wie wachtte met de aangifte, of wie pas later vermogen kreeg, valt vaak helemaal buiten deze categorie. Maar nakijken kost weinig en het kan honderden tot duizenden euro's schelen."
+      ],
+      "antiTip": "Wat je níet moet doen: zelf in je eentje een procedure starten. De procedurele eisen zijn precies genoeg dat een DIY-bezwaarschrift vaak op een formele grond strandt. Hier is gespecialiseerde hulp echt de moeite waard."
+    },
+    {
+      "number": "06",
+      "title": "Doe de aangifte samen, aan de keukentafel",
+      "body": [
+        "Dit is meer praktisch dan fiscaal advies, maar het scheelt elk jaar geld in mijn omgeving. Wie de aangifte met de fiscale partner doet — letterlijk samen, beide laptops open — komt vaak op andere getallen dan wie het in z'n eentje submit.",
+        "Reden: je moet keuzes maken over de verdeling van Box 3-vermogen, hypotheekrenteaftrek, en (als jullie kinderen hebben) eventuele toeslagen. Die keuzes hangen samen. Eén partner kan alles individueel optimaliseren en toch op een suboptimale uitkomst landen, omdat de andere kant van de optimalisatie pas zichtbaar wordt als jullie samen kijken.",
+        "Concreet wat ik aanraad: plan twee uur in maart of april. Open beide aangiften, doorloop de Box 3-verdeling, kijk naar de uitkomsten in de voorlopige berekening, schuif desnoods een keer of drie. Vervelend? Een beetje. Maar het is het soort vervelend dat zich uitbetaalt in een kop koffie en ergens tussen €50 en €500 minder belasting."
+      ],
+      "antiTip": "Wat je níet moet doen: aannemen dat de partner met het lagere inkomen 'altijd' het meeste vermogen moet krijgen. Dat klopt vaak, maar niet altijd — vooral als de inkomensverdeling in Box 1 al sterk verschillend is."
     }
   ],
+  "whatAdvisorDoes": {
+    "title": "Wat een belastingadviseur doet, dat ik niet kan",
+    "paragraphs": [
+      "Een eerlijke afbakening, want ik krijg deze vraag vaker. Wat een goede belastingadviseur jou kan bieden, dat een tool zoals deze niet kan:",
+      "Het uitpluizen van situaties waarin meerdere belastingjurisdicties op elkaar stapelen — bijvoorbeeld vermogen in Duitsland, een rekening in Zwitserland, een tweede woning in Spanje. De interactie tussen belastingverdragen is fijnmazig en jaarlijks aan verandering onderhevig. Mijn calculator probeert dat netjes te ondersteunen voor de meest voorkomende gevallen, maar voor echt complexe constellaties is een mens onmisbaar.",
+      "Het beoordelen of een herstelprocedure voor Box 3 over 2017–2022 in jouw geval kansrijk is. Dat hangt af van de jaarcijfers, het type vermogen, of er bezwaar is gemaakt, en (steeds vaker) van recente rechterlijke uitspraken die de marges verschuiven.",
+      "En het scheiden van Box 2- en Box 3-vermogen wanneer je een eigen BV hebt met een rekening-courantverhouding. Dat is een ander soort werk dan wat hier staat.",
+      "Voor reguliere situaties — spaargeld, een paar beleggingen, eventueel een tweede woning of een hypotheek — is een tool zoals deze meestal voldoende voor een goede schatting. Voor afwijkende situaties: zoek iemand op."
+    ]
+  },
   "disclaimerBold": "Even eerlijk zijn:",
-  "disclaimerText": " als je vermogen hebt boven het heffingvrij vermogen, ontkom je niet volledig aan Box 3-belasting. Bovenstaande tips helpen je het te beperken, maar ze lossen het niet op. Voor complexere situaties (groot vastgoedvermogen, meerdere beleggingsrekeningen, lopende bezwaarprocedures) is een belastingadviseur de moeite waard.",
+  "disclaimerText": " als je vermogen boven het heffingvrij vermogen uitkomt, ontkom je niet aan Box 3-belasting. De tips hierboven helpen je het te beperken — niet om het te elimineren. En voor echt complexe situaties (groot vastgoedvermogen, meerdere beleggingsrekeningen in buitenlandse jurisdicties, lopende bezwaarprocedures) is een belastingadviseur de moeite waard. Ik ben er geen.",
   "cta": {
-    "calculator": "Bereken uw Box 3 belasting",
-    "uitleg": "Box 3 uitgelegd"
+    "calculator": "Reken je belasting uit",
+    "uitleg": "Box 3 uitgelegd",
+    "rechtbank": "Box 3 & de Rechter"
   }
 }

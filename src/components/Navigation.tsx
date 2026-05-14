@@ -28,6 +28,7 @@ const Navigation: React.FC = () => {
     { href: '/', label: t('navigation.home') },
     { href: '/box3-uitleg', label: 'Box 3 uitgelegd' },
     { href: '/rechtbank', label: t('navigation.rechtbank') },
+    { href: '/over', label: 'Over' },
     { href: '/contact', label: t('navigation.contact') },
   ];
 

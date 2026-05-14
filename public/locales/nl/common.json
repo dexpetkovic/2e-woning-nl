@@ -1,6 +1,6 @@
 {
   "title": "Box 3 Belastingcalculator",
-  "subtitle": "Bereken eenvoudig uw Box 3 belasting voor uw tweede woning en andere investeringen",
+  "subtitle": "Reken in 90 seconden uit wat de Belastingdienst gaat berekenen — voor spaargeld, beleggingen, een tweede woning en schulden. Zonder formulieren, zonder e-mailadres, zonder advertenties verstopt tussen je cijfers.",
   "assets": {
     "title": "Uw bezittingen en schulden",
     "possessions": "Bezittingen",
@@ -264,6 +264,7 @@
   "navigation": {
     "home": "Home",
     "rechtbank": "Box 3 & Rechter",
+    "over": "Over",
     "contact": "Contact"
   },
   "faq": {
@@ -271,23 +272,43 @@
     "items": [
       {
         "q": "Telt mijn eigen woning mee voor Box 3?",
-        "a": "Nee. Je eigen woning en de bijbehorende hypotheekschuld vallen in Box 1, niet in Box 3. Alleen tweede woningen, vakantiehuisjes en verhuurde panden horen in Box 3 thuis."
+        "a": "Nee. Je eigen woning en de bijbehorende hypotheekschuld zitten in Box 1, niet in Box 3. Alleen tweede woningen, vakantiehuisjes en verhuurde panden horen in Box 3 thuis. In de calculator hier vink je dat aan onder 'eigen woning' — die woning wordt dan netjes uit de berekening gehaald."
       },
       {
         "q": "Hoe werkt het heffingvrij vermogen precies?",
-        "a": "Het heffingvrij vermogen (€57.000 per persoon in 2025) is een drempel. Zit je totale Box 3-vermogen na aftrek van schulden onder dit bedrag, dan betaal je niks. Met een fiscale partner is de grens samen €114.000 en jullie mogen het vermogen onderling verdelen op de gunstigste manier."
+        "a": "Het heffingvrij vermogen is een drempel: €57.000 per persoon in 2025, €114.000 voor fiscale partners samen. Zit je totale Box 3-vermogen na aftrek van schulden onder dat bedrag, dan betaal je niks. Erboven betaal je over het deel dat eroverheen gaat, en die berekening verdeelt zich vervolgens naar rato over je verschillende vermogenscategorieën. Die laatste stap is precies de stap die de meesten van ons even moeten herlezen — vandaar dat deze tool 'm voor je doet."
       },
       {
-        "q": "Hoe zit het met schulden?",
-        "a": "Schulden mag je aftrekken van je vermogen, maar niet volledig. Er is een drempel: de eerste €3.700 aan schulden (of €7.400 met partner) telt niet mee. Alles daarboven vermindert je belastbare grondslag. Let op: hypotheekschuld op je eigen woning hoort bij Box 1 en telt hier niet mee."
+        "q": "Hoe zit het met schulden in Box 3?",
+        "a": "Schulden mag je aftrekken, maar er is een drempel. De eerste €3.700 telt niet mee (€7.400 met fiscale partner). Alles daarboven wordt afgetrokken met een eigen fictief rendement van 2,61% in 2025. Belangrijk: hypotheekschuld op je eigen woning telt hier níet mee — die zit in Box 1. Hypotheekschuld op een tweede woning telt wél, en die ondersteunt de calculator hier."
       },
       {
         "q": "Zijn groene beleggingen anders behandeld?",
-        "a": "Ja. Groene beleggingen zijn tot €71.251 per persoon vrijgesteld van Box 3 (€142.502 met partner). Als je bewust in duurzame fondsen belegt, scheelt dat direct in je belastinggrondslag."
+        "a": "Ja. Groene beleggingen zijn tot €71.251 per persoon vrijgesteld (€142.502 met fiscale partner). Bovenop die vrijstelling is er een heffingskorting van 0,1% over het belegde bedrag. Het gaat specifiek om fondsen met het keurmerk 'groene belegging' van de Belastingdienst — niet elk fonds dat zichzelf duurzaam noemt, kwalificeert. Vraag bij je bank of broker expliciet na voordat je instapt."
       },
       {
-        "q": "Is deze berekening hetzelfde als mijn definitieve aanslag?",
-        "a": "Nee, dit is een indicatie. De Belastingdienst berekent je definitieve aanslag op basis van je ingediende aangifte en kan daarin afwijken. Gebruik dit als richtlijn, niet als bindende uitkomst."
+        "q": "Wat als ik mijn tweede woning in januari kocht?",
+        "a": "Voor Box 3 telt wat je hebt op 1 januari — dat is de peildatum. Kocht je een tweede woning op 5 januari, dan telt die voor dat hele belastingjaar niet mee. Pas vanaf 1 januari het jaar erna komt hij erbij. Andersom: verkocht je op 30 december, dan ben je hem voor dat jaar al uit je grondslag kwijt. Bedoeld om de administratie eenvoudig te houden — maar wel een reden om de timing van grote transacties bewust te kiezen."
+      },
+      {
+        "q": "Hoe wordt crypto behandeld in Box 3?",
+        "a": "Crypto valt in principe onder Box 3, als 'overige bezittingen'. Je geeft de waarde op 1 januari op (omgerekend naar euro's, naar de koers van die dag). Het fictief rendement is dat van beleggingen — 6,04% in 2025. Voor staking-yield en lending-rendement ligt het complexer; daar is jurisprudentie over die nog beweegt. Voor reguliere bezitters van crypto: aangeven onder overige bezittingen is de gangbare aanpak."
+      },
+      {
+        "q": "Wat als ik de WOZ-waarde niet vertrouw?",
+        "a": "Je kunt bezwaar maken tegen de WOZ — dat doe je bij je gemeente, niet bij de Belastingdienst. De termijn is zes weken na ontvangst van de WOZ-beschikking. Een onafhankelijke taxatie helpt vaak. Voor Box 3 wordt de officiële WOZ-waarde gebruikt; pas die aan via een gewonnen bezwaar, en de aanslag past zich daarna automatisch aan. Voor de tool hier: vul de huidige officiële WOZ in, niet wat je denkt dat 'm zou moeten zijn."
+      },
+      {
+        "q": "Werkt deze calculator ook voor verhuurde panden?",
+        "a": "Ja, met één kanttekening. Voor Box 3 telt het pand mee tegen de WOZ-waarde (niet de marktwaarde), met het fictief rendement van beleggingen — 6,04% in 2025. Voor verhuurde woningen geldt sinds 2017 ook nog een leegwaarderatio-correctie: een aftrek op de WOZ op basis van de huur die je vraagt. Die correctie zit op het moment van schrijven nog niet in deze calculator — staat op de lijst. Voor wie meerdere verhuurde panden heeft: een belastingadviseur kan de leegwaarderatio voor je optimaliseren."
+      },
+      {
+        "q": "Is dit hetzelfde als mijn definitieve aanslag?",
+        "a": "Nee. Dit is een schatting. De Belastingdienst doet de definitieve berekening op basis van je ingediende aangifte, en kan kleine afwijkingen hebben — afrondingsregels, of specifieke posten die hier niet zijn gemodelleerd. Gebruik dit als richtlijn en als cross-check, niet als bindende uitkomst. Wijkt de uiteindelijke aanslag sterk af? Dan is dat een goede reden om de oorzaak te zoeken — of mij een mail te sturen."
+      },
+      {
+        "q": "Wat verandert er in 2028?",
+        "a": "Per 1 januari 2028 vervangt een nieuw stelsel het overbruggingsstelsel. De basis wordt aanwasbelasting: jaarlijkse heffing over de werkelijke waardestijging van je vermogen — geen fictief rendement meer. Voor vastgoed en aandelen in startups komt een uitzondering: daarvoor geldt winstbelasting, die pas bij verkoop wordt afgerekend. Tot die tijd blijft het huidige overbruggingsstelsel van kracht. De calculator hier ondersteunt 2024, 2025 en 2026, plus een 2028-schatting onder verschillende rendementsaannames."
       }
     ]
   },

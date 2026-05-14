@@ -62,6 +62,9 @@ const Footer: React.FC = () => {
               Contact
             </h5>
             <div className="space-y-1.5 text-sm">
+              <Link href="/over" className="block no-underline text-appleGray-50/85 hover:text-accent-500 transition-colors">
+                Over de auteur
+              </Link>
               <Link href="/contact" className="block no-underline text-appleGray-50/85 hover:text-accent-500 transition-colors">
                 {t('contact.title')}
               </Link>

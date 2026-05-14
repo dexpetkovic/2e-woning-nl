@@ -1,49 +1,119 @@
 {
   "meta": {
-    "title": "Box 3 explained: what it is and how it works",
-    "description": "A clear explanation of Box 3 tax in the Netherlands: deemed return, tax-free allowance, the Christmas ruling and what changes in 2027. For anyone with savings, investments or a second property.",
-    "keywords": "box 3 explained, box 3 tax netherlands, deemed return box 3, tax-free capital 2025, box 3 how does it work"
+    "title": "Box 3 explained: what it is, how it works, and where it chafes",
+    "description": "An honest explainer of Dutch Box 3 wealth tax. Fictief rendement, heffingvrij vermogen, the Christmas ruling, and what changes in 2028. With a worked example.",
+    "keywords": "box 3 explained, dutch wealth tax, fictief rendement, heffingvrij vermogen 2025, kerstarrest hoge raad, aanwasbelasting 2028"
   },
   "badge": "Explainer",
   "hero": {
-    "title": "Box 3 explained",
-    "subtitle": "What it is, how it works, and why it has been in court for years."
+    "title": "Box 3, explained",
+    "subtitle": "What it is, how it works, and why it has been fought over in court for years. With a worked example that sticks."
+  },
+  "byline": {
+    "prefix": "Written by",
+    "author": "Dejan Petković",
+    "context": "AI engineer · builder of 2e-woning.nl",
+    "lastUpdated": "Last updated: 14 May 2026",
+    "linkLabel": "About the author"
+  },
+  "intro": {
+    "title": "Concretely: suppose your assets look like this",
+    "paragraphs": [
+      "Before I go anywhere near definitions, a worked example. Suppose it's May 2026, you're filing your 2025 return, and your assets on 1 January 2025 were as follows. €150,000 in a savings account at a major Dutch bank (not one of those promo-rate places at 4%). €60,000 in investments via DEGIRO or similar. One second home in Zeeland, WOZ value €280,000. And €200,000 of mortgage debt on that property. No fiscal partner, for simplicity.",
+      "What is the Belastingdienst going to say you 'earned' in 2025?",
+      "For savings, the 2025 fictief rendement is 1.44%. €150,000 × 1.44% = €2,160. For investments and real estate it's 6.04% — so €60,000 × 6.04% = €3,624 for the shares, and €280,000 × 6.04% = €16,912 for the Zeeland property. For debts it's 2.61%, but only above the €3,700 threshold: deductible amount is €196,300, and 2.61% of that is €5,123.",
+      "Sum: €2,160 + €3,624 + €16,912 − €5,123 = €17,573 in fictief rendement. From that you then subtract a pro-rata share of the heffingvrij vermogen (the tax-free allowance — that's the awkward step), and what's left is taxed at 36%. For this example you end up at roughly €5,000 in Box 3 tax. Whether you actually earned €17,573 is, for tax year 2025, irrelevant. That changes from 2028 onwards — more on that at the bottom of this page.",
+      "Keep this example in the back of your head as you read on. Things are easier to explain when you have a specific number to point at."
+    ]
   },
   "threeBoxes": {
     "title": "Three boxes, one system",
-    "p1": "In the Netherlands, income tax is divided into three boxes. Box 1 covers income from work and your primary home, which for most people is the largest part of their tax return. Box 2 applies to people with a substantial interest in a private company. And Box 3 covers all remaining assets: savings, investments, a second property, rental properties.",
-    "p2": "Most people only really encounter Box 3 once they build up assets above the tax-free threshold. Below that point, you won't notice it at all."
+    "paragraphs": [
+      "Dutch income tax is split into three boxes. Box 1 covers income from work and your primary residence — that's the largest part of most people's return: salary, mortgage interest deduction, that sort of thing.",
+      "Box 2 is for people with a substantial interest (5% or more) in a private company (BV). Lots of entrepreneurs and dga's live there; most employees don't.",
+      "And Box 3 covers everything else: savings, investments, second homes, rented-out properties, precious metals, in some cases crypto. What many people don't realise: only what's on your name on 1 January of the tax year counts. That's the peildatum. A bonus in March, a big expense in November — irrelevant for that year.",
+      "Most people only really run into Box 3 once they build up something above the heffingvrij vermogen: €57,000 per person in 2025, €114,000 jointly for fiscal partners. Below that, you barely notice it."
+    ]
   },
   "fictiveReturn": {
-    "title": "Deemed return: the core concept",
-    "p1": "What makes Box 3 unusual is that the Dutch tax authority does not look at what you actually earned. Instead they apply a <strong>deemed return</strong>: a percentage you are assumed to have made, regardless of what the markets did or how much interest your bank paid.",
-    "p2": "You then pay 36% tax on that deemed return. Not on your assets themselves, but on the fictitiously calculated return on them.",
-    "p3": "In practice: if you have €200,000 in investments, the tax authority assumes you earned 6.04%, which comes to €12,080. You pay 36% on that, totalling €4,348.80 in tax. Whether you actually made that return does not matter (for now)."
+    "title": "What 'fictief rendement' actually means",
+    "paragraphs": [
+      "The peculiar thing about Box 3 — and the source of all the legal trouble — is that the Belastingdienst doesn't look at what you actually earned. They start from a <strong>fictief rendement</strong>: a percentage you're presumed to have made, regardless of what the markets did or how much interest the bank paid you.",
+      "On that fictief rendement, you then pay 36% tax. Not on your wealth itself, but on the fictitiously-calculated return on it. That distinction often gets lost in news headlines, so for clarity: if you have €200,000 in investments, the Belastingdienst assumes you made 6.04% return — so €12,080 — and you pay 36% of that, which is €4,349. It's not 6.04% tax on your wealth. It's 36% of a fictitious return.",
+      "Why this approach? Simplicity. The Belastingdienst doesn't have to verify, per taxpayer per year, the actual capital gain on a share portfolio or the actual rental income on a property net of maintenance costs. One national assumption, done. Efficient for the treasury. For you as a taxpayer, results may vary."
+    ]
   },
   "rates": {
-    "title": "The 2025 rates",
-    "intro": "The deemed return is split per category:",
+    "title": "The 2025 rates (and what's coming in 2026)",
+    "intro": "Since 2023, the fictief rendement has been split by asset category. For 2025 the final percentages are:",
     "items": [
-      { "label": "Bank savings", "rate": "1.44%", "note": "low, due to low savings rates" },
-      { "label": "Investments & property", "rate": "6.04%", "note": "higher, assumed to carry more risk" },
+      { "label": "Bank deposits", "rate": "1.44%", "note": "low, reflecting historically low savings rates" },
+      { "label": "Investments & real estate", "rate": "6.04%", "note": "higher, presumed risk-bearing return" },
       { "label": "Debts", "rate": "2.61%", "note": "deductible above the threshold" }
     ],
-    "taxNote": "You pay <strong>36% tax</strong> on the total deemed return. There is also a tax-free allowance of <strong>€57,000 per person</strong> (€114,000 for fiscal partners). If you are below that, you pay nothing."
+    "taxNote": "On the total fictief rendement you pay <strong>36% tax</strong>. There is a tax-free allowance (heffingvrij vermogen) of <strong>€57,000 per person</strong> (€114,000 for fiscal partners). Below that, you owe nothing.",
+    "afterRates": [
+      "For 2026 the rates are currently provisional — the final numbers appear in January 2027. Expect broadly the same structure, with a small downward adjustment for savings to reflect the rate cuts in 2025.",
+      "An important nuance: the 6.04% for investments and real estate is an average based on a long-term expected return. In strong market years (2023, 2024) many investors will have done significantly better than that; in down years, much worse. Which is precisely why this system keeps getting challenged in court."
+    ]
+  },
+  "realWorldCases": {
+    "title": "Where the fictief really collides with reality",
+    "intro": "Three situations I've come across in mail exchanges with users of this tool. Not anecdotes from a newspaper — just people who emailed me because their assessment didn't feel right.",
+    "cases": [
+      {
+        "label": "The saver in 2021",
+        "body": "Someone with €400,000 in a Dutch savings account received maybe €120 of interest across all of 2021 (a few hundredths of a percent), and was taxed on a fictief rendement of roughly 4% over those same €400,000 — so around €16,000 fictitious. Tax: approximately €5,000. For €120 of actual interest. This is exactly the kind of mismatch that led to the Kerstarrest in December 2021."
+      },
+      {
+        "label": "The investor in 2022",
+        "body": "The AEX did about -13% in 2022. Someone with a €100,000 portfolio lost roughly €13,000 in value. The Belastingdienst said in that year: 'you made 6.17% return.' Tax: 32% on about €6,170 = €1,974. On a loss. For someone newly invested, that lands like a hand from a parallel universe reaching into your wallet."
+      },
+      {
+        "label": "The property owner in 2023",
+        "body": "WOZ value of a rented studio rose from €240,000 to €295,000. No rent increase possible because of the points system. A leaking roof gutter, however, cost €4,200 to repair. Under Box 3 none of those real costs counts — the fictief rendement applies to the WOZ value. Tax went up proportionally. The 'return' was taxed; the real loss got no deduction."
+      }
+    ],
+    "afterCases": "These uneven outcomes are exactly what led the Hoge Raad — in 2021 and several times since — to rule that the old system conflicted with the right to property under the ECHR."
+  },
+  "personalNote": {
+    "title": "A small detour",
+    "paragraphs": [
+      "When I first ran into this, I thought 'forfaitair' was French. It just means: an assumption the tax authority makes on your behalf. That word alone is a signal of how dusty this corner of Dutch tax law feels — 'forfait', 'rendementsgrondslag', 'overbruggingsstelsel'. Not exactly kitchen-table language.",
+      "What I've since been taught: 'forfait' does in fact come from French, hence — a fixed amount. Adopted into Dutch legal language over the centuries. And the entire Box 3 system leans on such a forfait, set by legislators rather than read off your actual bank statements. Strange-sounding. In a way it fits how many Dutch institutions work: prefer a general rule that lands fairly for 95% of cases, over precise tailored math that nobody understands."
+    ]
   },
   "courtCases": {
-    "title": "Why there have been so many court cases",
-    "p1": "The old Box 3 system (before 2023) used one fixed deemed return for everything, around 4% a few years ago. The problem: if your savings only earned 0.1% interest but you were taxed on a 4% deemed return, you were effectively paying more than you actually earned.",
-    "p2": "The Supreme Court ruled in December 2021 that this was incompatible with property rights under the ECHR and declared the system unconstitutional. This became known as the Christmas ruling.",
-    "p3": "Taxpayers who had filed a timely objection were entitled to remediation. Those who had not filed an objection were initially left out, and legal proceedings on that point are still ongoing."
+    "title": "The Christmas ruling, and everything that followed",
+    "paragraphs": [
+      "On 24 December 2021 — two days before Christmas, hence the name — the Hoge Raad ruled that the then-current Box 3 system conflicted with the right to property (Article 1 First Protocol ECHR) and with the prohibition on discrimination. The case concerned tax years 2017–2018, where the forfaitair rendement assumed an 'average investor' earning around 4% — while savings rates had been below 1% for years. For people with predominantly savings, the system worked out structurally unfairly.",
+      "ECLI:NL:HR:2021:1963 if you want to read the ruling itself. The Hoge Raad didn't only say the law was wrong; it also ordered 'rechtsherstel' — taxpayers who had filed an objection at the time were entitled to a recalculation based on their actual return.",
+      "The catch: only those who had filed in time. People who had paid the assessment without protest initially fell outside the scope. That triggered a whole second wave of cases — the 'niet-bezwaarmakers'. Lower courts ruled inconsistently; the Hoge Raad later held that the ruling does not automatically extend to non-objectors, but individual procedures remained possible. If you had substantial wealth in 2017–2022 and suspect you paid too much, it's worth a conversation with a tax advisor.",
+      "My own take, briefly: the Kerstarrest was a correction to a law that leaned too long on a single average percentage. The legislator had known for years it was tilted, but chose simplicity over precision. The court eventually presented the bill."
+    ]
   },
   "currentSystem": {
-    "title": "The current system and what comes next",
-    "p1": "Since 2023 a bridging scheme has applied. The tax authority now distinguishes between asset categories, hence the separate rates for savings, investments, and debts. It is still a deemed-return system, but fairer than before.",
-    "p2": "The government has chosen <strong>accrual taxation</strong> (aanwasbelasting) as the basis for the new system: you pay annually on the actual increase in value of your assets, not on a fictitious percentage. Exception: real estate and shares in startups will be taxed under a profit tax, payable at the moment of sale. The start date is <strong>1 January 2028</strong>.",
-    "p3": "Until then the bridging scheme remains in force. The takeaway: understand the system, calculate your tax, and make sure you are not paying more than necessary."
+    "title": "The bridging system today — and what's coming in 2028",
+    "paragraphs": [
+      "Since 2023 a temporary 'overbruggingswet' has been in force. Within it, the Belastingdienst differentiates by asset category: separate percentages for savings, investments, debts. Fairer than one average for everything, but still fictitious. Someone with €500,000 in a savings account paying 0.5% interest is still taxed as if they earned 1.44% — more than twice their actual yield.",
+      "The cabinet is preparing a new system that takes effect on <strong>1 January 2028</strong>. The chosen form: <strong>aanwasbelasting</strong> — accrual taxation. That means you pay tax annually on the actual increase in value of your wealth. Share worth €10,000 in January, €11,500 in December? Tax on €1,500. Bank balance €100,000 in January, €100,800 in December (interest)? Tax on €800. No more presumption.",
+      "Important exception: for <strong>real estate and shares in startups</strong>, instead of aanwasbelasting there will be <strong>profit tax</strong> — settled at the moment of sale. Reason: these assets are hard to value annually, and yearly taxation would mean paying tax on paper gains you can't yet realise. For rented properties and illiquid holdings, that exception is reasonable.",
+      "Honest caveat: the new system sounds simpler than it will turn out to be in practice. How do you establish the real annual value increase of a second home without yearly appraisals? (Answer: WOZ value — but that lags the market.) How does loss compensation work in down years? (Answer: there will be one, but the details aren't fully drafted yet at the time of writing.) Until 1 January 2028, the bridging system stays in force."
+    ]
+  },
+  "sources": {
+    "title": "Sources I use",
+    "intro": "For anyone who wants to double-check — not a wall of legislation, just the pages I keep returning to.",
+    "items": [
+      { "label": "Belastingdienst — Box 3", "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/" },
+      { "label": "Hoge Raad — Christmas ruling 24 December 2021 (ECLI:NL:HR:2021:1963)", "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963" },
+      { "label": "Rijksoverheid — new Box 3 system 2028", "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3" },
+      { "label": "Belastingdienst — Massaal bezwaar Box 3", "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3" }
+    ]
   },
   "cta": {
-    "calculator": "Calculate your Box 3 tax",
-    "tips": "How to reduce your Box 3 tax"
+    "calculator": "Run the numbers yourself",
+    "tips": "How to lower your Box 3 tax",
+    "rechtbank": "Box 3 & the courts"
   }
 }

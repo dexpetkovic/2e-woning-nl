@@ -1,65 +1,105 @@
 {
   "meta": {
-    "title": "How to reduce your Box 3 tax: 5 tips that actually work",
-    "description": "Five legal ways to pay less Box 3 tax in 2025. Fiscal partnership, green investments, reference-date optimisation and more.",
-    "keywords": "reduce box 3 tax, box 3 tips, pay less box 3, green investment exemption, fiscal partner box 3, box 3 optimise"
+    "title": "Lower your Box 3 tax: what I actually do, and what I don't",
+    "description": "Six ways to lower your Dutch Box 3 tax — honestly ranked. With, per tip, what doesn't work. Fiscal partner allocation, peildatum, green investments, and more.",
+    "keywords": "reduce box 3 tax, box 3 tips, lower dutch wealth tax, fiscal partner box 3, green investments allowance, peildatum 1 january box 3"
   },
   "badge": "Practical tips",
   "hero": {
-    "title": "How to reduce your Box 3 tax",
-    "subtitle": "There is no magic trick. But there are choices you can make, and they do make a difference."
+    "title": "How to lower your Box 3 tax",
+    "subtitle": "There's no magic trick. There are a handful of choices that really do make a difference — and a handful of common 'tips' that don't."
+  },
+  "byline": {
+    "prefix": "Written by",
+    "author": "Dejan Petković",
+    "context": "Builder of 2e-woning.nl · not your tax advisor",
+    "lastUpdated": "Last updated: 14 May 2026",
+    "linkLabel": "About the author"
+  },
+  "intro": {
+    "title": "What I actually do, and what I don't",
+    "paragraphs": [
+      "Start with a few uncomfortable truths. If your wealth exceeds the heffingvrij vermogen, you are going to owe Box 3 tax — full stop. What follows helps you reduce it; it doesn't make it vanish. Anyone selling you a 'trick' that erases all Box 3 is selling you something other than a trick.",
+      "Second point: I'm not a tax advisor. I'm someone who built a calculation model, who regularly compares it to the Belastingdienst's own rekenhulp, and reads a fair amount of irritated email in between. What follows is what I see come back as actually useful in those exchanges. For your specific situation it remains worthwhile to involve a professional — particularly when the amounts at stake make an hour of advice pay for itself."
+    ]
   },
   "tips": [
     {
       "number": "01",
-      "title": "Make the most of your fiscal partnership",
+      "title": "Split assets with your partner — but not on autopilot",
       "body": [
-        "If you have a fiscal partner, you may divide your Box 3 assets between you in whichever way is most tax-efficient. In practice that means: you can shift assets from the partner with the higher taxable income to the other.",
-        "On top of that, the tax-free allowance applies per person. Together you are entitled to €114,000 in exemption rather than €57,000. On an average-sized portfolio that quickly saves hundreds of euros a year.",
-        "The split does not have to be fifty-fifty. You are free to optimise, but do it through your tax return, not after the fact."
-      ]
+        "If you have a fiscal partner, you can divide Box 3 assets between you in whichever way is fiscally most favourable. You don't have to split 50/50. In most cases you move assets toward whichever partner has the lowest taxable income — or, more commonly relevant in practice, you make sure both partners' tax-free allowances are fully used.",
+        "The heffingvrij vermogen counts per person. Jointly you have €114,000 of exemption instead of €57,000. For most people who hit Box 3 at all, that already saves a few hundred euros a year — sometimes more.",
+        "Important: the split has to be declared in the return itself, not retrofitted afterwards. And the optimal split depends on your other income sources (Box 1, Box 2). A tool like this lets you simulate it; if you're hesitating between two versions with a noticeable difference, spending five minutes running both through the Belastingdienst rekenhulp before submitting is well spent."
+      ],
+      "antiTip": "What you don't need to do: move money 'to your partner's name' via transfers around 1 January. For Box 3 it's the legal ownership that counts, not which account the money is parked in — and inter-partner gifts bring their own fiscal complications."
     },
     {
       "number": "02",
-      "title": "Pay off debts before 1 January",
+      "title": "Be smart about the peildatum, not panicky",
       "body": [
-        "Box 3 is calculated on the reference date of 1 January. Your net asset position on that day determines your assessment for the whole year.",
-        "If you can make a significant repayment before year-end and thereby lower your Box 3 base, it can sometimes be worth doing. Note: debts are only deductible above a threshold of €3,700 (or €7,400 with a partner). Paying off small debts therefore has no tax effect.",
-        "This is a timing consideration, not a workaround. It reduces your actual assets, but it also reduces your tax bill."
-      ]
+        "Box 3 is calculated on what you own at 1 January of the tax year. What you buy in March or spend in November doesn't count for that year. That's not secret, but it's worth keeping in mind for large outflows and debt payments.",
+        "An example that keeps showing up in my inbox: someone wants to pay a €40,000 renovation from the savings account in late December. If that can wait a few weeks, €40,000 moves into the next tax year rather than out of the current one. For someone comfortably above the heffingvrij vermogen, that's roughly €207 saved in 2025 (1.44% × €40,000 × 36%). Not life-changing, but if the expense is already planned, it's free money.",
+        "Same logic for debts above the threshold. Paying them down before 1 January reduces your wealth and your deductible debt. Whether that's net favourable depends on your full situation — sometimes yes, sometimes no."
+      ],
+      "antiTip": "What you shouldn't do: 'park' assets in a foreign account on 31 December and bring them back on 2 January. Foreign assets count too. The peildatum is a statutory measurement point, not an administrative loophole."
     },
     {
       "number": "03",
-      "title": "Invest (partly) in green funds",
+      "title": "Green investments — only if they suit you anyway",
       "body": [
-        "Green investments are exempt from Box 3 up to €71,251 per person (up to €142,502 with a partner). If you are planning to invest anyway and have a choice, it is worth checking whether sustainable alternatives work for you.",
-        "This applies to investments in funds carrying the Dutch tax authority's quality mark. Not every fund that calls itself \"green\" qualifies. Check with your bank or broker.",
-        "The exemption directly reduces your tax base, meaning you pay tax on a smaller portion of your assets."
-      ]
+        "Green investments are exempt from Box 3 up to €71,251 per person (€142,502 with a fiscal partner). On top of that exemption there is also a 0.1% tax credit on the invested amount. Sounds attractive, and for the right person it is.",
+        "These are specifically funds that carry the Belastingdienst's 'groene belegging' designation. Not every fund that calls itself sustainable qualifies. Ask your bank or broker explicitly — or look up the official fund list on belastingdienst.nl before depositing.",
+        "More important than the exemption itself: these funds have their own risk and return profile, often with slightly lower nominal returns than a broad global index fund. For someone who wants to invest sustainably anyway it's a fine trade-off; for someone entering purely for the exemption, the math is less obvious."
+      ],
+      "antiTip": "What you shouldn't do: dump €71,000 into a green fund on 28 December 'for the exemption'. The exemption is measured at peildatum, so administratively it works — but entry costs, spreads, and price movement between entry and exit usually make it a losing trade."
     },
     {
       "number": "04",
-      "title": "Check your tax return carefully",
+      "title": "Read your pre-filled return with suspicion",
       "body": [
-        "This sounds obvious, but errors are common. The tax authority pre-fills part of the return based on bank balances and property valuations, but that information is not always correct.",
-        "At minimum check: are all debts above the threshold included? Is the WOZ value of your second property correct? Are your green investments declared as such?",
-        "Use this calculator to have a reference point before filing your return. If the outcome differs significantly from what the tax authority calculates, that is a reason to investigate further."
-      ]
+        "The Belastingdienst pre-fills a large share of your return based on data fed in by banks and valuation services. Very convenient. Not always correct.",
+        "What goes wrong regularly: a foreign broker submits incomplete reporting; a WOZ value isn't yet updated for 2025; a debt is reported but classified incorrectly; a green fund shows up as a regular investment. In each of those cases you end up paying slightly more than necessary — sometimes a few euros, sometimes a few hundred.",
+        "What I'd suggest: compare the pre-filled outcome against your own estimate (from this tool, or your own spreadsheet). If it deviates by more than a few percent, something's off. Check every number against your own bank statements and valuation letters before submitting."
+      ],
+      "antiTip": "What you shouldn't do: hit 'agree' blindly because it looks complicated. That's exactly where the system leans on your trust — and that's not advice, it's statistics. Spending two hours on this once a year surprisingly often returns something."
     },
     {
       "number": "05",
-      "title": "Follow the legal developments",
+      "title": "Watch the case law — if you had that kind of wealth",
       "body": [
-        "Legal proceedings about Box 3 are still ongoing. People who overpaid in earlier years under the old system may in some cases be entitled to remediation or a refund.",
-        "Whether you are entitled to anything depends on whether you filed a timely objection and which year is involved. The Supreme Court and lower courts continue to hand down rulings, sometimes with consequences for your situation.",
-        "It is worth looking into, especially if you had substantial assets in the years 2017 to 2022. Consult a tax advisor if you think you may be entitled to remediation."
-      ]
+        "There are still Box 3 procedures running, especially for the 2017–2022 years under the old system. Anyone who filed a timely objection at the time falls under the 'rechtsherstel' from the Kerstarrest (ECLI:NL:HR:2021:1963). Anyone who didn't object formally falls outside, but individual procedures are still being won.",
+        "My practical check: did you in any of those years have substantial wealth above the heffingvrij vermogen, predominantly in savings or in a mix where your actual return was clearly lower than the applicable forfait? Then it's worth having it looked at by someone specialised. Not me, not a generic calculator.",
+        "Honestly: the years that were really skewed were 2018–2022. Those who delayed their filings, or only built up significant wealth later, often fall outside this category entirely. But checking costs little and the upside can be hundreds to thousands of euros."
+      ],
+      "antiTip": "What you shouldn't do: start a procedure on your own. The procedural requirements are precise enough that DIY objections frequently founder on a formal ground. This is where specialised help is genuinely worth it."
+    },
+    {
+      "number": "06",
+      "title": "File your return together, at the kitchen table",
+      "body": [
+        "This is more practical than fiscal, but it saves money every year in the circles around me. People who file the return with a fiscal partner — literally together, both laptops open — often land on different numbers than people who submit individually.",
+        "Reason: there are choices to make about the Box 3 split, hypotheekrenteaftrek, and (if there are children) potential toeslagen. Those choices interact. One partner can optimise everything individually and still land on a sub-optimal outcome because the other side of the optimisation only becomes visible when you look together.",
+        "Concretely: block off two hours in March or April. Open both returns, walk through the Box 3 split, look at the preliminary calculation, redistribute two or three times if you have to. Annoying? A little. But it's the kind of annoying that returns a cup of coffee and somewhere between €50 and €500 in lower tax."
+      ],
+      "antiTip": "What you shouldn't do: assume the lower-income partner 'always' takes the most wealth. That's often correct, but not always — particularly when there's already a wide gap in Box 1 income."
     }
   ],
-  "disclaimerBold": "To be honest:",
-  "disclaimerText": " if you have assets above the tax-free threshold, you cannot escape Box 3 tax entirely. The tips above help you limit it, but they do not eliminate it. For more complex situations (large property portfolios, multiple investment accounts, ongoing objection procedures) a tax advisor is worth the cost.",
+  "whatAdvisorDoes": {
+    "title": "What a tax advisor can do that I can't",
+    "paragraphs": [
+      "An honest boundary, because I get this question often. What a good tax advisor can offer you, that a tool like this cannot:",
+      "Unpicking situations where multiple tax jurisdictions stack — for example wealth in Germany, an account in Switzerland, a second home in Spain. The interaction between tax treaties is fine-grained and changes year to year. My calculator tries to handle the most common cases cleanly; for genuinely complex constellations a human is indispensable.",
+      "Judging whether a Box 3 restoration procedure for 2017–2022 stands a chance in your specific case. That depends on the annual figures, the type of wealth, whether an objection was filed, and (increasingly) recent court rulings shifting the margins.",
+      "Separating Box 2 and Box 3 wealth when you have your own BV with a rekening-courant relationship. That's a different kind of work from what's covered here.",
+      "For regular situations — savings, a few investments, possibly a second home or a mortgage — a tool like this is usually enough for a solid estimate. For non-standard situations: find someone."
+    ]
+  },
+  "disclaimerBold": "Let's be honest:",
+  "disclaimerText": " once your wealth exceeds the heffingvrij vermogen, you don't escape Box 3 tax. The tips above help you reduce it — not eliminate it. And for genuinely complex situations (large real estate holdings, multiple foreign-jurisdiction investment accounts, ongoing objection procedures) a tax advisor is worth it. I am not one.",
   "cta": {
-    "calculator": "Calculate your Box 3 tax",
-    "uitleg": "Box 3 explained"
+    "calculator": "Run your numbers",
+    "uitleg": "Box 3 explained",
+    "rechtbank": "Box 3 & the courts"
   }
 }

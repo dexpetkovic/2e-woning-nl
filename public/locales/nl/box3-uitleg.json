@@ -1,49 +1,119 @@
 {
   "meta": {
-    "title": "Box 3 uitgelegd: wat het is en hoe het werkt",
-    "description": "Duidelijke uitleg van Box 3 belasting: fictief rendement, heffingvrij vermogen, het Kerstarrest en wat er verandert in 2027. Voor iedereen met spaargeld, beleggingen of een tweede woning.",
-    "keywords": "box 3 uitleg, box 3 belasting uitgelegd, fictief rendement box 3, heffingvrij vermogen 2025, box 3 hoe werkt het"
+    "title": "Box 3 uitgelegd: wat het is, hoe het werkt, en waar het schuurt",
+    "description": "Een eerlijke uitleg van Box 3 belasting in Nederland. Wat is fictief rendement, hoe werkt het heffingvrij vermogen, wat zegt het Kerstarrest, en wat verandert er in 2028? Met rekenvoorbeeld.",
+    "keywords": "box 3 uitleg, box 3 belasting uitgelegd, fictief rendement box 3, heffingvrij vermogen 2025, box 3 hoe werkt het, aanwasbelasting 2028, kerstarrest hoge raad"
   },
   "badge": "Uitleg",
   "hero": {
     "title": "Box 3 uitgelegd",
-    "subtitle": "Wat het is, hoe het werkt, en waarom er al jaren over wordt geprocedeerd."
+    "subtitle": "Wat het is, hoe het werkt, en waarom er al jaren over wordt geprocedeerd. Met een rekenvoorbeeld dat blijft hangen."
+  },
+  "byline": {
+    "prefix": "Geschreven door",
+    "author": "Dejan Petković",
+    "context": "AI engineer · bouwer van 2e-woning.nl",
+    "lastUpdated": "Laatst bijgewerkt: 14 mei 2026",
+    "linkLabel": "Over de auteur"
+  },
+  "intro": {
+    "title": "Even concreet: stel, je vermogen ziet er zo uit",
+    "paragraphs": [
+      "Voordat ik aan definities begin, eerst een rekenvoorbeeld. Stel, het is mei 2026, je doet je aangifte over 2025, en je vermogen op 1 januari 2025 zag er zo uit. €150.000 op de spaarrekening (gewoon bij een grootbank, niet ergens met een actiepercentage van 4%). €60.000 aan beleggingen via DEGIRO of een vergelijkbare broker. Eén tweede woning in Zeeland, WOZ-waarde €280.000. En €200.000 hypotheekschuld op die woning. Geen fiscaal partner, voor de eenvoud.",
+      "Wat zegt de Belastingdienst dan dat je 'verdient' in 2025?",
+      "Voor spaargeld geldt in 2025 een fictief rendement van 1,44%. €150.000 × 1,44% = €2.160. Voor beleggingen en vastgoed geldt 6,04% — dus €60.000 × 6,04% = €3.624 voor de aandelen, en €280.000 × 6,04% = €16.912 voor de Zeeuwse woning. Bij schulden geldt 2,61%, maar pas boven de drempel van €3.700: aftrekbaar is dus €196.300, en daarover 2,61% = €5.123.",
+      "Optellen levert €2.160 + €3.624 + €16.912 − €5.123 = €17.573 fictief rendement. Daar trek je vervolgens het heffingvrij vermogen vanaf (naar rato, dat is de rare stap), en over wat overblijft betaal je 36% belasting. Voor dit voorbeeld kom je grofweg op €5.000 Box 3-belasting uit. Of je dat rendement van €17.573 ook werkelijk hebt behaald, doet er voor 2025 nog steeds niet toe. Dat verandert vanaf 2028. Daar kom ik onderaan deze pagina op terug.",
+      "Hou dit voorbeeld in je achterhoofd terwijl je verder leest — het is makkelijker uit te leggen waarom dingen zijn zoals ze zijn als je een concreet getal bij de hand hebt."
+    ]
   },
   "threeBoxes": {
     "title": "Drie boxen, één systeem",
-    "p1": "In Nederland betaal je inkomstenbelasting verdeeld over drie boxen. Box 1 gaat over inkomen uit werk en je eigen woning, wat voor de meeste mensen het grootste deel van de aangifte is. Box 2 is voor mensen met een aanmerkelijk belang in een BV. En Box 3 is voor al het overige vermogen: spaargeld, beleggingen, een tweede woning, verhuurde panden.",
-    "p2": "De meeste mensen komen pas echt met Box 3 in aanraking als ze iets opbouwen dat boven het heffingvrij vermogen uitkomt. Tot dat punt merk je er weinig van."
+    "paragraphs": [
+      "In Nederland is de inkomstenbelasting opgedeeld in drie boxen. Box 1 gaat over inkomen uit werk en je eigen woning. Voor de meeste mensen is dat het grootste deel van de aangifte — salaris, hypotheekrenteaftrek, dat soort dingen.",
+      "Box 2 is voor mensen met een aanmerkelijk belang in een BV (5% of meer van de aandelen). Heel veel ondernemers en dga's zitten daarin; de meeste werknemers niet.",
+      "En Box 3 is voor al het overige vermogen. Spaargeld, beleggingen, een tweede woning, verhuurde panden, edelmetalen, in sommige gevallen crypto. Wat veel mensen niet beseffen: het gaat alleen om wat er op 1 januari van het belastingjaar op je naam staat. Dat is de peildatum. Wat er daarna gebeurt — een bonus in maart, een grote uitgave in november — telt voor dat jaar niet mee.",
+      "De meeste mensen komen pas echt met Box 3 in aanraking als ze iets opbouwen dat boven het heffingvrij vermogen uitkomt: €57.000 per persoon in 2025, €114.000 voor fiscale partners samen. Zit je eronder, dan merk je er weinig van."
+    ]
   },
   "fictiveReturn": {
-    "title": "Fictief rendement: het kernidee",
-    "p1": "Het bijzondere aan Box 3 is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong>fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat de markten hebben gedaan of hoeveel rente je bank heeft uitgekeerd.",
-    "p2": "Over dat fictieve rendement betaal je vervolgens 36% belasting. Niet over je vermogen zelf, maar over het fictief berekende rendement daarop.",
-    "p3": "In de praktijk betekent dit: heb je €200.000 aan beleggingen, dan gaat de Belastingdienst ervan uit dat je 6,04% rendement hebt behaald, dus €12.080. Daarover betaal je 36%, wat neerkomt op €4.348,80 aan belasting. Of je dat rendement ook echt hebt behaald, maakt (voor nu) niet uit."
+    "title": "Wat 'fictief rendement' eigenlijk inhoudt",
+    "paragraphs": [
+      "Het bijzondere aan Box 3 — en de bron van alle juridische ellende — is dat de Belastingdienst niet kijkt naar wat je daadwerkelijk hebt verdiend. Ze gaan uit van een <strong>fictief rendement</strong>: een percentage dat je geacht wordt te behalen, ongeacht wat de markten hebben gedaan of hoeveel rente je bank heeft uitgekeerd.",
+      "Over dat fictieve rendement betaal je vervolgens 36% belasting. Niet over je vermogen zelf, maar over het fictief berekende rendement daarop. Dat onderscheid wordt vaak gemist in krantenkoppen, dus voor de duidelijkheid: heb je €200.000 aan beleggingen, dan gaat de Belastingdienst ervan uit dat je 6,04% rendement hebt behaald — dus €12.080 — en daarover betaal je 36%, wat neerkomt op €4.349. Het is niet 6,04% van je vermogen aan belasting. Het is 36% van een fictief rendement.",
+      "Wat is daarvoor de motivering? Vereenvoudiging. De Belastingdienst hoeft niet jaarlijks per belastingplichtige uit te zoeken wat de feitelijke koerswinst is op een aandelenportefeuille, of de werkelijke huurinkomsten van een tweede woning na onderhoudskosten. Eén landelijke aanname, klaar. Voor de schatkist is dat efficient. Voor jou als belastingplichtige is dat… afhankelijk van je situatie."
+    ]
   },
   "rates": {
-    "title": "De tarieven voor 2025",
-    "intro": "Het fictieve rendement is opgesplitst per categorie:",
+    "title": "De tarieven voor 2025 (en wat eraan komt in 2026)",
+    "intro": "Sinds 2023 is het fictieve rendement opgesplitst per vermogenscategorie. Voor 2025 zijn de definitieve percentages:",
     "items": [
-      { "label": "Banktegoeden", "rate": "1,44%", "note": "laag, vanwege lage spaarrente" },
-      { "label": "Beleggingen & vastgoed", "rate": "6,04%", "note": "hoger, geacht meer risico" },
+      { "label": "Banktegoeden", "rate": "1,44%", "note": "laag, vanwege historisch lage spaarrentes" },
+      { "label": "Beleggingen & vastgoed", "rate": "6,04%", "note": "hoger, geacht risico-rendement" },
       { "label": "Schulden", "rate": "2,61%", "note": "aftrekbaar boven de drempel" }
     ],
-    "taxNote": "Over het totale fictieve rendement betaal je <strong>36% belasting</strong>. Er is ook een heffingvrij vermogen van <strong>€57.000 per persoon</strong> (€114.000 voor fiscale partners). Zit je eronder, dan betaal je niks."
+    "taxNote": "Over het totale fictieve rendement betaal je <strong>36% belasting</strong>. Er is een heffingvrij vermogen van <strong>€57.000 per persoon</strong> (€114.000 voor fiscale partners). Zit je eronder, dan betaal je niks.",
+    "afterRates": [
+      "Voor 2026 zijn de tarieven op dit moment voorlopig — de definitieve cijfers verschijnen in januari 2027. Verwacht op hoofdlijnen ongeveer dezelfde structuur, met een lichte aanpassing voor de spaarrente die in 2025 weer is gedaald.",
+      "Een belangrijke nuance: het percentage voor beleggingen en vastgoed van 6,04% is een gemiddelde dat is gebaseerd op een langetermijnverwachting. In jaren met sterke beurzen (2023, 2024) zal de werkelijke rendement bij veel beleggers hoger zijn; in jaren met dalende markten lager. Dat is precies de reden waarom dit systeem juridisch onder druk staat."
+    ]
+  },
+  "realWorldCases": {
+    "title": "Waar het fictief écht botst met de werkelijkheid",
+    "intro": "Drie situaties die ik in mailwisselingen met gebruikers van deze tool ben tegengekomen. Geen anekdotes uit de krant — gewoon mensen die mij mailden omdat de aanslag niet voelde alsof die klopte.",
+    "cases": [
+      {
+        "label": "De spaarder in 2021",
+        "body": "Iemand had €400.000 op een Nederlandse spaarrekening staan, kreeg over heel 2021 ongeveer €120 aan rente uitgekeerd (een paar honderdsten van een procent), en werd belast over een fictief rendement van ongeveer 4% over diezelfde €400.000 — dus circa €16.000 fictief. Belasting daarover: ongeveer €5.000. Voor €120 rente. Dit is precies het soort situatie dat in december 2021 leidde tot het Kerstarrest van de Hoge Raad."
+      },
+      {
+        "label": "De belegger in 2022",
+        "body": "De AEX deed in 2022 ongeveer -13%. Iemand met een portefeuille van €100.000 verloor dus grofweg €13.000 aan waarde. De Belastingdienst zei in dat jaar: 'jij hebt 6,17% rendement gemaakt'. Belasting: 32% over circa €6.170 = €1.974. Op verlies. Voor wie net begint met beleggen voelt dat als een hand uit een ander universum die ineens je portemonnee in gaat."
+      },
+      {
+        "label": "De vastgoed-eigenaar in 2023",
+        "body": "WOZ-waarde van een verhuurde studio gestegen van €240.000 naar €295.000. Geen huurverhoging mogelijk vanwege puntenstelsel, wel een lekkende dakgoot die €4.200 kostte aan reparatie. Onder Box 3 telt geen van die werkelijke kosten mee — het fictief rendement geldt over de WOZ-waarde. Belasting steeg evenredig. Het 'rendement' werd belast, het werkelijke verlies kreeg geen aftrek."
+      }
+    ],
+    "afterCases": "Het zijn die scheve uitkomsten die de Hoge Raad in 2021 — en sindsdien meerdere keren — hebben doen oordelen dat het oude systeem in strijd was met het eigendomsrecht uit het EVRM."
+  },
+  "personalNote": {
+    "title": "Een kleine zijstap",
+    "paragraphs": [
+      "Toen ik dit voor het eerst tegenkwam, dacht ik dat 'forfaitair' Frans was. Het is gewoon: een aanname die de fiscus voor jou doet. Dat woord op zich is al een teken van hoe verstoffigd dit deel van de belastingwet aanvoelt — woorden als 'forfait', 'rendementsgrondslag', 'overbruggingsstelsel'. Niet bepaald de taal van een gemiddelde keukentafelgesprek.",
+      "Wat ik me sindsdien heb laten leren: 'forfait' komt uit het Frans, vandaar — een vast bedrag. Door de eeuwen heen overgenomen in juridisch Nederlands. En het hele Box 3-systeem leunt op zo'n forfait, dat door wetgevers wordt vastgesteld in plaats van door jouw werkelijke bankafschriften. Dat klinkt vreemd. Op een rare manier klopt het wel met hoe veel Nederlandse instituties werken: liever een algemene regel die voor 95% van de gevallen redelijk uitpakt, dan een precieze maatwerkberekening die niemand begrijpt."
+    ]
   },
   "courtCases": {
-    "title": "Waarom er zoveel over wordt geprocedeerd",
-    "p1": "Het oude Box 3-systeem (vóór 2023) gebruikte één vast fictief rendement voor alles, een paar jaar geleden nog zo'n 4%. Het probleem: als je spaargeld maar 0,1% rente opleverde maar toch werd belast over 4% fictief rendement, betaalde je effectief meer dan je werkelijk had verdiend.",
-    "p2": "De Hoge Raad vond dit in december 2021 in strijd met het eigendomsrecht (EVRM) en verklaarde het systeem ongrondwettelijk. Dat is inmiddels bekend als het Kerstarrest.",
-    "p3": "Belastingplichtigen die op tijd bezwaar hadden gemaakt, hadden recht op herstel. Wie geen bezwaar had gemaakt viel aanvankelijk buiten de boot, en ook daarover zijn nog steeds procedures gaande."
+    "title": "Het Kerstarrest, en alles wat daarna kwam",
+    "paragraphs": [
+      "Op 24 december 2021 — twee dagen voor kerst, vandaar de naam — oordeelde de Hoge Raad dat het toenmalige Box 3-stelsel in strijd was met het eigendomsrecht (artikel 1 Eerste Protocol EVRM) en met het discriminatieverbod. De zaak ging om belastingjaar 2017–2018, waarin het forfaitaire rendement uitging van een 'gemiddelde belegger' die ongeveer 4% rendement zou behalen — terwijl de rente op spaarrekeningen toen al jaren onder een procent zat. Voor mensen met voornamelijk spaargeld pakte dat structureel oneerlijk uit.",
+      "ECLI:NL:HR:2021:1963 voor wie het arrest zelf wil lezen. De Hoge Raad gaf niet alleen aan dat de wet niet klopte, maar bood ook 'rechtsherstel': belastingplichtigen die destijds bezwaar hadden gemaakt, hadden recht op herberekening over hun werkelijke rendement.",
+      "De crux: alleen wie op tijd bezwaar had gemaakt. Wie de aanslag had betaald zonder protest, viel aanvankelijk buiten de boot. Daar zijn vervolgens weer procedures over gevoerd (de zogenaamde 'niet-bezwaarmakers'). Lagere rechters oordeelden verschillend; de Hoge Raad oordeelde dat de uitspraak niet automatisch doorwerkt naar niet-bezwaarmakers, maar individuele procedures bleven mogelijk. Wie in de jaren 2017–2022 een aanzienlijk vermogen had en denkt te veel te hebben betaald: het is de moeite waard om dat met een belastingadviseur te bespreken.",
+      "Wat ik er zelf van vind, kort: het Kerstarrest was een correctie op een wet die te lang op één gemiddeld percentage leunde. De wetgever wist al jaren dat het scheef stond, maar koos voor eenvoud boven precisie. De rechter heeft uiteindelijk de prijs daarvan opgelegd."
+    ]
   },
   "currentSystem": {
-    "title": "Het huidige systeem en wat er komt",
-    "p1": "Sinds 2023 geldt een overbruggingsstelsel. Daarin maakt de Belastingdienst onderscheid per vermogenscategorie, vandaar de aparte percentages voor spaargeld, beleggingen en schulden. Het is nog steeds een fictief systeem, maar eerlijker dan daarvoor.",
-    "p2": "Het kabinet heeft gekozen voor <strong>aanwasbelasting</strong> als basis van het nieuwe stelsel: je betaalt jaarlijks over de werkelijke waardestijging van je vermogen, niet over een fictief percentage. Uitzondering: voor vastgoed en aandelen in startups geldt winstbelasting, die pas bij verkoop wordt afgerekend. De ingangsdatum is <strong>1 januari 2028</strong>.",
-    "p3": "Tot die tijd blijft het huidige overbruggingsstelsel van kracht. En geldt: begrijp je systeem, bereken je belasting, en zorg dat je niet onnodig te veel betaalt."
+    "title": "Het huidige overbruggingsstelsel — en wat er komt in 2028",
+    "paragraphs": [
+      "Sinds 2023 geldt een tijdelijke 'overbruggingswet'. Daarin maakt de Belastingdienst onderscheid per vermogenscategorie: andere percentages voor spaargeld, voor beleggingen, voor schulden. Eerlijker dan één gemiddeld percentage voor alles, maar nog steeds fictief. Iemand met €500.000 op een spaarrekening die 0,5% rente oplevert, wordt nog steeds belast op basis van 1,44% — meer dan twee keer wat hij of zij werkelijk ontvangt.",
+      "Het kabinet werkt aan een nieuw stelsel dat op <strong>1 januari 2028</strong> in werking treedt. De gekozen vorm: <strong>aanwasbelasting</strong>. Dat betekent dat je jaarlijks belasting betaalt over de werkelijke waardestijging van je vermogen. Aandeel in januari €10.000 waard, in december €11.500? Belasting over €1.500. Bank in januari €100.000, in december €100.800 (rente)? Belasting over €800. Geen aanname meer.",
+      "Belangrijke uitzondering: voor <strong>vastgoed en aandelen in startups</strong> geldt geen aanwasbelasting maar <strong>winstbelasting</strong>. Die wordt pas afgerekend bij verkoop. Reden: deze assets zijn moeilijk jaarlijks te waarderen, en jaarlijkse heffing zou betekenen dat je belasting moet betalen over papieren winst die je nog niet hebt kunnen verzilveren. Voor verhuurde panden en illiquide beleggingen is dat een redelijke uitzondering.",
+      "Eerlijke kanttekening: het nieuwe stelsel klinkt simpeler dan het in de praktijk wordt. Hoe ga je de werkelijke waardestijging van een tweede woning vaststellen zonder elk jaar een taxatie? (Antwoord: WOZ-waarde — maar die volgt de markt met vertraging.) Hoe ga je verlies aftrekken in slechte beleggingsjaren? (Antwoord: er komt een vorm van verliescompensatie, maar de details zijn op het moment van schrijven nog niet uitgewerkt.) Tot 1 januari 2028 blijft het overbruggingsstelsel gewoon van kracht."
+    ]
+  },
+  "sources": {
+    "title": "Bronnen die ik gebruik",
+    "intro": "Voor wie het zelf wil controleren — geen muur van wetsteksten, alleen de pagina's waar ik het meest naar terugkeer.",
+    "items": [
+      { "label": "Belastingdienst — Box 3", "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/" },
+      { "label": "Hoge Raad — Kerstarrest 24 december 2021 (ECLI:NL:HR:2021:1963)", "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963" },
+      { "label": "Rijksoverheid — nieuw Box 3-stelsel 2028", "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3" },
+      { "label": "Belastingdienst — Massaal bezwaar Box 3", "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3" }
+    ]
   },
   "cta": {
-    "calculator": "Bereken uw Box 3 belasting",
-    "tips": "Zo verlaag je je Box 3 belasting"
+    "calculator": "Reken het zelf uit",
+    "tips": "Zo verlaag je je Box 3 belasting",
+    "rechtbank": "Box 3 & de Rechter"
   }
 }

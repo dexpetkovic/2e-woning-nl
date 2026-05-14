@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "title": "About this site — who built it, and why",
+    "description": "Who I am and why 2e-woning.nl exists. Dejan Petković — AI engineer, Serbian-Dutch, founder of Elands AI. Honest about what the tool can and can't do.",
+    "keywords": "about 2e-woning.nl, box 3 calculator author, dejan petkovic, elands ai, honest box 3 tool"
+  },
+  "badge": "About",
+  "hero": {
+    "title": "Who I am, and why this exists.",
+    "subtitle": "A site that touches your tax return deserves a face. Here's mine."
+  },
+  "byline": {
+    "name": "Dejan Petković",
+    "role": "AI engineer · founder of Elands AI · builder of 2e-woning.nl",
+    "location": "Writing from the Netherlands",
+    "personalSite": "dejan.petkovic.nl",
+    "lastUpdated": "Last updated: 14 May 2026"
+  },
+  "intro": {
+    "title": "Briefly: I'm Dejan.",
+    "paragraphs": [
+      "I'm originally from Serbia, have lived in the Netherlands for years now, and have been here long enough that I no longer take the blue envelope from the Belastingdienst as a personal insult. I learned Dutch as an adult — in the phase where you still think 'forfaitair' is French, and that 'gezellig' has something to do with social comfort instead of the Dutch civic obligation to sit in a circle drinking coffee for three quarters of an hour.",
+      "During the day I'm an AI engineer and the founder of Elands AI. I build AI systems for other companies there — sometimes large model work, sometimes smaller jobs that nobody else wants to pick up. That's my day job. It's separate from this site.",
+      "Outside of work: three mornings a week on the cargo bike through Dutch rain to school. Two kids, one Urban Arrow, one pair of fairly worn-out gloves. In my spare time I read too much and exercise too little. And — relevant to this site — I'm the kind of person who opens Excel the moment an official institution puts a number on a letter without explaining where it came from."
+    ]
+  },
+  "whyBuilt": {
+    "title": "Why this site exists",
+    "paragraphs": [
+      "2e-woning.nl began as a personal side project. A friend with a rental studio in Rotterdam asked me to take a look at his Box 3 assessment — the Belastingdienst's numbers didn't match his own estimate, and he didn't know which side had a mistake in it. Three evenings later I had an Excel that reproduced the fictief-rendement formula. By the end of that week it turned out his assessment was the one that was off, not his estimate. He was, to put it mildly, not pleased.",
+      "Then someone else asked me the same thing. Then another person. At some point I got tired of mailing the same spreadsheet around, and turned it into a web version. That's what's here.",
+      "The idea is simple. You enter your assets — savings, investments, possibly a second home, debts — and the tool shows what the Belastingdienst is going to charge you. Broken down per category, using the correct fictief-rendement percentages for the chosen year, with the debt threshold subtracted, with partner exemptions applied. Nothing more, nothing less. No secret tricks, no optimisation advice that a tax advisor wouldn't already have offered you a week earlier."
+    ]
+  },
+  "whatItIsNot": {
+    "title": "What this isn't",
+    "paragraphs": [
+      "I'm not a tax advisor and I'm not an accountant. My background is software and AI, not tax law. What I can do is build a calculation model that follows the statutory formula, produce numbers that match the Belastingdienst's own rekenhulp, and be honest about what's in the model and what's not.",
+      "What's not in here, a few concrete examples: assets held in a BV (that's Box 2, not Box 3), foreign assets stacked across multiple treaty regimes, crypto staking yield that your broker classifies as 'other income', or constructions involving family offices. Edge cases. If your situation falls under any of those, please don't file your aangifte using this tool — find a tax advisor. No shame in that.",
+      "And one more important thing: I do not replace the Belastingdienst. The final assessment comes from them, not from me. What's here is a guideline — useful for double-checking your own filing, or for getting a sense in advance of what you'll owe — but it isn't a legal document, and I can't stand behind it in an objection procedure."
+    ]
+  },
+  "approach": {
+    "title": "How I work",
+    "paragraphs": [
+      "Three principles. More than that I can't sustain.",
+      "First: calculate the way the Belastingdienst calculates. The formulas in the tool are taken from the Overbruggingswet Box 3, which has been in force since 1 January 2023, using the fictief-rendement percentages set annually by the cabinet. For 2024 and 2025 those are final; for 2026 they're still provisional — the final figures appear in January 2027. Every year I test against the example calculations published on belastingdienst.nl, and if the outputs diverge by more than a few cents I go figure out why.",
+      "Second: explain in plain Dutch (and plain English). I write the explainer pages here as if I'm sitting across from a friend who is smart but isn't trained in tax law. No 'taxpayers are obliged to', no 'in the context of the bridging legislation'. Just: 'if you have this, you pay that, and here's where that comes from'.",
+      "Third: collect nothing that I don't need to collect. The calculation runs entirely in your browser. I don't see your wealth, I don't store it, and I don't share it. If you want to share a calculation, you get a link with the numbers encoded into the URL — only you know that link, and only the people you forward it to."
+    ]
+  },
+  "accountability": {
+    "title": "How I correct mistakes",
+    "paragraphs": [
+      "I make mistakes. The first live version of this calculator forgot to subtract the €3,700 debt threshold entirely — someone mailed me about it, I cringed, fixed it within a day. Since that mail I keep an internal list of corrections, and I plan to publish them as a changelog at the bottom of this page (coming, honestly).",
+      "Spot a calculation error, a wrong percentage, copy that's plainly false, or a claim that isn't true anymore in 2026? Mail me. The address is below. I read everything and usually answer within 48 hours. If it takes me a week, that's because the kids are sick or I'm buried in another project — not because I'm ignoring you."
+    ]
+  },
+  "credentials": {
+    "title": "For anyone who wants to verify",
+    "paragraphs": [
+      "I'm verifiable. My personal site is at <a href=\"https://dejan.petkovic.nl\" target=\"_blank\" rel=\"noopener noreferrer\">dejan.petkovic.nl</a>. You'll find my work history, projects, LinkedIn, and a few photos in which I look better rested than I actually am. Elands AI, the company that publishes this tool, is registered with the Serbian Chamber of Commerce under company number 22121910 (VAT 115160487).",
+      "Why a Serbian company for a Dutch calculator? Honest answer: administrative simplicity. I run my professional work through a single legal entity, and that entity happens to be registered there. The content of this site is entirely produced in the Netherlands, aimed at Dutch taxpayers, written in Dutch by someone who can finally hold a meeting in it. And in English by the same person, for anyone who prefers to read it that way."
+    ]
+  },
+  "cta": {
+    "title": "And now?",
+    "intro": "Use the tool, read the explainers, mail me if something is off. Or if you have a tip for a Box 3 procedure I haven't written about yet: equally welcome.",
+    "calculator": "Open the calculator",
+    "contact": "Email me",
+    "uitleg": "Read: Box 3 explained"
+  }
+}

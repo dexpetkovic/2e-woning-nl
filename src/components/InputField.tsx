@@ -38,20 +38,23 @@ const InputField: React.FC<InputFieldProps> = ({
     }
   };
 
+  // flex-col + mt-auto on the input wrapper keeps the input pinned to the
+  // bottom of the cell, so inputs across a grid row line up even when one
+  // label wraps to two lines.
   return (
-    <div className={`mb-4 ${className}`}>
-      <div className="flex justify-between items-center mb-1.5">
-        <label className="text-[12.5px] text-appleGray-700 font-medium">
+    <div className={`flex flex-col mb-4 ${className}`}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 mb-1.5">
+        <label className="text-[12.5px] text-appleGray-700 font-medium leading-tight">
           {label}
           {optional && <span className="text-appleGray-500 ml-1 font-normal">({t('optional')})</span>}
         </label>
         {help && (
-          <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500">
+          <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500 leading-tight">
             {help}
           </span>
         )}
       </div>
-      <div className="relative">
+      <div className="relative mt-auto">
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-appleGray-500 font-mono text-sm pointer-events-none">
           €
         </span>

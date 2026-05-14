@@ -1,62 +1,107 @@
 {
   "meta": {
-    "title": "Box 3 & de Rechter | Rechtszaken en uitspraken",
-    "description": "Overzicht van de belangrijkste rechterlijke uitspraken over Box 3 belasting in Nederland: Kerstarrest 2021, massaal bezwaar, herstelwetgeving en het nieuwe stelsel.",
-    "keywords": "box 3 rechtbank, box 3 rechtszaak, kerstarrest box 3, massaal bezwaar box 3, box 3 hoge raad, box 3 nieuw stelsel 2028"
+    "title": "Box 3 & de Rechter — alle uitspraken, in normale taal",
+    "description": "De juridische geschiedenis van Box 3: van het Kerstarrest van de Hoge Raad in 2021 tot het nieuwe stelsel in 2028. Met ECLI-nummers, achterliggende verhalen, en wat het voor jou betekent.",
+    "keywords": "box 3 rechtbank, box 3 rechtszaak, kerstarrest box 3, massaal bezwaar box 3, box 3 hoge raad, box 3 nieuw stelsel 2028, niet-bezwaarmakers box 3"
   },
   "badge": "Juridisch overzicht",
   "hero": {
     "title": "Box 3 & de Rechter",
-    "subtitle": "Van het Kerstarrest in 2021 tot het nieuwe stelsel in 2028. Alles wat u moet weten over de rechtszaken rondom Box 3."
+    "subtitle": "Vier jaar procederen, één Kerstarrest, en een nieuw stelsel dat eraan komt. Hier is het verhaal in normale taal."
+  },
+  "byline": {
+    "prefix": "Geschreven door",
+    "author": "Dejan Petković",
+    "context": "AI engineer · geen jurist · houdt rechtspraak.nl wel in de gaten",
+    "lastUpdated": "Laatst bijgewerkt: 14 mei 2026",
+    "linkLabel": "Over de auteur"
   },
   "context": {
-    "title": "Wat speelt er precies?",
-    "p1": "Het Nederlandse Box 3-stelsel berekende vermogensbelasting jarenlang op basis van een <strong>fictief rendement</strong>, ongeacht wat u werkelijk verdiende. De Hoge Raad oordeelde dat dit in strijd is met het eigendomsrecht en het discriminatieverbod uit het Europees Verdrag voor de Rechten van de Mens (EVRM).",
-    "p2": "Sindsdien heeft de overheid tijdelijke wetgeving ingevoerd en wordt er gewerkt aan een volledig nieuw stelsel op basis van werkelijk rendement. Voor belastingplichtigen die te veel betaalden, zijn er herstelregelingen."
+    "title": "Wat speelt er, in één paragraaf",
+    "p1": "Het Nederlandse Box 3-stelsel berekende vermogensbelasting jarenlang op basis van een <strong>fictief rendement</strong>, ongeacht wat je in werkelijkheid verdiende. De Hoge Raad oordeelde dat dat in strijd is met het eigendomsrecht (artikel 1 EP EVRM) en met het discriminatieverbod. Sindsdien is er een overbruggingswet, en wordt er gewerkt aan een nieuw stelsel op basis van werkelijk rendement. Voor mensen die te veel hebben betaald onder het oude stelsel zijn er herstelregelingen — alleen niet voor iedereen automatisch.",
+    "p2": "Wat hieronder staat is een tijdlijn. Geen samenvatting uit een wetsgeschiedenis — een chronologie zoals ik die zelf nodig had om de huidige procedures te kunnen volgen. Met de relevante ECLI-nummers voor wie de uitspraken zelf wil lezen."
   },
-  "timelineTitle": "Tijdlijn van uitspraken",
+  "humanStory": {
+    "title": "De zaak achter het Kerstarrest",
+    "paragraphs": [
+      "Het Kerstarrest gaat in de volksmond over 'het hele Box 3-stelsel'. Maar er zat een concreet geschil onder. Een Nederlandse belastingplichtige met voornamelijk spaargeld stelde in 2017 vast dat zijn aanslag uitging van een fictief rendement van ongeveer 4%, terwijl de rente op zijn spaarrekening rond de nul lag. Hij maakte bezwaar. Het bezwaar werd afgewezen. Hij ging in beroep bij het gerechtshof, daarna in cassatie bij de Hoge Raad. Vier jaar procederen.",
+      "Op 24 december 2021 — twee dagen voor kerst, vandaar de naam die zich vastzette — kreeg hij gelijk. De Hoge Raad oordeelde dat het systeem voor mensen zoals hem in strijd was met het eigendomsrecht zoals beschermd door artikel 1 van het Eerste Protocol bij het EVRM, én met het discriminatieverbod. Het arrest opende daarmee de deur naar herstel voor iedereen die op tijd bezwaar had gemaakt.",
+      "Wat me bij blijft uit het lezen van het arrest: het is niet zo dat een rechter ineens een nieuw inzicht kreeg. De problemen waren al jaren bekend, ook bij de wetgever. Wat veranderde was dat één belastingplichtige de moeite, het geld en het uithoudingsvermogen had om door te procederen tot in cassatie. Eén persoon, jarenlang, voor één principe — en miljoenen aanslagen die daarna herzien zijn."
+    ]
+  },
+  "timelineTitle": "Tijdlijn van uitspraken en stappen",
   "timeline": [
     {
       "year": "2021",
       "label": "Kerstarrest (Hoge Raad)",
-      "summary": "Op 24 december 2021 oordeelde de Hoge Raad dat het forfaitaire stelsel van Box 3 in strijd is met Europees recht. Belastingplichtigen die bezwaar hadden gemaakt, hadden recht op herstel.",
+      "summary": "Op 24 december 2021 oordeelde de Hoge Raad dat het forfaitaire Box 3-stelsel in strijd is met Europees recht. De zaak betrof belastingjaar 2017–2018, waarin het fictief rendement uitging van een 'gemiddelde belegger' die ongeveer 4% rendement zou behalen — terwijl spaarrentes toen al jaren onder een procent zaten. Voor belastingplichtigen met voornamelijk spaargeld werd dat structureel onhoudbaar. De Hoge Raad gaf bevel tot rechtsherstel: belastingplichtigen die op tijd bezwaar hadden gemaakt, hadden recht op herberekening over hun werkelijke rendement.",
       "impact": "hoog",
-      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963"
+      "ecli": "ECLI:NL:HR:2021:1963",
+      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963",
+      "forYou": [
+        "Maakte je bezwaar in deze jaren? Dan val je onder rechtsherstel.",
+        "Maakte je geen bezwaar? Dan is het complexer — zie de uitspraak van 2024 hieronder."
+      ]
     },
     {
       "year": "2022",
-      "label": "Massaal bezwaar & herstel",
-      "summary": "De Belastingdienst erkende het arrest en stelde een massaal-bezwaarproces in. Miljoenen aanslagen werden herzien. Belastingplichtigen die geen bezwaar hadden gemaakt, vielen aanvankelijk buiten de boot.",
+      "label": "Massaal-bezwaarproces & eerste herstelronde",
+      "summary": "De Belastingdienst erkende het arrest en stelde een massaal-bezwaarproces in. Miljoenen aanslagen werden in dat kader herzien. Voor wie het massaal bezwaar had laten meelopen, kwam het herstel automatisch — meestal als terugbetaling, soms als verlaging van een nog openstaande aanslag. Voor wie de jaren al definitief had afgesloten zonder bezwaar, kwam de eerste twijfel: wat nu?",
       "impact": "hoog",
-      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3"
+      "ecli": null,
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3",
+      "forYou": [
+        "Stond je in de massaal-bezwaarprocedure? Check je belastingoverzicht — het herstel hoort er in te staan.",
+        "Stond je er niet in? Lees verder."
+      ]
     },
     {
       "year": "2023",
-      "label": "Overbruggingswetgeving",
-      "summary": "Omdat een nieuw stelsel tijd kost, voerde het kabinet overbruggingswetgeving in. Box 3 wordt tijdelijk berekend op basis van werkelijke vermogenscategorieën in plaats van één fictief rendement.",
+      "label": "Overbruggingswetgeving van kracht",
+      "summary": "Omdat een volledig nieuw stelsel jaren kost, voerde het kabinet per 1 januari 2023 een 'overbruggingswet' in. Box 3 wordt sindsdien berekend per vermogenscategorie: aparte percentages voor spaargeld (lager), beleggingen en vastgoed (hoger), en schulden (aftrekbaar boven een drempel). Het is nog steeds een fictief systeem — niemand kijkt naar wat je echt hebt verdiend — maar de uitkomsten liggen dichter bij de werkelijkheid dan onder het oude stelsel. Sommige juristen vinden ook dít stelsel in strijd met het EVRM. Er lopen procedures.",
       "impact": "middel",
-      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/"
+      "ecli": null,
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/",
+      "forYou": [
+        "Vanaf belastingjaar 2023 reken je met de nieuwe categorieën — zoals deze calculator doet.",
+        "Heb je voornamelijk spaargeld en zit je ruim boven het heffingvrij vermogen? De huidige procedures kunnen relevant zijn."
+      ]
     },
     {
       "year": "2024",
-      "label": "Niet-bezwaarmakers: uitspraken",
-      "summary": "De Hoge Raad en lagere rechters bogen zich over de vraag of ook niet-bezwaarmakers recht hebben op herstel. In meerdere zaken werd geoordeeld dat dit niet automatisch het geval is, maar individuele procedures bleven mogelijk.",
+      "label": "Hoge Raad: niet-bezwaarmakers krijgen geen automatisch herstel",
+      "summary": "In de loop van 2024 deden de Hoge Raad en lagere rechters meerdere uitspraken over de positie van 'niet-bezwaarmakers' — belastingplichtigen die destijds geen bezwaar hadden gemaakt tegen hun aanslag, maar achteraf ook menen te veel te hebben betaald. De Hoge Raad oordeelde dat het Kerstarrest niet automatisch doorwerkt: er is geen collectieve aanspraak. Maar individuele procedures bleven mogelijk, en sommige werden gewonnen — vooral in extreme gevallen waarbij het verschil tussen forfait en werkelijkheid zeer groot was.",
       "impact": "middel",
-      "href": "https://uitspraken.rechtspraak.nl/"
+      "ecli": null,
+      "href": "https://uitspraken.rechtspraak.nl/",
+      "forYou": [
+        "Heb je destijds geen bezwaar gemaakt en denk je sterk benadeeld te zijn? Een belastingadviseur kan beoordelen of een individuele procedure kansrijk is.",
+        "Voor de meeste niet-bezwaarmakers met gematigde afwijking: kosten van procedure wegen vaak niet op tegen de te verwachten teruggave."
+      ]
     },
     {
       "year": "2025",
-      "label": "Nieuw Box 3 stelsel in voorbereiding",
-      "summary": "Het kabinet werkt aan een nieuw stelsel gebaseerd op werkelijk rendement. Aanwasbelasting als basis werd vastgesteld; de beoogde inwerkingtreding is 1 januari 2028. Tot die tijd blijft de overbruggingswetgeving van kracht.",
+      "label": "Nieuw Box 3-stelsel in voorbereiding",
+      "summary": "Het kabinet kondigde aan dat het nieuwe stelsel — gebaseerd op werkelijk rendement, niet langer fictief — er definitief komt. De gekozen vorm: <strong>aanwasbelasting</strong> als basis (jaarlijkse heffing over de werkelijke waardestijging van vermogen), met een uitzondering voor vastgoed en aandelen in startups. Voor die laatste categorieën komt <strong>winstbelasting</strong> — afrekening bij verkoop. De beoogde inwerkingtreding: 1 januari 2028.",
       "impact": "laag",
-      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+      "ecli": null,
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3",
+      "forYou": [
+        "Voorlopig blijft het overbruggingsstelsel gelden — de calculator hier rekent voor 2024, 2025 en 2026.",
+        "Voor wie illiquide vermogen heeft (vastgoed, startup-aandelen): bereid je voor op het verschil tussen aanwasbelasting en winstbelasting."
+      ]
     },
     {
       "year": "2026",
       "label": "Ingangsdatum bevestigd: 1 januari 2028",
-      "summary": "Het kabinet bevestigt dat het nieuwe Box 3 stelsel op 1 januari 2028 in werking treedt. Aanwasbelasting wordt de grondslag: jaarlijkse heffing over werkelijke waardestijging. Uitzondering: vastgoed en aandelen in startups worden belast bij verkoop (winstbelasting).",
+      "summary": "Het kabinet bevestigde begin 2026 dat het nieuwe stelsel op 1 januari 2028 in werking treedt. Daarmee staat de tijdlijn: aangifte over 2027 nog onder het overbruggingsstelsel, aangifte over 2028 onder het nieuwe stelsel. De gedetailleerde uitvoeringsregels — vooral rond verliescompensatie, waardering van illiquide vermogen, en hoe omgegaan wordt met internationaal vermogen — worden nu uitgewerkt.",
       "impact": "hoog",
-      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+      "ecli": null,
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3",
+      "forYou": [
+        "Begin 2028 ga je voor het eerst aanwasbelasting betalen over werkelijke vermogensgroei.",
+        "Heb je internationaal vermogen of een complexe portefeuille? Overleg vóór eind 2027 met een belastingadviseur over de overgang."
+      ]
     }
   ],
   "impactLabels": {
@@ -64,24 +109,36 @@
     "middel": "Relevant",
     "laag": "In ontwikkeling"
   },
-  "readMore": "Meer lezen",
+  "readMore": "Lees de uitspraak",
+  "myView": {
+    "title": "Mijn eigen kijk, kort",
+    "paragraphs": [
+      "Het Kerstarrest was een correctie op een wet die te lang op één gemiddeld percentage leunde. De wetgever wist al jaren dat het scheef stond, maar koos voor eenvoud boven precisie. De rechter heeft uiteindelijk de prijs daarvan opgelegd — en die prijs lopen we als belastingbetalers nu nog steeds af, in de vorm van herstelregelingen die jarenlang lopen.",
+      "Het nieuwe stelsel in 2028 klinkt eerlijker. Werkelijk rendement, geen aanname. Maar 'werkelijk' is voor een groot deel van het vermogen niet zo makkelijk vast te stellen — vooral bij vastgoed en illiquide beleggingen. Ik vermoed dat de eerste jaren onder het nieuwe stelsel óók procedures gaan opleveren, maar dan over een ander soort vraag: niet meer of het systeem in principe klopt, maar of de waarderingsmethodes voor specifieke assets redelijk zijn. Ik ben geen jurist; dit is een vermoeden, geen voorspelling.",
+      "Wat ik wel weet: voor wie nu vermogen heeft en in 2017–2022 onder het oude stelsel zat — vooral spaargeld — blijft het de moeite waard om met een specialist te overleggen of er nog iets te halen is. Niet via deze calculator, maar via iemand met procedurele expertise."
+    ]
+  },
   "whatYouCanDo": {
-    "title": "Wat kunt u zelf doen?",
+    "title": "Wat kun je zelf doen?",
     "items": [
       {
-        "title": "Controleer uw aanslagen",
-        "body": "Kijk of u tijdig bezwaar heeft gemaakt voor de jaren 2017 tot 2022. Belastingplichtigen die deel uitmaakten van het massaal-bezwaarproces hebben recht op herstel."
+        "title": "Controleer je oude aanslagen",
+        "body": "Kijk in MijnBelastingdienst of je voor de jaren 2017–2022 tijdig bezwaar hebt gemaakt. Belastingplichtigen die deel uitmaakten van het massaal-bezwaarproces hebben recht op herberekening — soms is dat al verwerkt, soms niet."
       },
       {
-        "title": "Bereken uw werkelijke rendement",
-        "body": "Gebruik onze calculator om te zien wat u betaalt onder de huidige overbruggingswetgeving, en vergelijk dit met eerdere jaren."
+        "title": "Bereken je werkelijke belasting",
+        "body": "Gebruik de calculator hierboven om te zien wat je betaalt onder het huidige overbruggingsstelsel, voor 2024, 2025 of 2026. Vergelijk dat met de aanslag die je hebt ontvangen — een groot verschil is een rode vlag."
       },
       {
         "title": "Raadpleeg een belastingadviseur",
-        "body": "De situatie rondom Box 3 is complex en afhankelijk van uw persoonlijke situatie. Een belastingadviseur kan u helpen met bezwaarprocedures of optimalisatie."
+        "body": "Voor niet-standaard situaties — internationaal vermogen, BV-constructies, grote afwijkingen tussen forfait en werkelijkheid — is een specialist de moeite. De juridische realiteit verandert nog elk paar maanden."
       }
     ]
   },
-  "cta": "Bereken uw Box 3 belasting",
-  "source": "Bron"
+  "cta": "Reken je belasting uit",
+  "source": "Bronnen",
+  "sourceLinks": {
+    "belastingdienst": "Belastingdienst",
+    "rechtspraak": "Rechtspraak.nl"
+  }
 }

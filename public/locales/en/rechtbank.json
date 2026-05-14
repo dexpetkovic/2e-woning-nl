@@ -1,87 +1,144 @@
 {
   "meta": {
-    "title": "Box 3 & the Courts | Legal cases and rulings",
-    "description": "Overview of the key court rulings on Box 3 tax in the Netherlands: the Christmas ruling 2021, mass objection, remediation legislation and the new system.",
-    "keywords": "box 3 court case, box 3 ruling, christmas ruling box 3, mass objection box 3, box 3 supreme court netherlands, box 3 new system 2028"
+    "title": "Box 3 & the Courts — every ruling, in plain language",
+    "description": "The legal history of Dutch Box 3 wealth tax: from the Hoge Raad's Christmas ruling in 2021 to the new system in 2028. With ECLI references, backstories, and what it means for you.",
+    "keywords": "box 3 courts, box 3 case law, kerstarrest dutch wealth tax, massaal bezwaar box 3, hoge raad box 3, new box 3 system 2028, non-objectors box 3"
   },
   "badge": "Legal overview",
   "hero": {
     "title": "Box 3 & the Courts",
-    "subtitle": "From the Christmas ruling in 2021 to the new system in 2028. Everything you need to know about the legal battles around Box 3."
+    "subtitle": "Four years of litigation, one Christmas ruling, and a new system on the way. Here's the story in plain language."
+  },
+  "byline": {
+    "prefix": "Written by",
+    "author": "Dejan Petković",
+    "context": "AI engineer · not a lawyer · keeps an eye on rechtspraak.nl",
+    "lastUpdated": "Last updated: 14 May 2026",
+    "linkLabel": "About the author"
   },
   "context": {
-    "title": "What is going on exactly?",
-    "p1": "The Dutch Box 3 system calculated wealth tax for years based on a <strong>deemed return</strong>, regardless of what you actually earned. The Supreme Court ruled that this violated property rights and the prohibition of discrimination under the European Convention on Human Rights (ECHR).",
-    "p2": "Since then, the government has introduced temporary legislation and is developing a completely new system based on actual returns. For taxpayers who overpaid, remediation arrangements are in place."
+    "title": "What's going on, in one paragraph",
+    "p1": "The Dutch Box 3 system calculated wealth tax for years on a <strong>fictief rendement</strong> basis, regardless of what you actually earned. The Hoge Raad ruled that this conflicted with the right to property (Article 1 First Protocol ECHR) and with the prohibition on discrimination. Since then there has been a bridging law in force, and a new system based on real returns is being developed. For people who paid too much under the old system, restoration arrangements exist — though not automatically for everyone.",
+    "p2": "What follows is a timeline. Not a summary lifted from a wetsgeschiedenis — just the chronology I needed myself to follow the procedures still running today. With ECLI references for anyone who wants to read the rulings firsthand."
   },
-  "timelineTitle": "Timeline of rulings",
+  "humanStory": {
+    "title": "The case behind the Christmas ruling",
+    "paragraphs": [
+      "The Christmas ruling is colloquially about 'the whole Box 3 system'. But there was a concrete dispute underneath. A Dutch taxpayer with predominantly savings noticed in 2017 that his assessment assumed a fictief rendement of around 4%, while interest on his savings account was hovering near zero. He filed an objection. It was rejected. He appealed to the gerechtshof, then to cassation at the Hoge Raad. Four years of procedure.",
+      "On 24 December 2021 — two days before Christmas, hence the name that stuck — he won. The Hoge Raad ruled that the system, as applied to people in his situation, conflicted with the right to property under Article 1 First Protocol ECHR, and with the prohibition on discrimination. The ruling opened the door to rechtsherstel for everyone who had filed a timely objection.",
+      "What stays with me from reading the ruling: it wasn't a sudden judicial insight. The problems had been known for years, including by the legislator. What changed was that one taxpayer had the effort, money, and stamina to push it all the way through cassation. One person, over four years, for one principle — and millions of assessments revised in its wake."
+    ]
+  },
+  "timelineTitle": "Timeline of rulings and steps",
   "timeline": [
     {
       "year": "2021",
-      "label": "Christmas ruling (Supreme Court)",
-      "summary": "On 24 December 2021 the Supreme Court ruled that the deemed-return system of Box 3 is incompatible with European law. Taxpayers who had filed an objection were entitled to remediation.",
+      "label": "Christmas ruling (Hoge Raad)",
+      "summary": "On 24 December 2021 the Hoge Raad ruled that the forfaitair Box 3 system conflicted with European law. The case concerned tax years 2017–2018, in which the fictief rendement assumed an 'average investor' earning around 4% — while savings interest had been below one percent for years. For taxpayers with predominantly savings, that worked out structurally unfair. The Hoge Raad ordered rechtsherstel: taxpayers who had filed a timely objection were entitled to a recalculation based on their actual return.",
       "impact": "hoog",
-      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963"
+      "ecli": "ECLI:NL:HR:2021:1963",
+      "href": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963",
+      "forYou": [
+        "Did you file an objection in these years? Then you fall under rechtsherstel.",
+        "Didn't file an objection? It's more complex — see the 2024 ruling below."
+      ]
     },
     {
       "year": "2022",
-      "label": "Mass objection & remediation",
-      "summary": "The tax authority accepted the ruling and set up a mass-objection process. Millions of assessments were revised. Taxpayers who had not filed an objection were initially excluded.",
+      "label": "Mass objection process & first restoration round",
+      "summary": "The Belastingdienst accepted the ruling and set up a massaal-bezwaarproces. Millions of assessments were revised under that umbrella. For people enrolled in the mass objection, restoration came automatically — usually as a refund, sometimes as a reduction of an outstanding assessment. For those who had closed the years off without objecting, the first doubts crept in: what now?",
       "impact": "hoog",
-      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3"
+      "ecli": null,
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/massaal-bezwaar-box-3",
+      "forYou": [
+        "Were you in the mass objection? Check your tax overview — the restoration should be there.",
+        "Weren't you? Read on."
+      ]
     },
     {
       "year": "2023",
-      "label": "Bridging legislation",
-      "summary": "As developing a new system takes time, the government introduced bridging legislation. Box 3 is now temporarily calculated using actual asset categories rather than a single deemed return.",
+      "label": "Bridging legislation in force",
+      "summary": "Because a fully new system would take years, the cabinet introduced an 'overbruggingswet' as of 1 January 2023. Box 3 is since then calculated per asset category: separate percentages for savings (lower), investments and real estate (higher), and debts (deductible above a threshold). Still a fictitious system — nobody looks at what you actually earned — but the outcomes sit closer to reality than under the old system. Some lawyers consider even this bridging system in conflict with the ECHR. Procedures are pending.",
       "impact": "middel",
-      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/"
+      "ecli": null,
+      "href": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/",
+      "forYou": [
+        "From 2023 onwards you calculate with the new categories — as this calculator does.",
+        "Do you have predominantly savings and sit well above the heffingvrij vermogen? The current procedures may be relevant."
+      ]
     },
     {
       "year": "2024",
-      "label": "Non-objectors: rulings",
-      "summary": "The Supreme Court and lower courts considered whether non-objectors are also entitled to remediation. In several cases the courts ruled this was not automatic, though individual proceedings remained possible.",
+      "label": "Hoge Raad: non-objectors get no automatic restoration",
+      "summary": "Throughout 2024 the Hoge Raad and lower courts issued multiple rulings on the position of 'niet-bezwaarmakers' — taxpayers who didn't object at the time but later believe they overpaid. The Hoge Raad held that the Kerstarrest does not extend automatically: there is no collective claim. Individual procedures remained possible, however, and some were won — especially in extreme cases where the gap between forfait and reality was very large.",
       "impact": "middel",
-      "href": "https://uitspraken.rechtspraak.nl/"
+      "ecli": null,
+      "href": "https://uitspraken.rechtspraak.nl/",
+      "forYou": [
+        "Didn't object at the time and feel strongly that you overpaid? A tax advisor can assess whether an individual procedure has merit.",
+        "For most non-objectors with moderate divergence: procedure costs typically outweigh the expected refund."
+      ]
     },
     {
       "year": "2025",
       "label": "New Box 3 system in preparation",
-      "summary": "The government is developing a new system based on actual returns. Accrual taxation (aanwasbelasting) was confirmed as the basis; the intended start date is 1 January 2028. Until then the bridging legislation remains in force.",
+      "summary": "The cabinet announced that the new system — based on real, no longer fictitious returns — is definitively coming. The chosen form: <strong>aanwasbelasting</strong> as the base (annual taxation on the actual increase in value of wealth), with an exception for real estate and shares in startups. For those categories <strong>profit tax</strong> applies — settled at the moment of sale. Intended start date: 1 January 2028.",
       "impact": "laag",
-      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+      "ecli": null,
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3",
+      "forYou": [
+        "For now the bridging system stays in force — this calculator runs for 2024, 2025 and 2026.",
+        "If you hold illiquid wealth (real estate, startup shares): prepare for the distinction between aanwasbelasting and profit tax."
+      ]
     },
     {
       "year": "2026",
       "label": "Start date confirmed: 1 January 2028",
-      "summary": "The government confirms the new Box 3 system will take effect on 1 January 2028. Accrual tax will be the basis: an annual levy on the actual increase in asset value. Exception: real estate and shares in startups are taxed at the moment of sale (profit tax).",
+      "summary": "Early 2026 the cabinet confirmed that the new system takes effect on 1 January 2028. The timeline is now set: 2027 returns still under the bridging system, 2028 returns under the new one. The detailed implementing rules — particularly around loss compensation, valuation of illiquid wealth, and treatment of international assets — are still being drafted.",
       "impact": "hoog",
-      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3"
+      "ecli": null,
+      "href": "https://www.rijksoverheid.nl/onderwerpen/belasting-betalen/box-3",
+      "forYou": [
+        "From early 2028, you'll pay aanwasbelasting on actual wealth growth for the first time.",
+        "International wealth or a complex portfolio? Talk to a tax advisor before end of 2027 about the transition."
+      ]
     }
   ],
   "impactLabels": {
     "hoog": "Major significance",
     "middel": "Relevant",
-    "laag": "Developing"
+    "laag": "In development"
   },
-  "readMore": "Read more",
+  "readMore": "Read the ruling",
+  "myView": {
+    "title": "My own take, briefly",
+    "paragraphs": [
+      "The Christmas ruling was a correction to a law that leaned too long on a single average percentage. The legislator had known for years it was tilted, but chose simplicity over precision. The court eventually presented the bill — and that bill is one we as taxpayers are still paying off, through restoration programmes that drag on for years.",
+      "The new system in 2028 sounds fairer. Real returns instead of an assumption. But 'real' isn't easy to establish for a large part of wealth — particularly real estate and illiquid holdings. I suspect the first years under the new system will also yield procedures, but over a different kind of question: not whether the system is fundamentally right, but whether the valuation methods for specific assets are reasonable. I'm not a lawyer; this is a hunch, not a prediction.",
+      "What I do know: for anyone with substantial wealth in 2017–2022 under the old system — especially savings — it remains worth talking to a specialist about whether anything can still be recovered. Not via this calculator, but via someone with procedural expertise."
+    ]
+  },
   "whatYouCanDo": {
-    "title": "What can you do?",
+    "title": "What can you do yourself?",
     "items": [
       {
-        "title": "Check your assessments",
-        "body": "Check whether you filed a timely objection for the years 2017 to 2022. Taxpayers who were part of the mass-objection process are entitled to remediation."
+        "title": "Check your old assessments",
+        "body": "Look in MijnBelastingdienst whether you filed timely objections for 2017–2022. Taxpayers who were part of the massaal-bezwaarproces are entitled to recalculation — sometimes already processed, sometimes not."
       },
       {
-        "title": "Calculate your actual return",
-        "body": "Use our calculator to see what you pay under the current bridging legislation, and compare it to earlier years."
+        "title": "Recalculate your actual tax",
+        "body": "Use the calculator above to see what you pay under the current bridging system, for 2024, 2025 or 2026. Compare that with your received assessment — a large gap is a red flag."
       },
       {
         "title": "Consult a tax advisor",
-        "body": "The Box 3 situation is complex and depends on your personal circumstances. A tax advisor can help you with objection procedures or optimisation."
+        "body": "For non-standard situations — international wealth, BV constructions, large gaps between forfait and reality — a specialist is worth it. The legal reality is still shifting every few months."
       }
     ]
   },
-  "cta": "Calculate your Box 3 tax",
-  "source": "Source"
+  "cta": "Run your tax numbers",
+  "source": "Sources",
+  "sourceLinks": {
+    "belastingdienst": "Belastingdienst",
+    "rechtspraak": "Rechtspraak.nl"
+  }
 }

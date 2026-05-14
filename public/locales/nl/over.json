@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "title": "Over deze site — wie het bouwde, en waarom",
+    "description": "Wie ik ben en waarom 2e-woning.nl bestaat. Dejan Petković — AI engineer, Servisch-Nederlander, oprichter van Elands AI. Eerlijk over wat de tool wel en niet kan.",
+    "keywords": "over 2e-woning.nl, auteur box 3 calculator, dejan petkovic, elands ai, eerlijke box 3 tool"
+  },
+  "badge": "Over",
+  "hero": {
+    "title": "Wie ik ben, en waarom dit bestaat.",
+    "subtitle": "Een site die over jouw belasting gaat, verdient een gezicht. Hier is het mijne."
+  },
+  "byline": {
+    "name": "Dejan Petković",
+    "role": "AI engineer · oprichter Elands AI · bouwer van 2e-woning.nl",
+    "location": "Vanuit Nederland",
+    "personalSite": "dejan.petkovic.nl",
+    "lastUpdated": "Laatst bijgewerkt: 14 mei 2026"
+  },
+  "intro": {
+    "title": "Even kort: ik ben Dejan.",
+    "paragraphs": [
+      "Ik kom oorspronkelijk uit Servië, woon al jaren in Nederland, en zit lang genoeg in dit land om de blauwe envelop niet meer als een persoonlijke belediging op te vatten. Mijn Nederlands leerde ik op latere leeftijd — in die fase waarin je nog denkt dat 'forfaitair' Frans is, en dat 'gezellig' iets te maken heeft met gezelligheid in plaats van met de Nederlandse plicht om bij verjaardagen drie kwartier in een kring te zitten.",
+      "Overdag ben ik AI engineer en oprichter van Elands AI. Ik bouw daar AI-systemen voor andere bedrijven; soms grote modellen, soms kleinere klusjes die niemand anders wil oppakken. Dat is mijn dagelijkse werk en staat los van deze site.",
+      "Buiten werk: drie ochtenden per week op de bakfiets door de regen naar school. Twee kinderen, één Urban Arrow, één paar enigszins versleten handschoenen. In mijn vrije tijd lees ik te veel en sport ik te weinig. En — relevant voor deze site — ik ben iemand die Excel opent zodra een officiële instantie een bedrag op een brief zet zonder uit te leggen waar het vandaan komt."
+    ]
+  },
+  "whyBuilt": {
+    "title": "Waarom deze site er is",
+    "paragraphs": [
+      "2e-woning.nl is begonnen als persoonlijk projectje. Een vriend met een verhuurde studio in Rotterdam vroeg of ik mee wilde kijken naar zijn Box 3-aanslag — de cijfers van de Belastingdienst klopten niet met zijn eigen schatting, en hij wist niet welke kant ergens een fout zat. Drie avonden later had ik een Excel-bestand dat de fictief-rendement-formule reproduceerde. Aan het einde van die week bleek het zijn aanslag te zijn die afweek, niet zijn schatting. Hij was, mild gezegd, niet blij.",
+      "Daarna kreeg ik dezelfde vraag van iemand anders. En nog iemand. Op een gegeven moment had ik genoeg van het sturen van datzelfde Excel-bestand, en heb ik er een webversie van gemaakt. Dat is wat hier staat.",
+      "Het idee is simpel. Stop je vermogen erin — spaargeld, beleggingen, eventueel een tweede woning, schulden — en de tool laat zien wat de Belastingdienst gaat berekenen. Opgesplitst per categorie, met de juiste fictief-rendement-percentages voor het gekozen jaar, met de schuldendrempel afgetrokken, met partner-vrijstellingen verwerkt. Niets meer, niets minder. Geen geheime trucs, geen optimalisatie-advies dat een fiscalist een week eerder al had gegeven."
+    ]
+  },
+  "whatItIsNot": {
+    "title": "Wat dit niet is",
+    "paragraphs": [
+      "Ik ben geen fiscalist en geen accountant. Mijn achtergrond is software en AI, niet belastingrecht. Wat ik wel kan: een rekenmodel bouwen dat de wettelijke formule volgt, het cijfers laten produceren die overeenkomen met de Belastingdienst-rekenhulp, en eerlijk zijn over wat er in het model zit en wat niet.",
+      "Wat hier niet in zit, om een paar concrete voorbeelden te noemen: vermogen in een BV (dat is Box 2, niet Box 3), buitenlands vermogen met meervoudige belastingverdragen op elkaar gestapeld, crypto-staking yield die door je broker als 'overig inkomen' wordt gerapporteerd, of constructies met family offices. Edge cases. Als jouw situatie daar onder valt, doe geen aangifte op basis van deze tool — zoek een belastingadviseur. Geen schande.",
+      "En een andere belangrijke: ik vervang de Belastingdienst niet. De definitieve aanslag krijg je van hen, niet van mij. Wat hier staat is een richtlijn — bruikbaar om je eigen aangifte te controleren, of om vooraf een gevoel te hebben wat je gaat betalen — maar het is geen wettelijk document en ik kan er ook niet voor instaan in een bezwaarprocedure."
+    ]
+  },
+  "approach": {
+    "title": "Hoe ik te werk ga",
+    "paragraphs": [
+      "Drie principes. Meer hou ik niet vol.",
+      "Ten eerste: rekenen zoals de Belastingdienst rekent. De formules in de tool zijn ontleend aan de Overbruggingswet Box 3, zoals die sinds 1 januari 2023 van kracht is, met de fictief-rendement-percentages die jaarlijks door het kabinet worden vastgesteld. Voor 2024 en 2025 zijn die definitief; voor 2026 zijn ze nog voorlopig — de definitieve cijfers verschijnen in januari 2027. Ik test elk jaar tegen voorbeeldberekeningen die op belastingdienst.nl staan, en als de uitkomsten meer dan een paar cent verschillen, ga ik op zoek naar de oorzaak.",
+      "Ten tweede: uitleggen in normaal Nederlands. Ik schrijf de uitleg-pagina's hier alsof ik tegen een vriend zit te praten die slim is maar niet in fiscaal recht is geschoold. Geen 'belastingplichtigen dienen'. Geen 'in het kader van de overbruggingswetgeving'. Wel: 'als je dit hebt, betaal je dat, en zo komt dat'.",
+      "Ten derde: niets verzamelen wat ik niet hoef te verzamelen. De berekening gebeurt volledig in je browser. Ik zie je vermogen niet, sla het niet op, en deel het met niemand. Wil je een berekening delen, dan krijg je een link met de cijfers gecodeerd in de URL — alleen jij weet die link, en alleen de mensen aan wie je hem stuurt."
+    ]
+  },
+  "accountability": {
+    "title": "Hoe ik fouten herstel",
+    "paragraphs": [
+      "Ik maak fouten. De eerste live versie van deze calculator vergat de schuldendrempel van €3.700 helemaal mee te nemen — iemand mailde, ik schaamde me, opgelost binnen een dag. Sinds die mail hou ik een intern lijstje bij van correcties, en ik ben van plan dat als changelog onderaan deze pagina te publiceren (komt eraan, eerlijk).",
+      "Zie je een rekenfout, een verkeerd percentage, een tekst die echt niet klopt of een claim die in 2026 niet meer waar is? Mail me. Het adres staat hieronder. Ik lees alles, antwoord meestal binnen 48 uur. Als ik er een week over doe, is dat omdat de kinderen ziek zijn of omdat ik vastzit aan een ander project — niet omdat ik je negeer."
+    ]
+  },
+  "credentials": {
+    "title": "Voor wie het wil checken",
+    "paragraphs": [
+      "Ik ben verifieerbaar. Mijn persoonlijke site staat op <a href=\"https://dejan.petkovic.nl\" target=\"_blank\" rel=\"noopener noreferrer\">dejan.petkovic.nl</a>. Daar vind je mijn werkverleden, projecten, LinkedIn, en een paar foto's waar ik er meer uitgerust uitzie dan in werkelijkheid. Elands AI, het bedrijf waaronder deze tool wordt gepubliceerd, is geregistreerd bij de Servische Kamer van Koophandel onder bedrijfsnummer 22121910 (btw-nummer 115160487).",
+      "Waarom een Servisch bedrijf voor een Nederlandse calculator? Eerlijk antwoord: administratieve eenvoud. Ik run mijn bedrijfsmatige werk vanuit één rechtspersoon, en die is daar geregistreerd. De inhoud van deze site is volledig in Nederland gemaakt, voor Nederlandse belastingplichtigen, in het Nederlands door iemand die het ondertussen redelijk beheerst. En in het Engels door dezelfde persoon, voor wie het wil lezen."
+    ]
+  },
+  "cta": {
+    "title": "En nu?",
+    "intro": "Gebruik de tool, lees de uitleg, mail me als iets niet klopt. Of als je een tip hebt voor een Box 3-procedure waar ik nog niet over schreef: ook welkom.",
+    "calculator": "Naar de calculator",
+    "contact": "Mail mij",
+    "uitleg": "Lees: Box 3 uitgelegd"
+  }
+}

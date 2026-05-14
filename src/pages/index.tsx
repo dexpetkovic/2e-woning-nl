@@ -257,7 +257,16 @@ const Home = () => {
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web Browser",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-        "description": "Bereken eenvoudig uw Box 3 vermogensbelasting voor tweede woning, investeringen en spaargeld. Gratis belastingcalculator met actuele 2025 tarieven.",
+        "description": "Box 3 belasting uitrekenen voor tweede woning, beleggingen, spaargeld en schulden. Met de actuele tarieven voor 2024, 2025 en 2026 — plus een 2028-schatting onder aanwasbelasting.",
+        "author": {
+          "@type": "Person",
+          "name": "Dejan Petković",
+          "url": "https://2e-woning.nl/over",
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Elands AI",
+        },
       },
       {
         "@type": "FAQPage",
@@ -304,10 +313,10 @@ const Home = () => {
                   {t('subtitle')}
                 </p>
                 <div className="ticks">
-                  <span>Gratis</span>
+                  <span>Gratis &amp; anoniem</span>
                   <span>Tarieven {selectedYear}</span>
-                  <span>Direct resultaat</span>
-                  <span>Anoniem</span>
+                  <span>Rekent in je browser</span>
+                  <span>Door één persoon onderhouden</span>
                 </div>
               </div>
 
@@ -366,8 +375,9 @@ const Home = () => {
                   </h2>
                 </div>
                 <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
-                  Hieronder zie je hoe de Belastingdienst tot het bedrag komt — per bucket, met
-                  toepassing van vrijstellingen, schulden en (indien van toepassing) verdragskorting.
+                  Hieronder zie je precies hoe de Belastingdienst tot het bedrag komt — per categorie,
+                  met toepassing van vrijstellingen, de schuldendrempel, partner-verdeling en (als
+                  van toepassing) verdragskorting voor buitenlands vastgoed. Geen black box.
                 </p>
               </div>
 
@@ -401,17 +411,17 @@ const Home = () => {
                 </h2>
               </div>
               <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
-                De Belastingdienst gaat uit van een fictief rendement: een aanname over wat je
-                vermogen had moeten opleveren. Wij rekenen die aanname kraakhelder voor je
-                voor — per categorie, per woning, per partner.
+                De Belastingdienst kijkt niet naar wat je werkelijk hebt verdiend — ze gaan uit van
+                een fictief rendement, een aanname per categorie. Hier reken ik die aanname stap
+                voor stap voor je voor. Geen aannames over jouw situatie die je niet zelf hebt ingevuld.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { num: '1', title: 'Vul je vermogen in', body: 'Spaargeld, beleggingen, tweede woningen en schulden. WOZ-waarde, niet marktwaarde — dat scheelt vaak 10–20%.', tag: '~ 90 seconden' },
-                { num: '2', title: 'Wij splitsen per categorie', body: 'Elke euro krijgt zijn eigen fictief rendement. Schulden trekken we af, partner-vrijstellingen verwerken we automatisch.', tag: 'Live berekening' },
-                { num: '3', title: 'Zie je aanslag in beeld', body: 'Effectief tarief, belastbare grondslag, vrijstellingen en het bedrag onderaan de streep — alles transparant uitgelegd.', tag: 'Deelbaar als link' },
+                { num: '1', title: 'Vul je vermogen in', body: 'Spaargeld, beleggingen, eventueel een tweede woning, hypotheek en schulden. Tip: voor vastgoed de WOZ-waarde gebruiken, niet de marktwaarde — dat scheelt vaak 10–20%.', tag: '~ 90 seconden' },
+                { num: '2', title: 'Elke euro krijgt zijn eigen percentage', body: 'Spaargeld op 1,44%, beleggingen en vastgoed op 6,04%, schulden op 2,61% (boven de €3.700-drempel). Partner-vrijstellingen, jaar-tarieven en verdragslanden zitten erin.', tag: 'Live berekening' },
+                { num: '3', title: 'Zie de aanslag in beeld', body: 'Effectief tarief, belastbare grondslag, vrijstellingen, het bedrag onderaan de streep — en een vergelijking met vorig jaar en met 2028 onder aanwasbelasting.', tag: 'Deelbaar als link' },
               ].map((s) => (
                 <div key={s.num} className="p-7 rounded-2xl bg-white border border-appleGray-200/80 flex flex-col gap-3 min-h-[240px]">
                   <div className="font-display text-[56px] leading-none font-medium text-accent-500 tabular-nums tracking-display-tight">
@@ -437,8 +447,9 @@ const Home = () => {
                 </h2>
               </div>
               <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
-                Het oude systeem gebruikte één getal voor alles. Sinds het Kerstarrest van 2021 splitst
-                de Belastingdienst je vermogen in drie buckets, elk met een eigen fictief rendement.
+                Tot 2022 gebruikte de Belastingdienst één gemiddeld percentage voor alles. Het Kerstarrest
+                van december 2021 (<a href="https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2021:1963" target="_blank" rel="noopener noreferrer" className="underline decoration-accent-500/40 hover:decoration-accent-500">ECLI:NL:HR:2021:1963</a>)
+                veranderde dat. Sinds 2023 zijn er drie categorieën, elk met een eigen percentage.
               </p>
             </div>
 
@@ -447,23 +458,60 @@ const Home = () => {
                 cat="Spaargeld"
                 pct={currentRates.savings}
                 color="ink"
-                desc="Bank- en spaartegoeden krijgen het laagste percentage — spaarrentes zijn historisch laag."
+                desc="Bank- en spaartegoeden. Laag percentage, want spaarrentes zitten al jaren onder de twee procent. Wijkt af van wat je werkelijk ontvangt — vaak in jouw nadeel."
                 hint="Bron · Belastingdienst"
               />
               <RateCell
                 cat="Beleggingen & vastgoed"
                 pct={currentRates.invest}
                 color="accent"
-                desc="Aandelen, obligaties en je tweede woning. Hoger rendement verondersteld, dus hoger fictief percentage."
-                hint="Inclusief tweede woningen"
+                desc="Aandelen, obligaties, je tweede woning. Hoger rendement verondersteld op basis van langetermijngemiddelden — in 2022 met -13% op de AEX viel dat tegen, in 2024 met +14% juist mee."
+                hint="Tweede woningen tegen WOZ-waarde"
               />
               <RateCell
                 cat="Schulden"
                 pct={currentRates.debt}
                 color="ink"
-                desc="Aftrekbaar van je grondslag, maar de eerste €3.700 (of €7.400 met partner) telt niet mee."
+                desc="Aftrekbaar van je grondslag — maar de eerste €3.700 (€7.400 met fiscale partner) telt niet mee. Bedoeld om kleine schulden buiten Box 3 te houden."
                 hint="Drempel per persoon"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── Why I built this ───────── */}
+        <section className="border-b border-appleGray-200/80 py-20 md:py-24" id="waarom">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+            <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 items-start">
+              <div>
+                <div className="eyebrow mb-2">Wie hier achter zit</div>
+                <h2 className="font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
+                  Eén persoon, één <em className="not-italic text-accent-500">Excel</em> dat is uitgegroeid.
+                </h2>
+              </div>
+              <div className="space-y-4 text-[17px] text-appleGray-700 leading-relaxed max-w-[62ch]">
+                <p>
+                  Ik ben Dejan. Servisch van origine, woon in Nederland, AI engineer overdag, en de
+                  bouwer van deze site in mijn vrije uren. 2e-woning.nl begon als een Excel-bestand
+                  toen een vriend mij vroeg om zijn Box 3-aanslag te controleren. Drie avonden later
+                  was er een rekenmodel; een paar maanden later een webversie. Dit is die webversie.
+                </p>
+                <p>
+                  Geen advertenties verstopt tussen je cijfers, geen e-mail die je moet achterlaten,
+                  geen advies waarvoor ik niet gekwalificeerd ben. Wel: een eerlijke berekening van
+                  wat de Belastingdienst gaat doen, en een paar pagina&apos;s uitleg in normaal
+                  Nederlands. Voor wie het wil weten — er staat een hele pagina over wie ik ben,
+                  waarom dit bestaat, en wat het níet is.
+                </p>
+                <div className="pt-2">
+                  <Link href="/over" className="btn btn-outline inline-flex items-center gap-2">
+                    Over de auteur
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -479,8 +527,9 @@ const Home = () => {
                 </h2>
               </div>
               <p className="text-lg text-appleGray-700 max-w-[60ch] leading-relaxed">
-                De meest gestelde vragen over Box 3 — kort, in mensentaal, en zonder verwijzingen
-                naar 14 andere pagina&apos;s.
+                Tien vragen die ik het vaakst krijg via mail — kort beantwoord, in normale taal, en
+                zonder verwijzingen naar 14 andere pagina&apos;s of een wetsartikel dat je toch niet
+                gaat openen.
               </p>
             </div>
 
@@ -601,9 +650,9 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
 
       {/* Body */}
       <div className="p-5 md:p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0 items-stretch">
           <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} help="Box 3" />
-          <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} help="Aandelen, obligaties" />
+          <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} />
         </div>
 
         <div className="flex justify-between items-baseline mb-2 mt-2">
@@ -641,7 +690,7 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
           {t('assets.addProperty')}
         </button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mt-4 items-stretch">
           <InputField
             label={t('assets.otherAssets')}
             value={assets.otherAssets}
@@ -660,7 +709,6 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
               label={t('debts.otherDebtsLabel')}
               value={otherDebts}
               onChange={handleOtherDebtsChange}
-              help="Excl. hypotheek tweede woning"
             />
           </div>
         </div>

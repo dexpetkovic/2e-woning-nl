@@ -8,9 +8,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // List all static pages
   const staticPages = [
     '',
+    '/box3-uitleg',
+    '/box3-tips',
+    '/rechtbank',
+    '/over',
+    '/contact',
     '/privacy',
     '/cookies',
-    '/contact',
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

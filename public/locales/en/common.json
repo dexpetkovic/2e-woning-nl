@@ -1,6 +1,6 @@
 {
   "title": "Box 3 Tax Calculator",
-  "subtitle": "Easily calculate your Box 3 tax for your second home and other investments in the Netherlands",
+  "subtitle": "Run the numbers in 90 seconds — savings, investments, second home, debts. No forms, no email signup, no ads buried between your figures.",
   "assets": {
     "title": "Your assets and debts",
     "possessions": "Assets",
@@ -264,6 +264,7 @@
   "navigation": {
     "home": "Home",
     "rechtbank": "Box 3 & Court",
+    "over": "About",
     "contact": "Contact"
   },
   "faq": {
@@ -271,23 +272,43 @@
     "items": [
       {
         "q": "Does my primary home count for Box 3?",
-        "a": "No. Your primary home and the associated mortgage debt fall under Box 1, not Box 3. Only second homes, holiday properties and rental properties belong in Box 3."
+        "a": "No. Your primary home and the associated mortgage debt sit in Box 1, not Box 3. Only second homes, holiday properties and rental properties belong in Box 3. In the calculator here you tick 'primary home' for that property, and it gets cleanly excluded from the calculation."
       },
       {
         "q": "How does the tax-free allowance work exactly?",
-        "a": "The tax-free allowance (€57,000 per person in 2025) is a threshold. If your total Box 3 assets after deducting debts are below this amount, you pay nothing. With a fiscal partner the combined limit is €114,000 and you may divide your assets in the most advantageous way."
+        "a": "The heffingvrij vermogen is a threshold: €57,000 per person in 2025, €114,000 jointly for fiscal partners. If your total Box 3 wealth after deducting debts sits below that, you owe nothing. Above it, you pay on the portion that exceeds the threshold — and that portion is then allocated pro rata across your asset categories. That last step is exactly the part most of us re-read twice — which is why this tool handles it for you."
       },
       {
-        "q": "What about debts?",
-        "a": "You may deduct debts from your assets, but not in full. There is a threshold: the first €3,700 in debts (or €7,400 with a partner) does not count. Everything above that reduces your taxable base. Note: mortgage debt on your primary home belongs to Box 1 and does not count here."
+        "q": "What about debts in Box 3?",
+        "a": "You may deduct debts, but with a threshold. The first €3,700 doesn't count (€7,400 with a fiscal partner). Anything above is deducted using a fictitious yield of 2.61% in 2025. Important: mortgage debt on your primary home doesn't count here — that's Box 1. Mortgage debt on a second home does count, and the calculator here supports it."
       },
       {
         "q": "Are green investments treated differently?",
-        "a": "Yes. Green investments are exempt from Box 3 up to €71,251 per person (€142,502 with a partner). If you invest in sustainable funds, this directly reduces your taxable base."
+        "a": "Yes. Green investments are exempt from Box 3 up to €71,251 per person (€142,502 with a fiscal partner). On top of the exemption there's a 0.1% tax credit on the invested amount. The qualifying funds are specifically those with the Belastingdienst's 'groene belegging' designation — not every fund that calls itself sustainable qualifies. Ask your bank or broker explicitly before depositing."
       },
       {
-        "q": "Is this calculation the same as my final tax assessment?",
-        "a": "No, this is an estimate. The tax authority calculates your final assessment based on your submitted return and may differ. Use this as a reference, not as a binding outcome."
+        "q": "What if I bought my second home in January?",
+        "a": "For Box 3, what matters is what you own on 1 January — the peildatum. If you bought a second home on 5 January, it doesn't count for that entire tax year. It only enters from 1 January the following year. Conversely: if you sold on 30 December, it's already out of your base for that year. Designed to keep administration simple — but it does make timing of large transactions worth thinking about."
+      },
+      {
+        "q": "How is crypto treated in Box 3?",
+        "a": "Crypto in principle falls under Box 3, classified as 'other assets'. You report the value at 1 January (converted to euros at that day's rate). The fictief rendement is that of investments — 6.04% in 2025. For staking yield and lending returns it gets more complex; case law is still evolving there. For straightforward crypto holders, declaring under other assets is the standard approach."
+      },
+      {
+        "q": "What if I don't trust the WOZ value?",
+        "a": "You can file an objection against the WOZ — at your municipality, not the Belastingdienst. The window is six weeks after receiving the WOZ-beschikking. An independent appraisal often helps. For Box 3, the official WOZ value is used; adjust it via a successful objection and your assessment will follow automatically. For the tool here: enter the current official WOZ, not what you think it should be."
+      },
+      {
+        "q": "Does this calculator work for rented properties?",
+        "a": "Yes, with one caveat. For Box 3 the property is valued at its WOZ value (not market value), with the fictief rendement of investments — 6.04% in 2025. For rented residential properties there's also been a leegwaarderatio correction since 2017: a discount on the WOZ based on the rent you charge. That correction isn't yet built into this calculator — it's on the list. For anyone with multiple rented properties: a tax advisor can optimise the leegwaarderatio for you."
+      },
+      {
+        "q": "Is this the same as my final tax assessment?",
+        "a": "No. This is an estimate. The Belastingdienst does the final calculation based on your filed return, and may have small deviations — rounding rules, or specific items not modelled here. Use this as a guideline and a cross-check, not as a binding outcome. If the final assessment diverges sharply? Worth investigating — or worth dropping me an email."
+      },
+      {
+        "q": "What changes in 2028?",
+        "a": "From 1 January 2028 a new system replaces the bridging system. The base becomes aanwasbelasting: annual tax on the actual increase in value of your wealth — no more fictief rendement. For real estate and shares in startups there's an exception: profit tax, settled at the moment of sale. Until then the current system stays in force. The calculator here supports 2024, 2025 and 2026, plus a 2028 estimate under different return assumptions."
       }
     ]
   },
