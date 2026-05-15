@@ -485,9 +485,6 @@ const Home = () => {
             <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 items-start">
               <div>
                 <div className="eyebrow mb-2">Wie hier achter zit</div>
-                <h2 className="font-display text-3xl md:text-5xl font-medium tracking-display leading-[1.02]">
-                  Eén persoon, één <em className="not-italic text-accent-500">Excel</em> dat is uitgegroeid.
-                </h2>
               </div>
               <div className="space-y-4 text-[17px] text-appleGray-700 leading-relaxed max-w-[62ch]">
                 <p>
