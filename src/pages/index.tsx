@@ -626,17 +626,18 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
       {/* Head: year selector */}
       <div className="flex justify-between items-center px-4 md:px-5 py-3.5 border-b border-appleGray-200/80"
            style={{ background: 'linear-gradient(180deg, #EFEBE1 0%, #fff 100%)' }}>
-        <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[.14em] text-appleGray-500">
-          <span>Belastingjaar</span>
-          <b className="text-appleGray-900">·</b>
-          <span className="text-appleGray-900 font-semibold">Live preview</span>
+        <div className="flex items-baseline gap-2">
+          <span className="font-mono text-[10.5px] uppercase tracking-[.16em] text-appleGray-500">Belastingjaar</span>
+          <span className="font-display text-[15px] font-medium text-appleGray-900 tabular-nums tracking-display-tight">{selectedYear}</span>
         </div>
-        <div className="flex gap-1 bg-appleGray-100 p-1 rounded-lg" role="tablist">
+        <div className="flex gap-1 bg-appleGray-100 p-1 rounded-lg" role="tablist" aria-label="Belastingjaar kiezen">
           {(['2024', '2025', '2026'] as TaxYear[]).map((y) => (
             <button
               key={y}
               onClick={() => setSelectedYear(y)}
-              className={`appearance-none px-2.5 py-1 rounded-md text-xs font-medium font-mono transition-all ${
+              role="tab"
+              aria-selected={selectedYear === y}
+              className={`appearance-none px-3 py-1 rounded-md text-xs font-medium font-mono transition-all ${
                 selectedYear === y
                   ? 'bg-white text-appleGray-900 shadow-sm'
                   : 'bg-transparent text-appleGray-500 hover:text-appleGray-900'
@@ -650,17 +651,22 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
 
       {/* Body */}
       <div className="p-5 md:p-6">
+        {/* Section: liquid assets */}
+        <SectionLabel
+          title="Liquide vermogen"
+          hint="Spaargeld krijgt een laag fictief rendement; beleggingen een hoog."
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0 items-stretch">
-          <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} help="Box 3" />
+          <InputField label={t('assets.bankSavings')} value={assets.bankSavings} onChange={(v) => handleInputChange('bankSavings', v)} />
           <InputField label={t('assets.investments')} value={assets.investments} onChange={(v) => handleInputChange('investments', v)} />
         </div>
 
-        <div className="flex justify-between items-baseline mb-2 mt-2">
-          <div className="text-[13px] text-appleGray-700 font-medium">Tweede woningen &amp; vastgoed</div>
-          <div className="font-mono text-[11px] uppercase tracking-[.1em] text-appleGray-500">
-            {propertyEntries.length} {propertyEntries.length === 1 ? 'woning' : 'woningen'}
-          </div>
-        </div>
+        {/* Section: properties */}
+        <SectionLabel
+          title="Tweede woningen & vastgoed"
+          hint="Gebruik WOZ-waarde — voor verhuurde of buitenlandse woningen."
+          counter={`${propertyEntries.length} ${propertyEntries.length === 1 ? 'woning' : 'woningen'}`}
+        />
 
         <div className="space-y-2.5">
           {propertyEntries.map((entry, idx) => (
@@ -690,7 +696,12 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
           {t('assets.addProperty')}
         </button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mt-4 items-stretch">
+        {/* Section: extras */}
+        <SectionLabel
+          title="Overig"
+          hint="Optioneel — laat leeg als niet van toepassing."
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 items-stretch">
           <InputField
             label={t('assets.otherAssets')}
             value={assets.otherAssets}
@@ -701,7 +712,7 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
             label={t('assets.greenInvestments')}
             value={assets.greenInvestments}
             onChange={(v) => handleInputChange('greenInvestments', v)}
-            help="Vrijstelling €71.251"
+            help="Vrijstelling tot €71.251"
             optional
           />
           <div className="sm:col-span-2">
@@ -709,26 +720,31 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
               label={t('debts.otherDebtsLabel')}
               value={otherDebts}
               onChange={handleOtherDebtsChange}
+              optional
             />
           </div>
         </div>
 
-        {/* Partner toggle */}
+        {/* Section: partner */}
+        <SectionLabel
+          title="Persoonlijk"
+          hint="Een fiscale partner verdubbelt het heffingvrij vermogen en de schuldendrempel."
+        />
         <button
           type="button"
           onClick={() => setHasFiscalPartner(!hasFiscalPartner)}
-          className={`partner-toggle mt-3 w-full text-left ${hasFiscalPartner ? 'is-on' : ''}`}
+          className={`partner-toggle w-full text-left ${hasFiscalPartner ? 'is-on' : ''}`}
           role="switch"
           aria-checked={hasFiscalPartner}
         >
           <span className="toggle" aria-hidden="true" />
           <span className="flex-1">
-            {t('personal.fiscalPartner')}
-            {hasFiscalPartner && (
-              <span className="block text-xs text-appleGray-500 mt-0.5">
-                Vrijstellingen en drempels verdubbeld
-              </span>
-            )}
+            <span className="block">{t('personal.fiscalPartner')}</span>
+            <span className="block text-xs text-appleGray-500 mt-0.5">
+              {hasFiscalPartner
+                ? 'Heffingvrij vermogen €114.000 · schuldendrempel €7.400'
+                : 'Heffingvrij vermogen €57.000 · schuldendrempel €3.700'}
+            </span>
           </span>
         </button>
       </div>
@@ -770,15 +786,19 @@ const CalculatorCard: React.FC<CalculatorCardProps> = (props) => {
       )}
 
       {/* CTAs */}
-      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-1 flex gap-2.5 flex-wrap">
-        <button onClick={onCalculate} className="btn btn-primary">
-          Volledige berekening
-          <span className="arr">→</span>
+      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-1 flex items-center gap-2.5 flex-wrap">
+        <button onClick={onCalculate} className="btn btn-primary" aria-label="Toon de berekening stap voor stap">
+          Toon volledige uitleg
+          <span className="arr" aria-hidden="true">→</span>
         </button>
-        <button onClick={onCopyLink} className="btn btn-outline">
-          {copied ? 'Gekopieerd!' : 'Berekening delen'}
+        <button onClick={onCopyLink} className="btn btn-outline" aria-label="Kopieer een deelbare link naar deze berekening">
+          {copied ? '✓ Link gekopieerd' : 'Deel berekening'}
         </button>
-        <button onClick={onReset} className="btn btn-outline">
+        <button
+          onClick={onReset}
+          className="appearance-none border-0 bg-transparent text-appleGray-500 hover:text-appleGray-900 text-sm px-3 py-2 rounded-md hover:bg-appleGray-100 transition-all ml-auto"
+          aria-label="Wis alle velden"
+        >
           {t('buttons.reset')}
         </button>
       </div>
@@ -790,6 +810,23 @@ const BreakdownRow: React.FC<{ k: string; v: string; last?: boolean }> = ({ k, v
   <div className={`flex justify-between items-center py-1.5 ${last ? '' : 'border-b border-dashed border-appleGray-300/60'}`}>
     <span className="text-appleGray-500 uppercase tracking-[.08em] text-[11px]">{k}</span>
     <span className="text-appleGray-900 font-medium tabular-nums">{v}</span>
+  </div>
+);
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Section divider inside the calculator — clear visual grouping
+   ───────────────────────────────────────────────────────────────────── */
+const SectionLabel: React.FC<{ title: string; hint?: string; counter?: string }> = ({ title, hint, counter }) => (
+  <div className="mt-5 mb-2 first:mt-0">
+    <div className="flex items-baseline justify-between gap-3 border-t border-appleGray-200/70 pt-3">
+      <div className="flex items-baseline gap-2.5">
+        <span className="font-mono text-[10.5px] uppercase tracking-[.16em] text-appleGray-500">{title}</span>
+        {hint && <span className="text-[11.5px] text-appleGray-500 leading-snug">{hint}</span>}
+      </div>
+      {counter && (
+        <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500 whitespace-nowrap">{counter}</span>
+      )}
+    </div>
   </div>
 );
 
@@ -815,36 +852,57 @@ const PropertyBlock: React.FC<PropertyBlockProps> = ({
 }) => {
   const { t } = useTranslation('common');
 
+  const locationLabels: Record<PropertyLocation, { short: string; long: string; hint: string }> = {
+    nl: { short: 'Nederland', long: 'Nederland', hint: 'Telt mee in Box 3' },
+    treaty: { short: 'Verdragsland', long: 'Verdragsland', hint: 'Buitenland mét belastingverdrag — vrijstelling via Bvdb 2001' },
+    noTreaty: { short: 'Geen verdrag', long: 'Geen verdrag', hint: 'Buitenland zonder belastingverdrag' },
+  };
+
   return (
     <div className="property-card">
       <div className="property-card-head">
         <div className="property-name">Woning {index + 1}</div>
-        <div className="flex gap-2 items-center">
-          <div className="seg" role="tablist" aria-label="Locatie">
+        {canRemove && (
+          <button
+            onClick={onRemove}
+            className="appearance-none border-0 bg-transparent text-appleGray-500 text-sm cursor-pointer px-2 py-1 rounded-md hover:bg-appleGray-100 hover:text-appleGray-900 inline-flex items-center gap-1.5"
+            aria-label={t('assets.removeProperty')}
+          >
+            <span aria-hidden="true">✕</span>
+            <span className="text-[11px] uppercase tracking-[.1em] font-mono">Verwijder</span>
+          </button>
+        )}
+      </div>
+      <div className="p-3.5">
+        {/* Location selector with explicit label */}
+        <div className="mb-3">
+          <div className="flex items-baseline justify-between mb-1.5 gap-3">
+            <label className="text-[13px] text-appleGray-700 font-medium tracking-[0.005em]">Waar staat deze woning?</label>
+            <span className="font-mono text-[10.5px] uppercase tracking-[.1em] text-appleGray-500">Fiscale locatie</span>
+          </div>
+          <div className="seg w-full" role="radiogroup" aria-label="Locatie van de woning" style={{ width: '100%' }}>
             {(['nl', 'treaty', 'noTreaty'] as PropertyLocation[]).map((loc) => (
               <button
                 key={loc}
-                className={entry.location === loc ? 'on' : ''}
+                role="radio"
+                aria-checked={entry.location === loc}
+                className={entry.location === loc ? 'on flex-1' : 'flex-1'}
                 onClick={() => onUpdate('location', loc)}
                 disabled={entry.isPrimaryResidence}
-                style={entry.isPrimaryResidence ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
+                style={{
+                  flex: 1,
+                  ...(entry.isPrimaryResidence ? { opacity: 0.5, cursor: 'not-allowed' } : {}),
+                }}
               >
-                {loc === 'nl' ? 'NL' : loc === 'treaty' ? 'Verdrag' : 'Geen'}
+                {locationLabels[loc].short}
               </button>
             ))}
           </div>
-          {canRemove && (
-            <button
-              onClick={onRemove}
-              className="appearance-none border-0 bg-transparent text-appleGray-500 text-sm cursor-pointer px-2 py-1 rounded-md hover:bg-appleGray-100 hover:text-appleGray-900"
-              aria-label={t('assets.removeProperty')}
-            >
-              ✕
-            </button>
-          )}
+          <p className="text-[11px] text-appleGray-500 mt-1.5 leading-snug">
+            {locationLabels[entry.location].hint}
+          </p>
         </div>
-      </div>
-      <div className="p-3.5">
+
         {entry.location === 'nl' && (
           <label className="flex items-center gap-2 cursor-pointer group mb-2.5">
             <div className="relative flex-shrink-0">
@@ -865,6 +923,7 @@ const PropertyBlock: React.FC<PropertyBlockProps> = ({
               </div>
             </div>
             <span className="text-xs font-medium text-appleGray-700">{t('assets.primaryResidence')}</span>
+            <span className="text-[11px] text-appleGray-500 ml-1">— valt in Box 1, niet hier</span>
           </label>
         )}
 

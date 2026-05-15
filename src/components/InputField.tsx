@@ -44,7 +44,7 @@ const InputField: React.FC<InputFieldProps> = ({
   return (
     <div className={`flex flex-col mb-4 ${className}`}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 mb-1.5">
-        <label className="text-[12.5px] text-appleGray-700 font-medium leading-tight">
+        <label className="text-[13px] text-appleGray-700 font-medium leading-[1.35] tracking-[0.005em]">
           {label}
           {optional && <span className="text-appleGray-500 ml-1 font-normal">({t('optional')})</span>}
         </label>
@@ -55,7 +55,12 @@ const InputField: React.FC<InputFieldProps> = ({
         )}
       </div>
       <div className="relative mt-auto">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-appleGray-500 font-mono text-sm pointer-events-none">
+        <span
+          className={`absolute left-3 top-1/2 -translate-y-1/2 font-mono text-sm pointer-events-none transition-colors ${
+            numericValue === 0 && !focused ? 'text-appleGray-300' : 'text-appleGray-500'
+          }`}
+          aria-hidden="true"
+        >
           €
         </span>
         <input
@@ -66,7 +71,8 @@ const InputField: React.FC<InputFieldProps> = ({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder={placeholder}
-          className="w-full pl-7 pr-3.5 py-3 border border-appleGray-200 rounded-xl bg-white font-mono text-[15px] font-medium text-appleGray-900 focus:outline-none focus:border-appleGray-900 focus:ring-[3px] focus:ring-accent-500/20 transition-all"
+          aria-label={label}
+          className="w-full pl-7 pr-3.5 py-3 border border-appleGray-200 rounded-xl bg-white font-mono text-[15px] font-medium text-appleGray-900 placeholder:text-appleGray-300 hover:border-appleGray-300 focus:outline-none focus:border-appleGray-900 focus:ring-[3px] focus:ring-accent-500/20 transition-all"
         />
       </div>
     </div>
