@@ -52,10 +52,12 @@ input, select, textarea {
   @apply font-mono;
 }
 
-input[type="text"], input[type="number"], input[type="email"], select, textarea {
+/* Baseline styles for bare inputs only — wrapped in :where() so the
+   specificity drops to 0 and any utility class (pl-7, etc.) wins. */
+:where(input[type="text"], input[type="number"], input[type="email"], select, textarea) {
   @apply rounded-xl border border-appleGray-200 px-4 py-3 bg-white focus:outline-none text-base transition-all;
 }
-input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+:where(input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus) {
   border-color: var(--ink);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
 }
