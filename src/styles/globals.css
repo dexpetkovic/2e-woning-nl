@@ -62,6 +62,18 @@ input, select, textarea {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
 }
 
+/* Kill Chrome's yellow autofill background and keep our typography */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  box-shadow: 0 0 0 1000px #ffffff inset;
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 .btn {
   @apply inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium font-sans transition-all duration-150 active:scale-[0.98];
 }
